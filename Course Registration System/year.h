@@ -2,15 +2,9 @@
 #include <iostream>
 #include <string.h>
 #include "linkedList.h"
+#include "student.h"
+#include "class.h"
 using namespace std;
-
-struct Student {
-
-};
-
-struct Class {
-	Node<Student>* pHeadStudent;
-};
 
 struct yearNode {
 	int yearStart;
