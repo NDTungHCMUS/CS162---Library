@@ -331,5 +331,3 @@ bool loginSt(string &ID,string &pass, ListLogin* &lhead, ListLogin* &position, i
     if (check == true) return true;
     else return false;
 }
-
-
