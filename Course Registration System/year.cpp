@@ -1,20 +1,21 @@
 #include "year.h"
 
-void CreateYear(yearNode*& pHeadYear)
+void CreateYear(Node<Year>* &pHeadYear)
 {
-	yearNode* current = pHeadYear;
+	Node<Year>* current = pHeadYear;
 	int temp;
 	cout << "Type in Year Start: ";
 	cin >> temp;
-	yearNode* current = new yearNode;
-	current = pHeadYear;
 	if (pHeadYear == nullptr) {
-		pHeadYear = new yearNode;
+		pHeadYear = new Node<Year>;
 		current = pHeadYear;
 	}
 	else {
-		current->pNext = new yearNode;
+		while (current->pNext != nullptr) {
+			current = current->pNext;
+		}
+		current->pNext = new Node<Year>;
 		current = current->pNext;
 	}
-	current->yearStart = temp;
+	current->data.yearStart = temp;
 }
