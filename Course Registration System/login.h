@@ -8,7 +8,7 @@ struct ListLogin
 {
     string id;
     string pas;
-    ListLogin *next;
+    ListLogin *next = NULL;
 };
 void deleteListLogin(ListLogin* &lhead);
 void outList(ListLogin* &lhead);
