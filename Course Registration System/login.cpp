@@ -2,9 +2,7 @@
 #include<fstream>
 #include<string>
 #include"login.h"
-#include"student.h"
-#include"staff.h"
-const string studenttxt = "loginStudentList.txt";
+const char *studenttxt = "loginStudentList.txt";
 const char *stafftxt = "loginStaffList.txt";
 using namespace std;
 void login()
