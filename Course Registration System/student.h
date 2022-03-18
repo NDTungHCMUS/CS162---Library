@@ -1,4 +1,6 @@
 #pragma once
+#include "linkedList.h"
+using namespace std;
 
 
 struct Date {
