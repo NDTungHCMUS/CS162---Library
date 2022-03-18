@@ -4,7 +4,7 @@
 #include"login.h"
 #include"student.h"
 #include"staff.h"
-const char *studenttxt = "loginStudentList.txt";
+const string studenttxt = "loginStudentList.txt";
 const char *stafftxt = "loginStaffList.txt";
 using namespace std;
 void login()
