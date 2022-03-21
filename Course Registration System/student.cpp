@@ -20,3 +20,7 @@ Student AddStudent() {
 	cin >> a.SocialID;
 	return a;
 }
+
+//Format for Adding students to class function
+//LinkedList StudentList;
+//addList(Class.listOfStudents, &AddStudent);
