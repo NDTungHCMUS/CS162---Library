@@ -1,4 +1,15 @@
-#include "year.h"
+#pragma once
+#include <iostream>
+#include <string.h>
+#include <string>
+#include "linkedList.h"
+#include "student.h"
+
+using namespace std;
+
 struct Class {
-	Node<Student>* pHeadStudent = NULL;
+	string classname = "";
+	LinkedList<Student> listOfStudents;
 };
+
+Class inputClass();

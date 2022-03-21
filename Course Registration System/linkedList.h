@@ -1,54 +1,54 @@
 #pragma once
 #include <iostream>
 #include <string.h>
+#include <string>
 #include <fstream>
-#include "student.h"
-#include "login.h"
+
 using namespace std;
 
-template <typename T>
+template <class T>
 struct Node
 {
 	T data;
-	Node<T>* pNext = NULL;
+	Node* pNext = NULL;
 };
 
-template <typename T>
+template <class T>
 struct LinkedList {
 	Node<T>* pHead = NULL;
     Node<T>* pTail = NULL;
 };
 
 // FUNCTIONS PROTOTYPE:
-template <typename T>
+template <class T>
 void add(LinkedList<T>& l1, T item); // add to last of the list
 
-template<typename T>
+template<class T>
 void addFront(LinkedList<T>& l1, T item); // add to front of the list
 
-template <typename T>
+template <class T>
 int length(LinkedList<T> l1); // find the length of the list
 
-template <typename T>
+template <class T>
 void addIndex(LinkedList<T>& l1, T item, int index); // add a node to a specific index
 
-template <typename T>
+template <class T>
 void displayAll(LinkedList<T> l1, void(*outputItem)(T data)); // display all elements of the list
 
-template <typename T>
+template <class T>
 void deallocateAll(LinkedList<T>& l1); // deallocate the list
 
-template <typename T>
+template <class T>
 void removeFront(LinkedList<T>& l1); // remove first element
 
-template <typename T>
+template <class T>
 void remove(LinkedList<T>& l1, int index); // remove specific node
 
 
 
 // FUNCTIONS DEFINITIONS:
 // add element behind the list
-template <typename T> 
+template <class T> 
 void add(LinkedList<T> &l1, T item) {
     Node<T>* node = new Node<T>;
     node->data = item;
@@ -64,7 +64,7 @@ void add(LinkedList<T> &l1, T item) {
 }
 
 // add element before the list
-template<typename T>
+template<class T>
 void addFront(LinkedList<T> &l1, T item) {
     Node<T>* node = new Node<T>;
     node->data = item;
@@ -80,7 +80,7 @@ void addFront(LinkedList<T> &l1, T item) {
 }
 
 // count number of elements
-template <typename T>
+template <class T>
 int length(LinkedList<T> l1) {
     int len = 0;
     Node<T>* temp = l1.pHead;
@@ -92,7 +92,7 @@ int length(LinkedList<T> l1) {
 }
 
 // add to index of the list
-template <typename T>
+template <class T>
 void addIndex(LinkedList<T> &l1, T item, int index) {
     if (index > length(l1) || index < 0) {
         cout << "Invalid" << endl;
@@ -118,7 +118,7 @@ void addIndex(LinkedList<T> &l1, T item, int index) {
 }
 
 // Display all elements in the list
-template <typename T>
+template <class T>
 void displayAll(LinkedList<T> l1, void(*outputItem)(T data)) {
     if (l1.pHead == NULL) {
         cout << "Nothing to display";
@@ -132,7 +132,7 @@ void displayAll(LinkedList<T> l1, void(*outputItem)(T data)) {
 }
 
 // deallocate all elements in the list
-template <typename T>
+template <class T>
 void deallocateAll(LinkedList<T> &l1) {
     while (l1.pHead != NULL) {
         Node<T>* tmp = l1.pHead;
@@ -142,7 +142,7 @@ void deallocateAll(LinkedList<T> &l1) {
 }
 
 // delete front
-template <typename T>
+template <class T>
 void removeFront(LinkedList<T> &l1) {
     if (l1.pHead == NULL) {
         cout << "linked list is empty !" << endl;
@@ -155,7 +155,7 @@ void removeFront(LinkedList<T> &l1) {
 }
 
 // remove a node at a specific index
-template <typename T>
+template <class T>
 void remove(LinkedList<T> &l1, int index) {
     if (l1.head == NULL) {
         cout << "Empty list, nothing to remove." << endl;
@@ -185,8 +185,8 @@ void remove(LinkedList<T> &l1, int index) {
 }
 
 // add a list of item
-template <typename T>
-void addList(LinkedList<T> l1, T(*inputItem)()) {
+template <class T>
+void addList(LinkedList<T> &l1, T(*inputItem)()) {
     cout << "Choose your option: " << endl
          << "1. Input." << endl
          << "2. Exit." << endl;
@@ -199,7 +199,6 @@ void addList(LinkedList<T> l1, T(*inputItem)()) {
         if (l1.pHead == NULL) {
             l1.pHead = tmp;
             l1.pTail = l1.pHead;
-      
         }
         else {
             l1.pTail->pNext = tmp;

@@ -1,15 +1,17 @@
 #pragma once
 #include <iostream>
 #include <string.h>
+#include <string>
 #include "linkedList.h"
-#include "student.h"
 #include "class.h"
+
 using namespace std;
+
 struct Year {
 	int yearStart;
-	Node<Class>* pHeadClass = NULL;
+	LinkedList<Class> Listclass;
 };
 
-void CreateYear(Node<Year>* &pHeadYear);
-void CreateClasses(Node<Class>* &pHeadClass);
-bool checkClass(Node<Class>* pHeadClass, string ClassName);
+void CreateYear(LinkedList<Year>& yearList);
+Year inputYear();
+
