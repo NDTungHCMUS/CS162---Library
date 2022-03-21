@@ -206,7 +206,7 @@ void addList(LinkedList<T> l1, T(*inputItem)()) {
             l1.pTail = l1.pTail->pNext;
         }
         cout << "Added, back to choice menu." << endl;
-        addList(l1, &inputItem);
+        addList(l1, inputItem);
         return;
     }
     else if (choice == '2') {
@@ -215,7 +215,7 @@ void addList(LinkedList<T> l1, T(*inputItem)()) {
     }
     else {
         cout << "Invalid, try another choice." << endl;
-        addList(l1, &inputItem);
+        addList(l1, inputItem);
         return;
     }
 }

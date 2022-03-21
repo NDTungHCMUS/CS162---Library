@@ -13,7 +13,7 @@ void login()
     ListLogin *lhead;
     ListLogin *position = nullptr;
 
-    cout << "WELL COME TO OUR COURSE REGISTRATION SYSTEM" << endl;
+    cout << "WELCOME TO OUR COURSE REGISTRATION SYSTEM" << endl;
     cout << "Are you:" << endl;
     cout << "1. Student" << endl;
     cout << "2. Staff member" << endl;

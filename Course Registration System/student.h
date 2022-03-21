@@ -14,8 +14,9 @@ struct Student {
 	int StudentID;
 	string FirstName;
 	string LastName;
-	string Gender;
+	int Gender; //1 is Male, 2 is Female
 	Date dob;
 	int SocialID;
-	Student* pNext;
 };
+
+Student AddStudent();
