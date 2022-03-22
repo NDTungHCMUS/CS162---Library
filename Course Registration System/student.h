@@ -20,3 +20,4 @@ struct Student {
 };
 
 Student AddStudent();
+void inputStudentCSV(LinkedList<Student>& s)
