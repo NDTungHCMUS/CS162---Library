@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string.h>
+#include <iomanip>
 #include <string>
 #include <fstream>
 
@@ -215,6 +216,31 @@ void addList(LinkedList<T> &l1, T(*inputItem)()) {
     else {
         cout << "Invalid, try another choice." << endl;
         addList(l1, inputItem);
+        return;
+    }
+}
+
+// update an existing item
+template <class T>
+//index here represent the order of the element in the list, starting with 1, not 0
+void updateIndex(LinkedList<T>& l1, int index, T(*inputT)()) { 
+    if (index > length(l1)) {
+        cout << "Invalid choice." << endl;
+        return;
+    }
+    else if (l1.pHead == nullptr) {
+        cout << "List empty." << endl;
+        return;
+    }
+    else {
+        int count = 1;
+        Node<T>* track = l1.pHead;
+        while (count != index) {
+            track = track->pNext;
+            ++count;
+        }
+        track->data = inputT();
+        cout << "Data modified !" << endl;
         return;
     }
 }

@@ -1,4 +1,5 @@
 #include <iostream>
+#include "course.h"
 #include "class.h"
 #include "login.h"
 #include "year.h"
@@ -9,7 +10,7 @@ using namespace std;
 
 int main()
 {
-	LinkedList<Year> listYear;
+	/*LinkedList<Year> listYear;
 	Year y1{ 2020 };
 	Year y2{ 2021 };
 	Year y3{ 2022 };
@@ -17,9 +18,14 @@ int main()
 	add(listYear, y2);
 	addFront(listYear, y3);
 	cout << length(listYear) << endl;
-	addList(listYear, &inputYear);
 	addList(listYear.pHead->data.Listclass, &inputClass);
-	deallocateAll(listYear);
+	deallocateAll(listYear);*/
+	LinkedList<Course> ListCourse;
+	addList(ListCourse, &inputCourse);
+	outputAllCourse(ListCourse);
+	updateIndex(ListCourse, 1, inputCourse);
+	outputAllCourse(ListCourse);
+	deallocateAll(ListCourse);
 	return 0;
 }
 

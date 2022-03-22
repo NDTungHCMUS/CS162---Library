@@ -20,3 +20,4 @@ struct Course {
 };
 
 Course inputCourse();
+void outputAllCourse(LinkedList<Course> ListCourse);
