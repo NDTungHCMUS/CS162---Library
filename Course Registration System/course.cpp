@@ -2,7 +2,7 @@
 using namespace std;
 
 //Function to add Course to a Semester
-//addList(ListYear.ListSemester.pHead->data.ListCourse, &inputCourse);
+//addList(ListYear.pHead->data.ListSemester.pHead->data.ListCourse, &inputCourse);
 Course inputCourse() {
 	Course a;
 	cin.ignore(1000, '\n');
@@ -56,4 +56,14 @@ void outputAllCourse(LinkedList<Course> ListCourse) {
 		<< left << setw(20) << "Session 2"
 		<< endl;
 	displayAll(ListCourse, &outputCourse);
+}
+
+void removeCourse(LinkedList<Course> ListCourse) {
+	outputAllCourse(ListCourse);
+	int temp;
+	cout << "Please input the number of the Course you want to remove (From 1): ";
+	cin >> temp;
+	removeIndex(ListCourse, temp);
+	system("cls");
+	outputAllCourse(ListCourse);
 }
