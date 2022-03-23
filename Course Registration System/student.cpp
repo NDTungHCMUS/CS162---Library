@@ -24,42 +24,85 @@ Student AddStudent() {
 	return a;
 }
 void inputStudentCSV(LinkedList<Student> &s) {
-	Node<Student>* temp = s.pHead;
+	Node<Student> dummy;
+	Node<Student>* temp = &dummy;
 	ifstream fin;
 	fin.open("Student.csv");
 	string line;
 	while (getline(fin, line)) {
-		/*temp->data.No = (int)line[0];
-		temp->data.StudentID = (int)line[1];
-		temp->data.SocialID = (int)line[2];
-		cout << temp->data.No << " " << temp->data.StudentID << " " << temp->data.SocialID << endl;
-		temp = temp->pNext;*/
+		temp->pNext = new Node<Student>;
+		temp = temp->pNext;
 		string sNo;
 		string sID;
 		string sGender;
 		string sDay, sMonth, sYear;
 		string sSocial;
+		string dob;
 		stringstream inputstream;
 		inputstream.str(line);
-		getline(inputstream, sNo, ',');
-		temp->data.No = stoi(sNo);
-		getline(inputstream, sID, ',');
-		temp->data.StudentID = stoi(sID);
+		/*getline(inputstream, sNo, ',');
+		temp->data.No = stoi(sNo);*/
+		inputstream >> temp->data.No;
+		/*getline(inputstream, sID, ',');
+		temp->data.StudentID = stoi(sID);*/
+		inputstream >> temp->data.StudentID;
 		getline(inputstream, temp->data.FirstName, ',');
 		getline(inputstream, temp->data.LastName, ',');
-		getline(inputstream, sGender, ',');
-		temp->data.Gender = stoi(sGender);
-		getline(inputstream, sDay, '/');
-		temp->data.dob.day = stoi(sDay);
-		getline(inputstream, sMonth, '/');
-		temp->data.dob.month = stoi(sMonth);
-		getline(inputstream, sYear, '/');
-		temp->data.dob.year = stoi(sYear);
-		getline(inputstream, sSocial, ',');
-		temp->data.SocialID = stoi(sSocial);
-		temp = temp->pNext;
+		/*getline(inputstream, sGender, ',');
+		temp->data.Gender = stoi(sGender);*/
+		inputstream >> temp->data.Gender;
+		getline(inputstream, dob, ',');
+		stringstream dobstream;
+		dobstream.str(dob);
+		/*getline(dobstream, sDay, '/');
+		temp->data.dob.day = stoi(sDay);*/
+		dobstream >> temp->data.dob.day;
+		/*getline(inputstream, sMonth, '/');
+		temp->data.dob.month = stoi(sMonth);*/
+		dobstream >> temp->data.dob.month;
+		//getline(inputstream, sYear, '/');
+		//temp->data.dob.year = stoi(sYear);
+		dobstream >> temp->data.dob.year;
+		inputstream >> temp->data.SocialID;
+		//temp->data.SocialID = stoi(sSocial);
+		/*temp = temp->pNext;*/
 	}
+	s.pHead = dummy.pNext;
+	s.pTail = temp;
 }
 //Format for Adding students to class function
 //LinkedList StudentList;
 //addList(Class.listOfStudents, &AddStudent);
+
+void inputStudentFile(Student &s1, string line) {
+	string date;
+	stringstream sline;
+	sline.str(line);
+	sline >> s1.No;
+	sline.ignore( 1, ',' );
+	sline >> s1.StudentID;
+	sline.ignore(1, ',');
+	getline(sline, s1.FirstName, ',');
+	getline(sline, s1.LastName, ',');
+	sline >> s1.Gender;
+	sline.ignore(1, ',');
+	getline(sline, date, ',');
+	stringstream sdate;
+	sdate.str(date);
+	sdate >> s1.dob.day;
+	sdate.ignore(1, '/');
+	sdate >> s1.dob.month;
+	sdate.ignore(1, '/');
+	sdate >> s1.dob.year;
+	sline >> s1.SocialID;
+}
+
+void outputStudent(Student s1) {
+	cout << left << setw(10) << s1.No
+		<< left << setw(15) << s1.StudentID
+		<< left << setw(20) << (s1.LastName + ' ' + s1.FirstName)
+		<< left << setw(12) << ((s1.Gender == 1) ? "Male" : "Famale")
+		<< s1.dob.day << "/" << s1.dob.month << "/" << s1.dob.year << "	  "
+		<< left << setw(20) << s1.SocialID
+		<< endl;
+}

@@ -38,7 +38,6 @@ Course inputCourse() {
 // To display the list of courses, use the void displayAll() functions
 // Pass in the outputCourse as a function parameter
 void outputCourse(Course c1) {
-	
 	cout << left << setw(15) << c1.ID
 		 << left << setw(15) << c1.CourseName
 		 << left << setw(20) << c1.TeacherName

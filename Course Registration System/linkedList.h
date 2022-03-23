@@ -244,3 +244,32 @@ void updateIndex(LinkedList<T>& l1, int index, T(*inputT)()) {
         return;
     }
 }
+
+// read a csv file, using stringstream.
+// to use, we need an input from string function for each type of object
+template <class T>
+void inputFile(LinkedList<T> &TList, void(*inputTFile)(T &, string)) {
+    string filename;
+    cout << "Input file name: ";
+    getline(cin, filename, '\n');
+    string line;
+    ifstream file;
+    Node<T> dummy;
+    Node<T>* ptr = &dummy;
+    int i = 0;
+    file.open(filename);
+    if (file.is_open()) {
+        while (!file.eof()) {
+            getline(file, line, '\n');
+            ptr->pNext = new Node<T>;
+            ptr = ptr->pNext;
+            inputTFile(ptr->data, line);
+        }
+    }
+    else {
+        cout << "Can not open file." << endl;
+    }
+    file.close();
+    TList.pHead = dummy.pNext;
+    TList.pTail = ptr;
+}
