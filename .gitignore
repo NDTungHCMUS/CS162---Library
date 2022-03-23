@@ -30,7 +30,5 @@
 *.exe
 *.out
 *.app
-Course Registration System/.vs/Course Registration System/v17/Browse.VC.opendb
-Course Registration System/.vs
-Course Registration System/x64
-Course Registration System/.vs
+
+.vs
