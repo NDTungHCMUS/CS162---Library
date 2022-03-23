@@ -166,9 +166,9 @@ void remove(LinkedList<T> &l1, int index) {
         cout << "Invalid." << endl;
         return;
     }
-    if (index == 0) {
+    if (index == 1) {
         removeFront(l1);
-        cout << "item removed at index " << index << endl;
+        cout << "item removed" << endl;
         return;
     }
 
@@ -176,8 +176,10 @@ void remove(LinkedList<T> &l1, int index) {
     Node<T>* temp = l1.pHead;
     while (temp != NULL) {
         if (count == index - 1) {
+            Node<T>* delItem = temp->pNext;
             temp->pNext = temp->pNext->pNext;
-            cout << "item removed at index " << index << endl;
+            delete delItem;
+            cout << "item removed" << endl;
             break;
         }
         count++;

@@ -20,12 +20,21 @@ int main()
 	cout << length(listYear) << endl;
 	addList(listYear.pHead->data.Listclass, &inputClass);
 	deallocateAll(listYear);*/
-	LinkedList<Course> ListCourse;
+
+	/*LinkedList<Course> ListCourse;
 	addList(ListCourse, &inputCourse);
 	outputAllCourse(ListCourse);
 	updateIndex(ListCourse, 1, inputCourse);
 	outputAllCourse(ListCourse);
 	deallocateAll(ListCourse);
+	LinkedList<Student> ListStudent;
+	inputStudentCSV(ListStudent);
+	cout << ListStudent.pHead->data.No << endl;
+	deallocateAll(ListStudent);*/
+
+	LinkedList<Student> ListStudent;
+	inputFile(ListStudent, &inputStudentFile);
+	displayAll(ListStudent, &outputStudent);
 	return 0;
 }
 
