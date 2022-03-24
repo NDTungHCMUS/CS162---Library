@@ -1,3 +1,4 @@
+
 #include "student.h"
 #include "linkedList.h"
 #include "fstream"
@@ -15,7 +16,7 @@ Student AddStudent() {
 	cin >> a.FirstName;
 	cout << "Student Last Name: ";
 	cin >> a.LastName;
-	cout << "Student Gender: ";
+	cout << "Student Gender (1 is Male, 2 is Female): ";
 	cin >> a.Gender;
 	cout << "Student Date Of Birth (DD/MM/YYYY): ";
 	cin >> a.dob.day >> a.dob.month >> a.dob.year;
@@ -100,9 +101,24 @@ void inputStudentFile(Student &s1, string line) {
 void outputStudent(Student s1) {
 	cout << left << setw(10) << s1.No
 		<< left << setw(15) << s1.StudentID
-		<< left << setw(20) << (s1.LastName + ' ' + s1.FirstName)
+		<< left << setw(14) << s1.LastName 
+		<< left << setw(14) << s1.FirstName
 		<< left << setw(12) << ((s1.Gender == 1) ? "Male" : "Famale")
-		<< s1.dob.day << "/" << s1.dob.month << "/" << s1.dob.year << "	  "
-		<< left << setw(20) << s1.SocialID
+		<< ((s1.dob.day < 10) ? "0" : "") << s1.dob.day << "/" 
+		<< ((s1.dob.month < 10) ? "0" : "") << s1.dob.month << "/"
+		<< left << setw(10) << s1.dob.year 
+		<< left << setw(25) << s1.SocialID
 		<< endl;
+}
+
+void outputAllStudent(LinkedList<Student> ListStudent) {
+	cout << left << setw(10) << "No"
+		<< left << setw(15) << "StudentID"
+		<< left << setw(14) << "LastName"
+		<< left << setw(14) << "FirstName"
+		<< left << setw(12) << "Gender"
+		<< left << setw(16) << "Date of Birth"
+		<< left << setw(25) << "SocialID"
+		<< endl;
+	displayAll(ListStudent, &outputStudent);
 }
