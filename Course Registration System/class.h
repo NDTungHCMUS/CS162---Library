@@ -13,3 +13,5 @@ struct Class {
 };
 
 Class inputClass();
+void outputClass(Class c1);
+void outputListClass(LinkedList <Class> ListClass);
