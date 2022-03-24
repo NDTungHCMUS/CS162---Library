@@ -112,6 +112,7 @@ void outputStudent(Student s1) {
 }
 
 void outputAllStudent(LinkedList<Student> ListStudent) {
+	system("cls");
 	cout << left << setw(10) << "No"
 		<< left << setw(15) << "StudentID"
 		<< left << setw(14) << "LastName"

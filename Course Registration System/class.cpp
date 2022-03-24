@@ -14,6 +14,7 @@ void outputClass(Class c1) {
 	cout << c1.classname << endl;
 }
 void outputListClass(LinkedList <Class> ListClass) {
+	system("cls");
 	if (ListClass.pHead == nullptr) cout << "No class here";
 	else {
 		cout << "All Class Name showed below: " << endl;
