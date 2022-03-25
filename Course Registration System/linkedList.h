@@ -4,8 +4,11 @@
 #include <iomanip>
 #include <string>
 #include <fstream>
-
-using namespace std;
+using std::string;
+using std::cout;
+using std::ifstream;
+using std::endl;
+using std::cin;
 
 template <class T>
 struct Node
