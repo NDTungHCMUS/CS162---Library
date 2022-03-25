@@ -20,7 +20,6 @@ struct Student {
 };
 
 Student AddStudent();
-
 void inputStudentFile(Student& s1, string line);
-
 void outputStudent(Student s1);
+void outputAllStudent(LinkedList<Student> ListStudent);

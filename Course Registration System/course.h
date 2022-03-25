@@ -21,3 +21,4 @@ struct Course {
 
 Course inputCourse();
 void outputAllCourse(LinkedList<Course> ListCourse);
+void removeCourse(LinkedList<Course> ListCourse);

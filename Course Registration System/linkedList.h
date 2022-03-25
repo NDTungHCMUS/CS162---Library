@@ -46,7 +46,7 @@ template <class T>
 void removeFront(LinkedList<T>& l1); // remove first element
 
 template <class T>
-void remove(LinkedList<T>& l1, int index); // remove specific node
+void removeIndex(LinkedList<T>& l1, int index); // remove specific node
 
 
 
@@ -160,8 +160,8 @@ void removeFront(LinkedList<T> &l1) {
 
 // remove a node at a specific index
 template <class T>
-void remove(LinkedList<T> &l1, int index) {
-    if (l1.head == NULL) {
+void removeIndex(LinkedList<T> &l1, int index) {
+    if (l1.pHead == NULL) {
         cout << "Empty list, nothing to remove." << endl;
         return;
     }
@@ -171,7 +171,7 @@ void remove(LinkedList<T> &l1, int index) {
     }
     if (index == 1) {
         removeFront(l1);
-        cout << "item removed" << endl;
+        cout << "Item removed" << endl;
         return;
     }
 
@@ -182,7 +182,7 @@ void remove(LinkedList<T> &l1, int index) {
             Node<T>* delItem = temp->pNext;
             temp->pNext = temp->pNext->pNext;
             delete delItem;
-            cout << "item removed" << endl;
+            cout << "Item removed" << endl;
             break;
         }
         count++;
@@ -210,7 +210,7 @@ void addList(LinkedList<T> &l1, T(*inputItem)()) {
             l1.pTail->pNext = tmp;
             l1.pTail = l1.pTail->pNext;
         }
-        cout << "Added, back to choice menu." << endl;
+        system("cls");
         addList(l1, inputItem);
         return;
     }
@@ -220,6 +220,8 @@ void addList(LinkedList<T> &l1, T(*inputItem)()) {
     }
     else {
         cout << "Invalid, try another choice." << endl;
+        system("pause");
+        system("cls");
         addList(l1, inputItem);
         return;
     }
