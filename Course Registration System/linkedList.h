@@ -9,6 +9,7 @@ using std::cout;
 using std::ifstream;
 using std::endl;
 using std::cin;
+using std::ofstream;
 
 template <class T>
 struct Node
@@ -279,4 +280,15 @@ void inputFile(LinkedList<T> &TList, void(*inputTFile)(T &, string)) {
     file.close();
     TList.pHead = dummy.pNext;
     TList.pTail = ptr;
+}
+
+template <class T>
+void outputListFile(LinkedList<T> TList, ofstream &foutList, void(*outputFileT)(T, ofstream &)) {
+    while (TList.pHead != nullptr) {
+        outputFileT(TList.pHead->data, foutList);
+        if (TList.pHead->pNext != nullptr) {
+            foutList << endl;
+        }
+        TList.pHead = TList.pHead->pNext;
+    }
 }

@@ -1,4 +1,3 @@
-
 #include "student.h"
 #include "linkedList.h"
 #include "fstream"
@@ -122,4 +121,14 @@ void outputAllStudent(LinkedList<Student> ListStudent) {
 		<< left << setw(25) << "SocialID"
 		<< endl;
 	displayAll(ListStudent, &outputStudent);
+}
+
+void outputStudentFile(Student s1, ofstream &foutList) {
+	foutList << s1.No << ","
+		<< s1.StudentID << ","
+		<< s1.LastName << ","
+		<< s1.FirstName << ","
+		<< s1.Gender << ","
+		<< s1.dob.day << "/" << s1.dob.month << "/" << s1.dob.year << ","
+		<< s1.SocialID;
 }

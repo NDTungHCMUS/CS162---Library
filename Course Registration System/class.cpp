@@ -21,3 +21,11 @@ void outputListClass(LinkedList <Class> ListClass) {
 		displayAll(ListClass, &outputClass);
 	}
 }
+
+void outputStuListFile(Class c1) {
+	string filename = c1.classname + "OutputCSV.csv";
+	ofstream foutList;
+	foutList.open(filename);
+	outputListFile(c1.listOfStudents, foutList, &outputStudentFile);
+	foutList.close();
+}

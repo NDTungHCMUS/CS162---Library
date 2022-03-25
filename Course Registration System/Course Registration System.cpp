@@ -32,11 +32,11 @@ int main()
 	cout << ListStudent.pHead->data.No << endl;
 	deallocateAll(ListStudent);*/
 
-	LinkedList<Student> ListStudent;
-	////inputFile(ListStudent, &inputStudentFile);
-	////displayAll(ListStudent, &outputStudent);
-	addList(ListStudent, &AddStudent);
-	outputAllStudent(ListStudent);
+	//LinkedList<Student> ListStudent;
+	//////inputFile(ListStudent, &inputStudentFile);
+	//////displayAll(ListStudent, &outputStudent);
+	//addList(ListStudent, &AddStudent);
+	//outputAllStudent(ListStudent);
 
 
 	/*LinkedList<Course> ListCourse;
@@ -48,4 +48,8 @@ int main()
 	//addList(listClass, &inputClass);
 	//outputListClass(listClass);
 	//return 0;
+
+	Class c1{ "21CTT1", nullptr };
+	addList(c1.listOfStudents, &AddStudent);
+	outputStuListFile(c1);
 }
