@@ -10,33 +10,35 @@ void login()
 {
     system("cls");
 
-    ListLogin *lhead;
+    ListLogin *lhead = nullptr;
     ListLogin *position = nullptr;
 
     cout << "WELCOME TO OUR COURSE REGISTRATION SYSTEM" << endl;
     cout << "Are you:" << endl;
     cout << "1. Student" << endl;
     cout << "2. Staff member" << endl;
+    cout << "3. Exit" << endl;
     char x;
     cin >> x;
     if (x == '1' || x == '2')
     {
         if (x == '1')
         {
+            char t;
             cout << "** Student  ** \n";
             cout << "1. Register" << endl;
             cout << "2. login" << endl;
             cout << "3. Back" << endl;
-            cin >> x;
-            if (x == '1')
+            cin >> t;
+            if (t == '1')
             {
                 RegisterStudent();
             }
-            else if (x == '2')
+            else if (t == '2')
             {
                 loginStudent(lhead, position );
             }
-            else if (x == '3') login();
+            else if (t == '3') login();
         }
         else if (x == '2')
         {
@@ -44,20 +46,25 @@ void login()
             cout << "1. Register" << endl;
             cout << "2. login" << endl;
             cout << "3. Back" << endl;
-            cin >> x;
-            if (x == '1')
+            char t;
+            cin >> t;
+            if (t == '1')
             {
                 RegisterStaff();
             }
-            else if (x == '2')
+            else if (t == '2')
             {
                 loginStaff(lhead, position );
             }
-            else if (x == '3') login();
+            else if (t == '3') login();
         }
-        else if (x == '3') exit(0);
-    }
 
+    }
+    else if (x == '3')
+    {
+        deleteListLogin(lhead);
+        exit(0);
+    }
     deleteListLogin(lhead);
 }
 void RegisterStaff()
@@ -285,8 +292,8 @@ void deleteListLogin(ListLogin* &lhead)
     ListLogin *tmp = lhead;
     while(tmp != nullptr)
     {
-        delete tmp;
         lhead = lhead->next;
+        delete tmp;
         tmp = lhead;
     }
 }
