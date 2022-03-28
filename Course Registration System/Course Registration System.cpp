@@ -49,7 +49,16 @@ int main()
 	//outputListClass(listClass);
 	//return 0;
 
-	Class c1{ "21CTT1", nullptr };
+	/*Class c1{ "21CTT1", nullptr };
 	addList(c1.listOfStudents, &AddStudent);
-	outputStuListFile(c1);
+	outputStuListFile(c1);*/
+
+	int index;
+	LinkedList<Course> c1;
+	addList(c1, &inputCourse);
+	cout << "input index";
+	cin >> index;
+	Course c2;
+	findIndex(c1, index, c2);
+	cout << c2.CourseName;
 }

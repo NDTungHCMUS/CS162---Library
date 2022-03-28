@@ -31,6 +31,9 @@ void add(LinkedList<T>& l1, T item); // add to last of the list
 template<class T>
 void addFront(LinkedList<T>& l1, T item); // add to front of the list
 
+template<class T>
+void findIndex(LinkedList<T> TList, int index); // find an element of the list through index
+
 template <class T>
 int length(LinkedList<T> l1); // find the length of the list
 
@@ -82,6 +85,26 @@ void addFront(LinkedList<T> &l1, T item) {
     node->pNext = l1.pHead;
     l1.pHead = node;
     cout << "Added at head" << endl;
+}
+
+// find an element of the list through index
+template<class T>
+bool findIndex(LinkedList<T> TList, int index, T &findEle) {
+    bool flag = false;
+    if (index > length(TList) || TList.pHead == nullptr) {
+        return flag;
+    }
+    else {
+        int count = 1;
+        Node<T>* track = TList.pHead;
+        while (count != index) {
+            track = track->pNext;
+            ++count;
+        }
+        findEle = track->data;
+        flag = true;
+        return flag;
+    }
 }
 
 // count number of elements
@@ -281,7 +304,7 @@ void inputFile(LinkedList<T> &TList, void(*inputTFile)(T &, string)) {
     TList.pHead = dummy.pNext;
     TList.pTail = ptr;
 }
-
+// output info of a list to a csv file
 template <class T>
 void outputListFile(LinkedList<T> TList, ofstream &foutList, void(*outputFileT)(T, ofstream &)) {
     while (TList.pHead != nullptr) {
