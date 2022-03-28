@@ -82,7 +82,7 @@ bool checkSessionConflict(Session s1, Session s2) {
 
 bool checkAvailable(Course a, Student s) {
 	while (s.ListCourseData.pHead != nullptr) {
-		if (checkSessionConflict(a.s1, s.ListCourseData.pHead->data.s1) || checkSessionConflict(a.s1, s.ListCourseData.pHead->data.s2) 
+		if (checkSessionConflict(a.s1, s.ListCourseData.pHead->data.s1) || checkSessionConflict(a.s1, s.ListCourseData.pHead->data.s2)
 			|| checkSessionConflict(a.s2, s.ListCourseData.pHead->data.s1) || checkSessionConflict(a.s2, s.ListCourseData.pHead->data.s2))
 			return false;
 		else {
@@ -114,7 +114,8 @@ void enrollCourse(LinkedList<Course> &ListCourse, Student &a) {
 		cin >> numb;
 		Course temp;
 		if (findIndex(ListCourse, numb, temp)) {
-			if (checkAvailable(temp, a)) {
+			if (checkAvailable(temp, a) && temp.NumbOfStudent < temp.MaxStudent) {
+                temp.NumbOfStudent++;
 				add(ListCourse.pHead->data.EnrollStudentList, a);
 				CourseData dtemp = addCourseData(temp);
 				add(a.ListCourseData, dtemp);
@@ -137,4 +138,27 @@ void outputCourseData(Student a) {
 		cout << a.ListCourseData.pHead->data.CourseName << endl;
 		a.ListCourseData.pHead = a.ListCourseData.pHead->pNext;
 	}
+}
+void importScoreboard(Course &a)
+{
+    ifstream FileScore;
+    FileScore.open("scoreboard.txt");
+    for (int i = 0; i < a.NumbOfStudent; i++)
+    {
+        Score tmp;
+        FileScore >> tmp.no >> tmp.ID;
+        getline(FileScore >> ws, tmp.fullname);
+        FileScore >> tmp.totalMark >> tmp.finalMark >> tmp.midtermMark >> tmp.otherMark;
+        add(a.scoreBoard,tmp);
+    }
+    FileScore.close();
+
+  /*  Node<Score> *tmp = a.scoreBoard.pHead;
+    for (int i = 0; i < a.NumbOfStudent; i++)
+    {
+
+        cout << tmp->data.no << ' ' << tmp->data.ID << ' ' << tmp->data.fullname << ' ' << tmp->data.totalMark << ' ' << tmp->data.finalMark << ' ' << tmp->data.midtermMark << ' ' << tmp->data.otherMark << endl;
+        tmp = tmp->pNext;
+    }*/
+
 }
