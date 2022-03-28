@@ -110,7 +110,7 @@ void outputStudent(Student s1) {
 		<< endl;
 }
 
-void outputAllStudent(LinkedList<Student> ListStudent) {
+void displayStudentMenu() {
 	system("cls");
 	cout << left << setw(10) << "No"
 		<< left << setw(15) << "StudentID"
@@ -120,6 +120,9 @@ void outputAllStudent(LinkedList<Student> ListStudent) {
 		<< left << setw(16) << "Date of Birth"
 		<< left << setw(25) << "SocialID"
 		<< endl;
+}
+void outputAllStudent(LinkedList<Student> ListStudent) {
+	displayStudentMenu();
 	displayAll(ListStudent, &outputStudent);
 }
 
@@ -137,16 +140,31 @@ void outputStudentFile(Student s1, ofstream &foutList) {
 //Student findStudent(ListYear.pHead->data.Listclass.pHead->data.listOffStudents)
 // It will return the Student that hold the Student ID
 Student findStudent(LinkedList<Student> ListStudent) {
-	int temp;
+	Student a;
+	int temp, choice;
 	cout << "Type in Student's ID: ";
 	cin >> temp;
 	Node<Student>* current = ListStudent.pHead;
 	while (current != nullptr) {
 		if (current->data.StudentID == temp) {
-			return current->data;
+			a = current->data;
+			break;
 		}
 		else {
 			current = current->pNext;
 		}
+	}
+	displayStudentMenu();
+	outputStudent(a);
+	cout << "Is this the right student?" << endl;
+	cout << "1.YES" << endl;
+	cout << "2.NO" << endl;
+	cout << "Your choice: ";
+	cin >> choice;
+	if (choice == 1) {
+		return a;
+	}
+	else {
+		findStudent(ListStudent);
 	}
 }

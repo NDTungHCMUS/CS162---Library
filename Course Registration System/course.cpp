@@ -47,7 +47,7 @@ void outputCourse(Course c1) {
 		 << endl;
 }
 
-void outputAllCourse(LinkedList<Course> ListCourse) {
+void outputCourseMenu() {
 	cout << left << setw(15) << "Course ID"
 		<< left << setw(15) << "Course Name"
 		<< left << setw(20) << "Lecturer"
@@ -55,6 +55,10 @@ void outputAllCourse(LinkedList<Course> ListCourse) {
 		<< left << setw(20) << "Session 1"
 		<< left << setw(20) << "Session 2"
 		<< endl;
+}
+
+void outputAllCourse(LinkedList<Course> ListCourse) {
+	outputCourseMenu();
 	displayAll(ListCourse, &outputCourse);
 }
 
@@ -66,4 +70,71 @@ void removeCourse(LinkedList<Course> ListCourse) {
 	removeIndex(ListCourse, temp);
 	system("cls");
 	outputAllCourse(ListCourse);
+}
+
+bool checkSessionConflict(Session s1, Session s2) {
+	if (s1.day == s2.day) {
+		if (s1.period == s2.period)
+			return true;
+	}
+	return false;
+}
+
+bool checkAvailable(Course a, Student s) {
+	while (s.ListCourseData.pHead != nullptr) {
+		if (checkSessionConflict(a.s1, s.ListCourseData.pHead->data.s1) || checkSessionConflict(a.s1, s.ListCourseData.pHead->data.s2) 
+			|| checkSessionConflict(a.s2, s.ListCourseData.pHead->data.s1) || checkSessionConflict(a.s2, s.ListCourseData.pHead->data.s2))
+			return false;
+		else {
+			s.ListCourseData.pHead = s.ListCourseData.pHead->pNext;
+		}
+	}
+	return true;
+}
+
+CourseData addCourseData(Course a) {
+	CourseData b;
+	b.CourseName = a.CourseName;
+	b.ID = a.ID;
+	b.s1 = a.s1;
+	b.s2 = a.s2;
+	b.TeacherName = a.TeacherName;
+	return b;
+}
+
+void enrollCourse(LinkedList<Course> &ListCourse, Student &a) {
+	cout << "Choose the option: " << endl;
+	cout << "1. Enroll Course" << endl;
+	cout << "2. Exit" << endl;
+	int numb;
+	cin >> numb;
+	if (numb == 1) {
+		outputAllCourse(ListCourse);
+		cout << "Enter the Course No you want to enroll: ";
+		cin >> numb;
+		Course temp;
+		if (findIndex(ListCourse, numb, temp)) {
+			if (checkAvailable(temp, a)) {
+				add(ListCourse.pHead->data.EnrollStudentList, a);
+				CourseData dtemp = addCourseData(temp);
+				add(a.ListCourseData, dtemp);
+				cout << "Enrolled Successfully.";
+				system("pause");
+			}
+			else {
+				cout << "Timetable conflicted. Please choose other courses.";
+				enrollCourse(ListCourse, a);
+			}
+		}
+	}
+	else {
+		return;
+	}
+}
+
+void outputCourseData(Student a) {
+	while (a.ListCourseData.pHead != nullptr) {
+		cout << a.ListCourseData.pHead->data.CourseName << endl;
+		a.ListCourseData.pHead = a.ListCourseData.pHead->pNext;
+	}
 }

@@ -2,12 +2,6 @@
 #include "linkedList.h"
 #include "student.h"
 
-
-struct Session {
-	string day;
-	string period;
-};
-
 struct Course {
 	string ID;
 	string CourseName;
@@ -22,3 +16,9 @@ struct Course {
 Course inputCourse();
 void outputAllCourse(LinkedList<Course> ListCourse);
 void removeCourse(LinkedList<Course> ListCourse);
+void outputCourseMenu();
+bool checkAvailable(Course a, Student s);
+void enrollCourse(LinkedList<Course> &ListCourse, Student &a);
+bool checkSessionConflict(Session s1, Session s2);
+CourseData addCourseData(Course a);
+void outputCourseData(Student a);

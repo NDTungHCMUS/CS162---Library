@@ -63,7 +63,6 @@ void add(LinkedList<T> &l1, T item) {
     if (l1.pHead == NULL) {
         l1.pHead = node;
         l1.pTail = l1.pHead;
-        cout << "Element added at head." << endl;
         return;
     }
     l1.pTail->pNext = node;
