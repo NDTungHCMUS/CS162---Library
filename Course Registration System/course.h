@@ -21,7 +21,6 @@ struct Course {
 	Session s2;
 	LinkedList<Student> EnrollStudentList;
 	LinkedList<Score> scoreBoard;
-
 };
 
 

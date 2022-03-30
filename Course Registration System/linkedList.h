@@ -10,6 +10,8 @@ using std::ifstream;
 using std::endl;
 using std::cin;
 using std::ofstream;
+using std::left;
+using std::setw;
 
 template <class T>
 struct Node
@@ -152,7 +154,10 @@ void displayAll(LinkedList<T> l1, void(*outputItem)(T data)) {
         return;
     }
     Node<T>* temp = l1.pHead;
-    while (temp != NULL) {
+    int i = 0;
+    while (temp != NULL) { 
+        ++i;
+        cout << left << setw(5) <<i;
         outputItem(temp->data);
         temp = temp->pNext;
     }

@@ -48,7 +48,8 @@ void outputCourse(Course c1) {
 }
 
 void outputCourseMenu() {
-	cout << left << setw(15) << "Course ID"
+	cout << left << setw(5) << "No"
+		<< left << setw(15) << "Course ID"
 		<< left << setw(15) << "Course Name"
 		<< left << setw(20) << "Lecturer"
 		<< left << setw(15) << "Credits"

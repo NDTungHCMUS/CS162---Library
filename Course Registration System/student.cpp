@@ -139,14 +139,12 @@ void outputStudentFile(Student s1, ofstream &foutList) {
 //Function to find a given Student in list of Student ID
 //Student findStudent(ListYear.pHead->data.Listclass.pHead->data.listOffStudents)
 // It will return the Student that hold the Student ID
-Student findStudent(LinkedList<Student> ListStudent) {
+Student findStudent(LinkedList<Student> ListStudent, int StudentID) {
 	Student a;
-	int temp, choice;
-	cout << "Type in Student's ID: ";
-	cin >> temp;
+	int choice;
 	Node<Student>* current = ListStudent.pHead;
 	while (current != nullptr) {
-		if (current->data.StudentID == temp) {
+		if (current->data.StudentID == StudentID) {
 			a = current->data;
 			break;
 		}
@@ -165,6 +163,9 @@ Student findStudent(LinkedList<Student> ListStudent) {
 		return a;
 	}
 	else {
-		findStudent(ListStudent);
+		int ID;
+		cout << "Type in Student ID: ";
+		cin >> ID;
+		findStudent(ListStudent, ID);
 	}
 }
