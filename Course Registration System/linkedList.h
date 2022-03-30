@@ -32,7 +32,7 @@ template<class T>
 void addFront(LinkedList<T>& l1, T item); // add to front of the list
 
 template<class T>
-void findIndex(LinkedList<T> TList, int index); // find an element of the list through index
+bool findIndex(LinkedList<T> TList, int index, T& findEle); // find an element of the list through index
 
 template <class T>
 int length(LinkedList<T> l1); // find the length of the list
