@@ -183,7 +183,7 @@ void outputStudentInCourse(LinkedList<Course>ListCourse) {
 	cout << "All students in course" << c1.CourseName << "are: ";
 	displayAll(c1.EnrollStudentList, &outputStudent);
 }
-
+//
 void viewEnrollCourse(Student s1) {
 	if (s1.ListCourseData.pHead == nullptr) cout << "This student hasn't enrolled course";
 	else {
@@ -247,6 +247,5 @@ void removeCourseFromEnrollList(Student s1) {
 	}
 	if (choose == 2) {
 		return;
-	}
-	
+	}	
 }
