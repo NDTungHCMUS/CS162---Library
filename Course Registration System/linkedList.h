@@ -133,11 +133,13 @@ void addIndex(LinkedList<T> &l1, T item, int index) {
     Node<T>* temp = l1.pHead;
     while (temp != NULL && count < index) {
         if (count == index - 1) {
-            if (temp->next != NULL) {
-                node->next = temp->next;
+            if (temp->pNext != NULL) {
+                node->pNext = temp->pNext;
             }
-            temp->next = node;
-            l1.pTail = temp->pNext;
+            temp->pNext = node;
+            if (temp->pNext == nullptr) {
+                l1.pTail = temp->pNext;
+            }
             cout << "new node added at index " << index << " !" << endl;
             break;
         }
