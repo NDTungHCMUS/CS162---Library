@@ -32,7 +32,8 @@ void outputCourseMenu();
 bool checkAvailable(Course a, Student s);
 void enrollCourse(LinkedList<Course> &ListCourse, Student &a);
 bool checkSessionConflict(Session s1, Session s2);
-CourseData addCourseData(Course a);
+CourseData addCourseData(Course a); //of a student
 void outputCourseData(Student a);
 void importScoreboard(Course &a);
+void outputStudentInCourse(LinkedList<Course> ListCourse);
 

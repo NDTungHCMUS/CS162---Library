@@ -117,7 +117,13 @@ void enrollCourse(LinkedList<Course> &ListCourse, Student &a) {
 		if (findIndex(ListCourse, numb, temp)) {
 			if (checkAvailable(temp, a) && temp.NumbOfStudent < temp.MaxStudent) {
                 temp.NumbOfStudent++;
-				add(ListCourse.pHead->data.EnrollStudentList, a);
+				add(ListCourse.pHead->data.EnrollStudentList, a); 
+				/*Node<Course>* cur = ListCourse.pHead;
+				for (int i = 1; i < numb; i++) {
+					cur = cur->pNext;
+				}
+				add(cur->data.EnrollStudentList, a);
+				add(valueAtIndex(ListCourse, numb)->data.EnrollStudentList, a);*/
 				CourseData dtemp = addCourseData(temp);
 				add(a.ListCourseData, dtemp);
 				cout << "Enrolled Successfully.";
@@ -162,4 +168,18 @@ void importScoreboard(Course &a)
         tmp = tmp->pNext;
     }*/
 
+}
+
+//void removeCourseEnroll(LinkedList<Course> ListCourse)
+
+void outputStudentInCourse(LinkedList<Course>ListCourse) {
+	cout << "Type the Course No you want to view list of student (from 1): ";
+	outputAllCourse(ListCourse);
+	int num;
+	cin >> num;
+	Course c1;
+	findIndex(ListCourse, num, c1);
+	system("cls");
+	cout << "All students in course" << c1.CourseName << "are: ";
+	displayAll(c1.EnrollStudentList, &outputStudent);
 }

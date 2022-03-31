@@ -46,21 +46,28 @@ int main()
 	removeCourse(ListCourse);*/
 
 
-	//LinkedList<Class> listClass;
-	//addList(listClass, &inputClass);
-	//outputListClass(listClass);
-	//return 0;
+	/*LinkedList<Class> listClass;
+	addList(listClass, &inputClass);
+	outputListClass(listClass);
+	return 0;*/
 
 	/*Class c1{ "21CTT1", nullptr };
 	addList(c1.listOfStudents, &AddStudent);
 	outputStuListFile(c1);*/
 
-	int index;
+	/*int index;
 	LinkedList<Course> c1;
 	addList(c1, &inputCourse);
 	cout << "input index";
 	cin >> index;
 	Course c2;
 	findIndex(c1, index, c2);
-	cout << c2.CourseName;
+	cout << c2.CourseName;*/
+
+	LinkedList <Course> ListCourse;
+	addList(ListCourse, &inputCourse);
+	Node<Course>* c;
+	c = ListCourse.pHead;
+	addList(c->data.EnrollStudentList, &AddStudent);
+	outputStudentInCourse(ListCourse);
 }
