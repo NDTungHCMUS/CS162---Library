@@ -24,7 +24,6 @@ struct Course {
 };
 
 
-
 Course inputCourse();
 void outputAllCourse(LinkedList<Course> ListCourse);
 void removeCourse(LinkedList<Course> ListCourse);
@@ -35,5 +34,7 @@ bool checkSessionConflict(Session s1, Session s2);
 CourseData addCourseData(Course a); //of a student
 void outputCourseData(Student a);
 void importScoreboard(Course &a);
-void outputStudentInCourse(LinkedList<Course> ListCourse);
 
+void outputStudentInCourse(LinkedList<Course> ListCourse);
+void viewEnrollCourse(Student s1);
+void removeCourseFromEnrollList(Student s1);

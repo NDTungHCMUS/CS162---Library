@@ -183,3 +183,70 @@ void outputStudentInCourse(LinkedList<Course>ListCourse) {
 	cout << "All students in course" << c1.CourseName << "are: ";
 	displayAll(c1.EnrollStudentList, &outputStudent);
 }
+
+void viewEnrollCourse(Student s1) {
+	if (s1.ListCourseData.pHead == nullptr) cout << "This student hasn't enrolled course";
+	else {
+		cout << "All Enrolled Course by " << s1.FirstName << " " << s1.LastName << " are: ";
+		Node<CourseData>* temp = s1.ListCourseData.pHead;
+		for (int i = 0; i < length(s1.ListCourseData); ++i) {
+			cout << temp->data.CourseName << " (" << temp->data.ID << ") " << endl;
+			temp = temp->pNext;
+		}
+	}
+}
+
+void removeCourseFromEnrollList(Student s1) {
+	cout << "Choose the option: " << endl;
+	cout << "1. Remove Course Data" << endl;
+	cout << "2. Exit" << endl;
+	cout << "Your choice is: ";
+	int choose;
+	cin >> choose;
+	while (choose != 1 && choose != 2) {
+		cout << "Please choose again: " << endl;
+		system("pause");
+		system("cls");
+		removeCourseFromEnrollList(s1);
+	}
+	if (choose == 1) {
+		system("cls");
+		viewEnrollCourse(s1);
+		cout << "Input the Course ID you want to remove: ";
+		int num;
+		cin >> num;
+		Node <CourseData>* temp = s1.ListCourseData.pHead;
+		Node <CourseData>* pre = nullptr;
+		pre->pNext = temp;
+		while (temp != nullptr) {
+			if (temp->data.id == num) {
+				if (temp == s1.ListCourseData.pHead) {
+					s1.ListCourseData.pHead = s1.ListCourseData.pHead->pNext;
+					delete temp;
+					break;
+				}
+				else {
+					Node <CourseData>* del = temp;
+					pre->pNext = temp->pNext;
+					temp = temp->pNext;
+					delete del;
+					if (temp == nullptr) {
+						s1.ListCourseData.pTail = pre;
+					}
+					break;
+				}
+			}
+			else {
+				temp = temp->pNext;
+				pre = pre->pNext;
+			}
+			
+		}
+		cout << "List of CourseData after removing: " << endl;
+		viewEnrollCourse(s1);
+	}
+	if (choose == 2) {
+		return;
+	}
+	
+}
