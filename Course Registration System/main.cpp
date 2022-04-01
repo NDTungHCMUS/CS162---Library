@@ -11,9 +11,8 @@ using namespace std;
 int main()
 {
 /*
-    example to use function : import Score board,	view Score Board Of a Course  ,and update A Student's result;
+    //example to use function : import Score board,	view Score Board Of a Course  ,and update A Student's result;
 
-	viewScoreBoardOfCours
     LinkedList<Course> ListCourse;
     addList(ListCourse, &inputCourse);
 	outputAllCourse(ListCourse);
@@ -57,9 +56,9 @@ int main()
 	viewScoreBoardOfCourse(ListCourse);
 
 
-	end example~~~
-    */
+//	end example~~~
 
+*/
 
 	/*LinkedList<Year> listYear;
 	Year y1{ 2020 };
