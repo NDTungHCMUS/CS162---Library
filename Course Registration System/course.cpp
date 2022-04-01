@@ -3,198 +3,310 @@ using namespace std;
 
 //Function to add Course to a Semester
 //addList(ListYear.pHead->data.ListSemester.pHead->data.ListCourse, &inputCourse);
-Course inputCourse() {
-	Course a;
-	cin.ignore(1000, '\n');
-	cout << "Course ID: ";
-	getline(cin, a.ID);
-	//cin.ignore(1000, '\n');
-	cout << "Course Name: ";
-	getline(cin, a.CourseName);
-	//cin.ignore(1000, '\n');
-	cout << "Teacher Name: ";
-	getline(cin, a.TeacherName);
-	//cin.ignore(1000, '\n');
-	cout << "Number Of Credits: ";
-	cin >> a.NumbOfCredits;
-	cin.ignore(1000, '\n');
-	cout << "Available Session: MON, TUE, WED, THU, FRI, SAT." << endl;
-	cout << "Available Time: S1 (07:30), S2 (09:30), S3(13:30) and S4 (15:30)." << endl;
-	cout << "First Session's Day: ";
-	getline(cin, a.s1.day);
-	//cin.ignore(1000, '\n');
-	cout << "Session Time: ";
-	getline(cin, a.s1.period);
-	//cin.ignore(1000, '\n');
-	cout << "Second Session's Day: ";
-	getline(cin, a.s2.day);
-	//cin.ignore(1000, '\n');
-	cout << "Session Time: ";
-	getline(cin, a.s2.period);
-	//cin.ignore(1000, '\n');
-	return a;
+Course inputCourse()
+{
+    Course a;
+    cin.ignore(1000, '\n');
+    cout << "Course ID: ";
+    getline(cin, a.ID);
+    //cin.ignore(1000, '\n');
+    cout << "Course Name: ";
+    getline(cin, a.CourseName);
+    //cin.ignore(1000, '\n');
+    cout << "Teacher Name: ";
+    getline(cin, a.TeacherName);
+    //cin.ignore(1000, '\n');
+    cout << "Number Of Credits: ";
+    cin >> a.NumbOfCredits;
+    cin.ignore(1000, '\n');
+    cout << "Available Session: MON, TUE, WED, THU, FRI, SAT." << endl;
+    cout << "Available Time: S1 (07:30), S2 (09:30), S3(13:30) and S4 (15:30)." << endl;
+    cout << "First Session's Day: ";
+    getline(cin, a.s1.day);
+    //cin.ignore(1000, '\n');
+    cout << "Session Time: ";
+    getline(cin, a.s1.period);
+    //cin.ignore(1000, '\n');
+    cout << "Second Session's Day: ";
+    getline(cin, a.s2.day);
+    //cin.ignore(1000, '\n');
+    cout << "Session Time: ";
+    getline(cin, a.s2.period);
+    //cin.ignore(1000, '\n');
+    return a;
 }
 
 // To display the list of courses, use the void displayAll() functions
 // Pass in the outputCourse as a function parameter
-void outputCourse(Course c1) {
-	cout << left << setw(15) << c1.ID
-		 << left << setw(15) << c1.CourseName
-		 << left << setw(20) << c1.TeacherName
-		 << left << setw(15) << c1.NumbOfCredits
-		 << left << setw(20) << (c1.s1.day + " - " + c1.s1.period)
-		 << left << setw(20) << (c1.s2.day + " - " + c1.s2.period)
-		 << endl;
-}
-
-void outputCourseMenu() {
-	cout << left << setw(5) << "No"
-		<< left << setw(15) << "Course ID"
-		<< left << setw(15) << "Course Name"
-		<< left << setw(20) << "Lecturer"
-		<< left << setw(15) << "Credits"
-		<< left << setw(20) << "Session 1"
-		<< left << setw(20) << "Session 2"
-		<< endl;
-}
-
-void outputAllCourse(LinkedList<Course> ListCourse) {
-	outputCourseMenu();
-	displayAll(ListCourse, &outputCourse);
-}
-
-void removeCourse(LinkedList<Course> ListCourse) {
-	outputAllCourse(ListCourse);
-	int temp;
-	cout << "Please input the number of the Course you want to remove (From 1): ";
-	cin >> temp;
-	removeIndex(ListCourse, temp);
-	system("cls");
-	outputAllCourse(ListCourse);
-}
-
-bool checkSessionConflict(Session s1, Session s2) {
-	if (s1.day == s2.day) {
-		if (s1.period == s2.period)
-			return true;
-	}
-	return false;
-}
-
-bool checkAvailable(Course a, Student s) {
-	while (s.ListCourseData.pHead != nullptr) {
-		if (checkSessionConflict(a.s1, s.ListCourseData.pHead->data.s1) || checkSessionConflict(a.s1, s.ListCourseData.pHead->data.s2)
-			|| checkSessionConflict(a.s2, s.ListCourseData.pHead->data.s1) || checkSessionConflict(a.s2, s.ListCourseData.pHead->data.s2))
-			return false;
-		else {
-			s.ListCourseData.pHead = s.ListCourseData.pHead->pNext;
-		}
-	}
-	return true;
-}
-
-CourseData addCourseData(Course a) {
-	CourseData b;
-	b.CourseName = a.CourseName;
-	b.ID = a.ID;
-	b.s1 = a.s1;
-	b.s2 = a.s2;
-	b.TeacherName = a.TeacherName;
-	return b;
-}
-
-void enrollCourse(LinkedList<Course> &ListCourse, Student &a) {
-	cout << "Choose the option: " << endl;
-	cout << "1. Enroll Course" << endl;
-	cout << "2. Exit" << endl;
-	int numb;
-	cin >> numb;
-	if (numb == 1) {
-		outputAllCourse(ListCourse);
-		cout << "Enter the Course No you want to enroll: ";
-		cin >> numb;
-		Course temp;
-		if (findIndex(ListCourse, numb, temp)) {
-			if (checkAvailable(temp, a) && temp.NumbOfStudent < temp.MaxStudent) {
-                temp.NumbOfStudent++;
-				add(ListCourse.pHead->data.EnrollStudentList, a); 
-				/*Node<Course>* cur = ListCourse.pHead;
-				for (int i = 1; i < numb; i++) {
-					cur = cur->pNext;
-				}
-				add(cur->data.EnrollStudentList, a);
-				add(valueAtIndex(ListCourse, numb)->data.EnrollStudentList, a);*/
-				CourseData dtemp = addCourseData(temp);
-				add(a.ListCourseData, dtemp);
-				cout << "Enrolled Successfully.";
-				system("pause");
-			}
-			else {
-				cout << "Timetable conflicted. Please choose other courses.";
-				enrollCourse(ListCourse, a);
-			}
-		}
-	}
-	else {
-		return;
-	}
-}
-
-void outputCourseData(Student a) {
-	while (a.ListCourseData.pHead != nullptr) {
-		cout << a.ListCourseData.pHead->data.CourseName << endl;
-		a.ListCourseData.pHead = a.ListCourseData.pHead->pNext;
-	}
-}
-void importScoreboard(Course &a)
+void outputCourse(Course c1)
 {
+    cout << left << setw(15) << c1.ID
+         << left << setw(15) << c1.CourseName
+         << left << setw(20) << c1.TeacherName
+         << left << setw(15) << c1.NumbOfCredits
+         << left << setw(20) << (c1.s1.day + " - " + c1.s1.period)
+         << left << setw(20) << (c1.s2.day + " - " + c1.s2.period)
+         << endl;
+}
+
+void outputCourseMenu()
+{
+    cout << left << setw(5) << "No"
+         << left << setw(15) << "Course ID"
+         << left << setw(15) << "Course Name"
+         << left << setw(20) << "Lecturer"
+         << left << setw(15) << "Credits"
+         << left << setw(20) << "Session 1"
+         << left << setw(20) << "Session 2"
+         << endl;
+}
+
+void outputAllCourse(LinkedList<Course> ListCourse)
+{
+    outputCourseMenu();
+    displayAll(ListCourse, &outputCourse);
+}
+
+void removeCourse(LinkedList<Course> ListCourse)
+{
+    outputAllCourse(ListCourse);
+    int temp;
+    cout << "Please input the number of the Course you want to remove (From 1): ";
+    cin >> temp;
+    removeIndex(ListCourse, temp);
+    system("cls");
+    outputAllCourse(ListCourse);
+}
+
+bool checkSessionConflict(Session s1, Session s2)
+{
+    if (s1.day == s2.day)
+    {
+        if (s1.period == s2.period)
+            return true;
+    }
+    return false;
+}
+
+bool checkAvailable(Course a, Student s)
+{
+    while (s.ListCourseData.pHead != nullptr)
+    {
+        if (checkSessionConflict(a.s1, s.ListCourseData.pHead->data.s1) || checkSessionConflict(a.s1, s.ListCourseData.pHead->data.s2)
+                || checkSessionConflict(a.s2, s.ListCourseData.pHead->data.s1) || checkSessionConflict(a.s2, s.ListCourseData.pHead->data.s2))
+            return false;
+        else
+        {
+            s.ListCourseData.pHead = s.ListCourseData.pHead->pNext;
+        }
+    }
+    return true;
+}
+
+CourseData addCourseData(Course a)
+{
+    CourseData b;
+    b.CourseName = a.CourseName;
+    b.ID = a.ID;
+    b.s1 = a.s1;
+    b.s2 = a.s2;
+    b.TeacherName = a.TeacherName;
+    return b;
+}
+
+void enrollCourse(LinkedList<Course> &ListCourse, Student &a)
+{
+    cout << "Choose the option: " << endl;
+    cout << "1. Enroll Course" << endl;
+    cout << "2. Exit" << endl;
+    int numb;
+    cin >> numb;
+    if (numb == 1)
+    {
+        outputAllCourse(ListCourse);
+        cout << "Enter the Course No you want to enroll: ";
+        cin >> numb;
+        Course temp;
+        if (findIndex(ListCourse, numb, temp))
+        {
+            if (checkAvailable(temp, a) && temp.NumbOfStudent < temp.MaxStudent)
+            {
+                //temp.NumbOfStudent++;
+                add(ListCourse.pHead->data.EnrollStudentList, a);
+
+                /*Node<Course>* cur = ListCourse.pHead;
+                for (int i = 1; i < numb; i++) {
+                	cur = cur->pNext;
+                }
+                add(cur->data.EnrollStudentList, a);
+                add(valueAtIndex(ListCourse, numb)->data.EnrollStudentList, a);*/
+                CourseData dtemp = addCourseData(temp);
+                add(a.ListCourseData, dtemp);
+                cout << "Enrolled Successfully.";
+                system("pause");
+            }
+            else
+            {
+                cout << "Timetable conflicted. Please choose other courses.";
+                enrollCourse(ListCourse, a);
+            }
+        }
+    }
+    else
+    {
+        return;
+    }
+}
+
+void outputCourseData(Student a)
+{
+    while (a.ListCourseData.pHead != nullptr)
+    {
+        cout << a.ListCourseData.pHead->data.CourseName << endl;
+        a.ListCourseData.pHead = a.ListCourseData.pHead->pNext;
+    }
+}
+void importScoreboard(LinkedList<Course> &ListCourse)
+{
+    outputAllCourse(ListCourse);
+    cout << "\nType the Course that you want import score board (from 1):\n ";
+    int num;
+    cin >> num;
+    Node<Course>*a = ListCourse.pHead;
+    for (int i = 1; i < num; i++)
+    {
+        a = a->pNext;
+    }
     ifstream FileScore;
     FileScore.open("scoreboard.txt");
-    for (int i = 0; i < a.NumbOfStudent; i++)
+    if (FileScore)
     {
-        Score tmp;
-        FileScore >> tmp.no >> tmp.ID;
-        getline(FileScore >> ws, tmp.fullname);
-        FileScore >> tmp.totalMark >> tmp.finalMark >> tmp.midtermMark >> tmp.otherMark;
-        add(a.scoreBoard,tmp);
+        cout << "importing successful!\n";
+        for (int i = 0; i < a->data.NumbOfStudent; i++)
+        {
+            Score tmp;
+            FileScore >> tmp.no >> tmp.ID;
+            getline(FileScore >> ws, tmp.fullname);
+            FileScore >> tmp.totalMark >> tmp.finalMark >> tmp.midtermMark >> tmp.otherMark;
+            add(a->data.scoreBoard,tmp);
+        }
     }
+    else
+        cout << "Loading file error, please try again!\n";
     FileScore.close();
+    /*  Node<Score> *tmp = a.scoreBoard.pHead;
+      for (int i = 0; i < a.NumbOfStudent; i++)
+      {
 
-  /*  Node<Score> *tmp = a.scoreBoard.pHead;
-    for (int i = 0; i < a.NumbOfStudent; i++)
-    {
-
-        cout << tmp->data.no << ' ' << tmp->data.ID << ' ' << tmp->data.fullname << ' ' << tmp->data.totalMark << ' ' << tmp->data.finalMark << ' ' << tmp->data.midtermMark << ' ' << tmp->data.otherMark << endl;
-        tmp = tmp->pNext;
-    }*/
+          cout << tmp->data.no << ' ' << tmp->data.ID << ' ' << tmp->data.fullname << ' ' << tmp->data.totalMark << ' ' << tmp->data.finalMark << ' ' << tmp->data.midtermMark << ' ' << tmp->data.otherMark << endl;
+          tmp = tmp->pNext;
+      }*/
 
 }
+void outputScoreBoard(Score s1)
+{
+    cout << left << setw(15) << s1.ID
+         << left << setw(25) << s1.fullname
+         << left << setw(14) << s1.midtermMark
+         << left << setw(16) << s1.finalMark
+         << left << setw(16) << s1.otherMark
+         << left << setw(16) << s1.totalMark
+         << '\n';
+}
+void outputScoreBoardMenu()
+{
 
+    cout << left << setw(10) << "No"
+         << left << setw(15) << "ID"
+         << left << setw(14) << "Full Name"
+         << left << setw(14) << "Midterm Mark"
+         << left << setw(14) << "Final Mark"
+         << left << setw(14) << "Other Mark"
+         << left << setw(14) << "Total Mark"
+         << '\n';
+}
+void viewScoreBoardOfCourse(LinkedList<Course> &ListCourse)
+{
+    cout << "Type the Course that you want to view score board (from 1): \n";
+    outputAllCourse(ListCourse);
+    int num;
+    cin >> num;
+    Course a;
+    findIndex(ListCourse, num, a);
+    outputScoreBoardMenu();
+    displayAll(a.scoreBoard, &outputScoreBoard);
+}
+void updateAStudent(LinkedList<Course> &ListCourse)
+{
+    outputAllCourse(ListCourse);
+    cout << "\nPlease enter the course you want to update (from 1):\n";
+    int num;
+    cin >> num;
+    Course a;
+    findIndex(ListCourse, num, a);
+    cout << "\nPlease enter the ID of the student you want to update:\n";
+    int ID;
+    cin >> ID;
+    bool flag = false;
+    for (Node<Score> *tmp = a.scoreBoard.pHead; tmp != nullptr; tmp = tmp->pNext)
+    {
+        if (tmp->data.ID == ID)
+        {
+            float finalmark;
+            cout << "\nFinal mark:";
+            cin >> finalmark;
+            float midtermmark;
+            cout << "\nMidterm mark:";
+            cin >> midtermmark;
+            float othermmark;
+            cout << "\nOther mark:";
+            cin >> othermmark;
+            float totalmark;
+            cout << "\nTotal mark:";
+            cin >> totalmark;
+            tmp->data.midtermMark = midtermmark;
+            tmp->data.finalMark = finalmark;
+            tmp->data.totalMark = totalmark;
+            tmp->data.otherMark = othermmark;
+            flag = true;
+            cout << "Update successful!\n";
+        }
+    }
+    if (flag == false)
+    {
+        cout << "\nThere is no student with this ID in the course, please try again!\n";
+    }
+}
 //void removeCourseEnroll(LinkedList<Course> ListCourse)
 
-void outputStudentInCourse(LinkedList<Course>ListCourse) {
-	cout << "Type the Course No you want to view list of student (from 1): ";
-	outputAllCourse(ListCourse);
-	int num;
-	cin >> num;
-	Course c1;
-	findIndex(ListCourse, num, c1);
-	system("cls");
-	cout << "All students in course" << c1.CourseName << "are: ";
-	displayAll(c1.EnrollStudentList, &outputStudent);
+void outputStudentInCourse(LinkedList<Course>ListCourse)
+{
+    cout << "Type the Course No you want to view list of student (from 1): ";
+    outputAllCourse(ListCourse);
+    int num;
+    cin >> num;
+    Course c1;
+    findIndex(ListCourse, num, c1);
+    system("cls");
+    cout << "All students in course" << c1.CourseName << "are: ";
+    displayAll(c1.EnrollStudentList, &outputStudent);
 }
-//
-void viewEnrollCourse(Student s1) {
-	if (s1.ListCourseData.pHead == nullptr) cout << "This student hasn't enrolled course";
-	else {
-		cout << "All Enrolled Course by " << s1.FirstName << " " << s1.LastName << " are: ";
-		Node<CourseData>* temp = s1.ListCourseData.pHead;
-		for (int i = 0; i < length(s1.ListCourseData); ++i) {
-			cout << temp->data.CourseName << " (" << temp->data.ID << ") " << endl;
-			temp = temp->pNext;
-		}
-	}
+
+void viewEnrollCourse(Student s1)
+{
+    if (s1.ListCourseData.pHead == nullptr) cout << "This student hasn't enrolled course";
+    else
+    {
+        cout << "All Enrolled Course by " << s1.FirstName << " " << s1.LastName << " are: ";
+        Node<CourseData>* temp = s1.ListCourseData.pHead;
+        for (int i = 0; i < length(s1.ListCourseData); ++i)
+        {
+            cout << temp->data.CourseName << " (" << temp->data.ID << ") " << endl;
+            temp = temp->pNext;
+        }
+    }
 }
+
 
 void removeCourseFromEnrollList(Student s1) {
 	cout << "Choose the option: " << endl;
@@ -240,12 +352,34 @@ void removeCourseFromEnrollList(Student s1) {
 				temp = temp->pNext;
 				pre = pre->pNext;
 			}
-			
+
 		}
 		cout << "List of CourseData after removing: " << endl;
 		viewEnrollCourse(s1);
 	}
 	if (choose == 2) {
 		return;
-	}	
+	}
+
 }
+/*
+1
+CS162
+introduce to CS1
+Dinh Ba Tien
+4
+MON
+S1
+TUE
+S2
+1
+CM101
+comunication M
+Duong Nguyen Vu
+4
+MON
+S3
+TUE
+S4
+2
+*/
