@@ -33,7 +33,12 @@ void enrollCourse(LinkedList<Course> &ListCourse, Student &a);
 bool checkSessionConflict(Session s1, Session s2);
 CourseData addCourseData(Course a); //of a student
 void outputCourseData(Student a);
-void importScoreboard(Course &a);
+
+void importScoreboard(LinkedList<Course> &ListCourse);
+void outputScoreBoardMenu();
+void outputScoreBoard(Score s1);
+void viewScoreBoardOfCourse(LinkedList<Course> &ListCourse);
+void updateAStudent(LinkedList<Course> &ListCourse);
 
 void outputStudentInCourse(LinkedList<Course> ListCourse);
 void viewEnrollCourse(Student s1);
