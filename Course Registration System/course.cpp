@@ -383,3 +383,85 @@ TUE
 S4
 2
 */
+bool checkIfStudentInCourse(Course c1, Student s1) {
+    Node<Student>* temp = c1.EnrollStudentList.pHead;
+    while (temp != nullptr) {
+        if (temp->data.StudentID == s1.StudentID) return true;
+        temp = temp->pNext;
+    }
+    return false;
+}
+bool checkIfStudentInListCourse(LinkedList<Course> listCourse, Student s) {
+    Node <Course>* temp = listCourse.pHead;
+    Node <Student>* cur = listCourse.pHead->data.EnrollStudentList.pHead;
+    while (temp) {
+        while (cur) {
+            if (cur->data.StudentID == s.StudentID) return true;
+            cur = cur->pNext;
+        }
+        temp = temp->pNext;
+    }
+    return false;
+}
+//bool checkIfScoreOfCoursehasStudent(Node<Course>* c1, Student s) {
+//    if (c1 == nullptr) return false;
+//    Node <Score>* temp = c1->data.scoreBoard.pHead;
+//    while (temp != nullptr) {
+//        if (temp->data.ID == s.StudentID) return true;
+//        temp = temp->pNext;
+//    }
+//    return false;
+//}
+Score inputScore() {
+    Score s;
+    cout << "Input No";
+    cin >> s.no;
+    cout << "Input ID";
+    cin >> s.ID;
+    cout << "Input Student full name";
+    cin.ignore(1000, '\n');
+    getline(cin, s.fullname);
+    cout << "Input Mark";
+    cin >> s.totalMark >> s.finalMark >> s.midtermMark >> s.otherMark;
+    return s;
+}
+void scoreBoardMenu() {
+    cout << left << setw(15) << "Course Name"
+        << left << setw(15) << "Total Mark"
+        << left << setw(15) << "Final Mark"
+        << left << setw(15) << "MidTerm Mark"
+        << left << setw(15) << "Other Mark"
+        << endl;
+}
+void outputScore(Node<Course>* c1, Student s)
+{
+    Node <Score>* temp = c1->data.scoreBoard.pHead;
+    while (temp) {
+        if (temp->data.ID == s.StudentID) {
+            cout << left << setw(15) << c1->data.CourseName
+                << left << setw(15) << temp->data.totalMark
+                << left << setw(15) << temp->data.finalMark
+                << left << setw(15) << temp->data.midtermMark
+                << left << setw(15) << temp->data.otherMark
+                << endl;
+            break;
+        }
+        temp = temp->pNext;
+    }
+}
+void viewScoreBoard(LinkedList<Course> ListCourse, Student s1) {
+    Node<Course>* temp = ListCourse.pHead;
+    if (ListCourse.pHead == nullptr) {
+        cout << "No course";
+        return;
+    }
+    if (checkIfStudentInListCourse(ListCourse, s1)) {
+        scoreBoardMenu();
+    }
+    while (temp != nullptr) {
+        if (checkIfStudentInCourse(temp->data, s1)) {
+            outputScore(temp, s1);
+        }
+        temp = temp->pNext;
+    }
+}

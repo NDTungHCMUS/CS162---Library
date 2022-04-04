@@ -17,7 +17,7 @@ Student AddStudent() {
 	cin >> a.LastName;
 	cout << "Student Gender (1 is Male, 2 is Female): ";
 	cin >> a.Gender;
-	cout << "Student Date Of Birth (DD/MM/YYYY): ";
+	cout << "Student Date Of Birth: (day, month, year respectively) ";
 	cin >> a.dob.day >> a.dob.month >> a.dob.year;
 	cout << "Student Social ID: ";
 	cin >> a.SocialID;
