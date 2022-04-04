@@ -5,6 +5,7 @@
 const char *studenttxt = "loginStudentList.txt";
 const char *stafftxt = "loginStaffList.txt";
 using namespace std;
+
 void login()
 
 {
@@ -181,7 +182,7 @@ void loginStudent(ListLogin* &lhead, ListLogin* &position)
     {
         loginFile.close();
         deleteListLogin(lhead);
-        cout <<"ID OR PASSWORD INCORECT, PLEASE TRY AGIAIN" << endl;
+        cout <<"ID OR PASSWORD INCORECT, PLEASE TRY AGAIN" << endl;
         system("pause");
         login();
     }
@@ -189,6 +190,7 @@ void loginStudent(ListLogin* &lhead, ListLogin* &position)
 }
 void loginStaff(ListLogin* &lhead, ListLogin* &position)
 {
+    LinkedList<Year> ListYear;
     system("cls");
     cout << "** Login Staff ** \n";
     string ID, pass;
@@ -204,9 +206,9 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position)
         while(tmp == '2')
         {
             system("cls");
-            cout << "** Well Come " << ID << " **\n";
+            cout << "** Welcome " << ID << " **\n";
             cout << "1. My Account" << endl;
-            cout << "2. My Course" << endl;
+            cout << "2. Staff's Activities" << endl;
             cout << "3. log out" << endl;
             char x;
             cin >> x;
@@ -252,7 +254,28 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position)
             }
             else if (x == '2')
             {
-                // course();
+                cout << "*** Staff's Activities ***" << endl;
+                cout << "1. Create new school year" << endl;
+                cout << "2. Create new class" << endl;
+                cout << "3..." << endl;
+                cout << "4. Import student from CSV file" << endl;
+                int temp;
+                cin >> temp;
+                if (temp == 1) {
+                    CreateYear(ListYear);
+                }
+                else if (temp == 2) {
+                    addList(ListYear.pHead->data.Listclass, inputClass);
+                    /*displayAll(ListYear.pHead->data.Listclass, outputClass);
+                    system("pause");*/
+                }
+                else if (temp == 4) {
+                    string tempString;
+                    cout << "Type in class's name: ";
+                    cin >> tempString;
+                    inputStudentCSV(ListYear.pHead->data.Listclass.pHead->data.listOfStudents, tempString);
+                    
+                }
             }
             else if (x == '3')
             {
@@ -261,7 +284,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position)
                 login();
             }
         }
-    }
+    }  
     else
     {
         loginFile.close();

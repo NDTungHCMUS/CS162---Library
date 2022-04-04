@@ -5,6 +5,5 @@ using namespace std;
 
 int main()
 {
-	LinkedList<Year>* ListYear;
 	login();
 }

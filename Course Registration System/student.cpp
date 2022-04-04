@@ -23,7 +23,7 @@ Student AddStudent() {
 	cin >> a.SocialID;
 	return a;
 }
-void inputStudentCSV(LinkedList<Student> &s) {
+void inputStudentCSV(LinkedList<Student> &s, string className) {
 	Node<Student> dummy;
 	Node<Student>* temp = &dummy;
 	ifstream fin;
@@ -40,32 +40,18 @@ void inputStudentCSV(LinkedList<Student> &s) {
 		string dob;
 		stringstream inputstream;
 		inputstream.str(line);
-		/*getline(inputstream, sNo, ',');
-		temp->data.No = stoi(sNo);*/
 		inputstream >> temp->data.No;
-		/*getline(inputstream, sID, ',');
-		temp->data.StudentID = stoi(sID);*/
 		inputstream >> temp->data.StudentID;
 		getline(inputstream, temp->data.FirstName, ',');
 		getline(inputstream, temp->data.LastName, ',');
-		/*getline(inputstream, sGender, ',');
-		temp->data.Gender = stoi(sGender);*/
 		inputstream >> temp->data.Gender;
 		getline(inputstream, dob, ',');
 		stringstream dobstream;
 		dobstream.str(dob);
-		/*getline(dobstream, sDay, '/');
-		temp->data.dob.day = stoi(sDay);*/
 		dobstream >> temp->data.dob.day;
-		/*getline(inputstream, sMonth, '/');
-		temp->data.dob.month = stoi(sMonth);*/
 		dobstream >> temp->data.dob.month;
-		//getline(inputstream, sYear, '/');
-		//temp->data.dob.year = stoi(sYear);
 		dobstream >> temp->data.dob.year;
 		inputstream >> temp->data.SocialID;
-		//temp->data.SocialID = stoi(sSocial);
-		/*temp = temp->pNext;*/
 	}
 	s.pHead = dummy.pNext;
 	s.pTail = temp;

@@ -36,6 +36,7 @@ Student AddStudent();
 void inputStudentFile(Student& s1, string line);
 void outputStudent(Student s1);
 void displayStudentMenu();
+void inputStudentCSV(LinkedList<Student>& s, string className);
 void outputAllStudent(LinkedList<Student> ListStudent);
 void outputStudentFile(Student s1, ofstream& foutList);
 Student findStudent(LinkedList<Student> ListStudent, int StudentID);
