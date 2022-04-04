@@ -2,7 +2,6 @@
 #include <iostream>
 #include <string.h>
 #include <string>
-#include "linkedList.h"
 #include "student.h"
 
 using namespace std;

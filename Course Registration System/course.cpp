@@ -325,13 +325,13 @@ void removeCourseFromEnrollList(Student s1) {
 		system("cls");
 		viewEnrollCourse(s1);
 		cout << "Input the Course ID you want to remove: ";
-		int num;
+		string num;
 		cin >> num;
 		Node <CourseData>* temp = s1.ListCourseData.pHead;
 		Node <CourseData>* pre = nullptr;
 		pre->pNext = temp;
 		while (temp != nullptr) {
-			if (temp->data.id == num) {
+			if (temp->data.ID == num) {
 				if (temp == s1.ListCourseData.pHead) {
 					s1.ListCourseData.pHead = s1.ListCourseData.pHead->pNext;
 					delete temp;

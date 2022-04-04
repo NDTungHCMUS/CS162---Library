@@ -76,12 +76,12 @@ void RegisterStaff()
     loginFile.open(stafftxt, ios::app);
     cout << "Select ID: ";
     cin >> tmp;
-    loginFile << tmp << endl;
+    loginFile << endl << tmp;
     cout << endl << "Select Password: ";
     cin >> tmp;
-    loginFile << tmp << endl;
+    loginFile << endl << tmp;
     loginFile.close();
-    cout << "successful!, please login again!\n";
+    cout << "Successful!, please login again!\n";
     system("pause");
     login();
 }
@@ -94,12 +94,12 @@ void RegisterStudent()
     loginFile.open(studenttxt, ios::app);
     cout << "Select ID: ";
     cin >> tmp;
-    loginFile << tmp << endl;
+    loginFile << endl << tmp;
     cout << endl << "Select Password: ";
     cin >> tmp;
-    loginFile << tmp << endl;
+    loginFile << endl << tmp;
     loginFile.close();
-    cout << "successful!, please login again!\n";
+    cout << "Successful!, please login again!\n";
     system("pause");
     login();
 }
@@ -120,10 +120,10 @@ void loginStudent(ListLogin* &lhead, ListLogin* &position)
         while(tmp == '2')
         {
             system("cls");
-            cout << "** Well Come " << ID << " **\n";
+            cout << "** Welcome " << ID << " **\n";
             cout << "1. My Account" << endl;
             cout << "2. My Course" << endl;
-            cout << "3. log out" << endl;
+            cout << "3. Log out" << endl;
             char x;
             cin >> x;
             if (x == '1')
