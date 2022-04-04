@@ -1,8 +1,5 @@
 #include "student.h"
-#include "linkedList.h"
-#include "fstream"
-#include <string.h>
-#include <sstream>
+
 using namespace std;
 
 Student AddStudent() {
@@ -17,48 +14,12 @@ Student AddStudent() {
 	cin >> a.LastName;
 	cout << "Student Gender (1 is Male, 2 is Female): ";
 	cin >> a.Gender;
-	cout << "Student Date Of Birth: (day, month, year respectively) ";
+	cout << "Student Date Of Birth (DD/MM/YYYY): ";
 	cin >> a.dob.day >> a.dob.month >> a.dob.year;
 	cout << "Student Social ID: ";
 	cin >> a.SocialID;
 	return a;
 }
-void inputStudentCSV(LinkedList<Student> &s, string className) {
-	Node<Student> dummy;
-	Node<Student>* temp = &dummy;
-	ifstream fin;
-	fin.open("Student.csv");
-	string line;
-	while (getline(fin, line)) {
-		temp->pNext = new Node<Student>;
-		temp = temp->pNext;
-		string sNo;
-		string sID;
-		string sGender;
-		string sDay, sMonth, sYear;
-		string sSocial;
-		string dob;
-		stringstream inputstream;
-		inputstream.str(line);
-		inputstream >> temp->data.No;
-		inputstream >> temp->data.StudentID;
-		getline(inputstream, temp->data.FirstName, ',');
-		getline(inputstream, temp->data.LastName, ',');
-		inputstream >> temp->data.Gender;
-		getline(inputstream, dob, ',');
-		stringstream dobstream;
-		dobstream.str(dob);
-		dobstream >> temp->data.dob.day;
-		dobstream >> temp->data.dob.month;
-		dobstream >> temp->data.dob.year;
-		inputstream >> temp->data.SocialID;
-	}
-	s.pHead = dummy.pNext;
-	s.pTail = temp;
-}
-//Format for Adding students to class function
-//LinkedList StudentList;
-//addList(Class.listOfStudents, &AddStudent);
 
 void inputStudentFile(Student &s1, string line) {
 	string date;
@@ -86,12 +47,12 @@ void inputStudentFile(Student &s1, string line) {
 void outputStudent(Student s1) {
 	cout << left << setw(10) << s1.No
 		<< left << setw(15) << s1.StudentID
-		<< left << setw(14) << s1.LastName 
+		<< left << setw(14) << s1.LastName
 		<< left << setw(14) << s1.FirstName
 		<< left << setw(12) << ((s1.Gender == 1) ? "Male" : "Famale")
-		<< ((s1.dob.day < 10) ? "0" : "") << s1.dob.day << "/" 
+		<< ((s1.dob.day < 10) ? "0" : "") << s1.dob.day << "/"
 		<< ((s1.dob.month < 10) ? "0" : "") << s1.dob.month << "/"
-		<< left << setw(10) << s1.dob.year 
+		<< left << setw(10) << s1.dob.year
 		<< left << setw(25) << s1.SocialID
 		<< endl;
 }

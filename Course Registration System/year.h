@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string.h>
 #include <string>
+#include "linkedList.h"
 #include "class.h"
 #include "semester.h"
 
@@ -14,4 +15,6 @@ struct Year {
 };
 
 void CreateYear(LinkedList<Year>& yearList);
+void inputStudentCSV(LinkedList<Year> &ListYear, string &className);
+
 Year inputYear();
