@@ -2,6 +2,8 @@
 #include<fstream>
 #include<string>
 #include"login.h"
+#include"linkedList.h"
+#include"year.h"
 const char *studenttxt = "loginStudentList.txt";
 const char *stafftxt = "loginStaffList.txt";
 using namespace std;
@@ -261,20 +263,58 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position)
                 cout << "4. Import student from CSV file" << endl;
                 int temp;
                 cin >> temp;
-                if (temp == 1) {
+                if (temp == 1)
+                {
                     CreateYear(ListYear);
                 }
-                else if (temp == 2) {
+                else if (temp == 2)
+                {
                     addList(ListYear.pHead->data.Listclass, inputClass);
                     /*displayAll(ListYear.pHead->data.Listclass, outputClass);
                     system("pause");*/
                 }
-                else if (temp == 4) {
-                    string tempString;
+                else if (temp == 4)
+                {
+
+                    string className;
                     cout << "Type in class's name: ";
-                    cin >> tempString;
-                    inputStudentCSV(ListYear.pHead->data.Listclass.pHead->data.listOfStudents, tempString);
-                    
+                    getline(cin >> ws, className);
+                    LinkedList<Student> s;
+                    // ListYear.pHead->data.Listclass.pHead->data.listOfStudents
+
+                    Node<Class> *current = ListYear.pHead->data.Listclass.pHead;
+                    bool check = false;
+                    while (current != nullptr)
+                    {
+                        if (current->data.classname == className)
+                        {
+                            s = current->data.listOfStudents;
+                            check = true;
+                            break;
+                        }
+                        current = current->pNext;
+                    }
+                    if (check == false)
+                    {
+                        cout << "Can not find this class, please try again!" << endl;
+                        continue;
+                    }
+                    string filename = className + "Student.csv";
+                    inputFile(s,inputStudentFile,filename);
+                    current = ListYear.pHead->data.Listclass.pHead;
+                    while (current != nullptr)
+                    {
+                        if (current->data.classname == className)
+                        {
+                            current->data.listOfStudents = s;
+                            break;
+                        }
+                        current = current->pNext;
+                    }
+                 //   outputAllStudent(s);
+                    //Node<Class> *current = ListYear.pHead->data.Listclass.pHead;
+                    system("pause");
+
                 }
             }
             else if (x == '3')
@@ -284,7 +324,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position)
                 login();
             }
         }
-    }  
+    }
     else
     {
         loginFile.close();

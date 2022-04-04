@@ -58,7 +58,7 @@ void removeIndex(LinkedList<T>& l1, int index); // remove specific node
 
 // FUNCTIONS DEFINITIONS:
 // add element behind the list
-template <class T> 
+template <class T>
 void add(LinkedList<T> &l1, T item) {
     Node<T>* node = new Node<T>;
     node->data = item;
@@ -157,7 +157,7 @@ void displayAll(LinkedList<T> l1, void(*outputItem)(T data)) {
     }
     Node<T>* temp = l1.pHead;
     int i = 0;
-    while (temp != NULL) { 
+    while (temp != NULL) {
         ++i;
         cout << left << setw(5) <<i;
         outputItem(temp->data);
@@ -260,7 +260,7 @@ void addList(LinkedList<T> &l1, T(*inputItem)()) {
 // update an existing item
 template <class T>
 //index here represent the order of the element in the list, starting with 1, not 0
-void updateIndex(LinkedList<T>& l1, int index, T(*inputT)()) { 
+void updateIndex(LinkedList<T>& l1, int index, T(*inputT)()) {
     if (index > length(l1)) {
         cout << "Invalid choice." << endl;
         return;
@@ -285,10 +285,10 @@ void updateIndex(LinkedList<T>& l1, int index, T(*inputT)()) {
 // read a csv file, using stringstream.
 // to use, we need an input from string function for each type of object
 template <class T>
-void inputFile(LinkedList<T> &TList, void(*inputTFile)(T &, string)) {
-    string filename;
-    cout << "Input file name: ";
-    getline(cin, filename, '\n');
+void inputFile(LinkedList<T> &TList, void(*inputTFile)(T &, string), string &filename) {
+
+    //cout << "Input file name: ";
+    //getline(cin, filename, '\n');
     string line;
     ifstream file;
     Node<T> dummy;

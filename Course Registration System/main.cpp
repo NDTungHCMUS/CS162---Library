@@ -10,6 +10,7 @@ using namespace std;
 
 int main()
 {
+    login();
 /*
     //example to use function : import Score board,	view Score Board Of a Course  ,and update A Student's result;
 

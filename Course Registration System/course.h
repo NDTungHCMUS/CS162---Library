@@ -1,4 +1,5 @@
 #pragma once
+#include "linkedList.h"
 #include "student.h"
 
 struct Score
@@ -40,17 +41,5 @@ void viewScoreBoardOfCourse(LinkedList<Course> &ListCourse);
 void updateAStudent(LinkedList<Course> &ListCourse);
 
 void outputStudentInCourse(LinkedList<Course> ListCourse);
-
-//view list of enroll course
 void viewEnrollCourse(Student s1);
-
-//remove a course from enroll list
 void removeCourseFromEnrollList(Student s1);
-
-//view score of stu
-bool checkIfStudentInCourse(Course c1, Student s1);
-bool checkIfStudentInListCourse(LinkedList<Course> listCourse, Student s);
-void scoreBoardMenu();
-void outputScore(Node<Course>* c1, Student s);
-Score inputScore();
-void viewScoreBoard(LinkedList<Course> ListCourse, Student s1);
