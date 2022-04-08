@@ -3,6 +3,9 @@
 #include <iostream>
 #include<fstream>
 #include<string>
+#include"linkedList.h"
+#include"year.h"
+
 using namespace std;
 struct ListLogin
 {
@@ -10,6 +13,8 @@ struct ListLogin
     string pas;
     ListLogin *next = NULL;
 };
+bool checkExistAccount(ifstream& fin);
+
 void deleteListLogin(ListLogin* &lhead);
 void outList(ListLogin* &lhead);
 

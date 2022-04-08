@@ -1,12 +1,20 @@
-#include <iostream>
-#include<fstream>
-#include<string>
 #include"login.h"
-#include"linkedList.h"
-#include"year.h"
 const char *studenttxt = "loginStudentList.txt";
 const char *stafftxt = "loginStaffList.txt";
 using namespace std;
+
+bool checkExistAccount(ifstream& fin, string toCheck) {
+    string check;
+    string skip;
+    while (!fin.eof()) {
+        getline(fin, check, '\n');
+        if (check == toCheck) {
+            return true;
+        }
+        getline(fin, skip, '\n');
+    }
+    return false;
+}
 
 void login()
 
@@ -27,6 +35,7 @@ void login()
     {
         if (x == '1')
         {
+            system("cls");
             char t;
             cout << "** Student  ** \n";
             cout << "1. Register" << endl;
@@ -45,6 +54,7 @@ void login()
         }
         else if (x == '2')
         {
+            system("cls");
             cout << "** Academic Staff  ** \n";
             cout << "1. Register" << endl;
             cout << "2. login" << endl;
@@ -75,12 +85,20 @@ void RegisterStaff()
     system("cls");
     cout << "*** Register Staff ***\n";
     string tmp;
+    ifstream checkFile;
     ofstream loginFile;
+    checkFile.open(studenttxt);
     loginFile.open(stafftxt, ios::app);
     cout << "Select ID: ";
     cin >> tmp;
+    bool checkEx = checkExistAccount(checkFile, tmp);
+    while (checkEx) {
+        cout << "ID exist, try again: ";
+        cin >> tmp;
+        checkEx = checkExistAccount(checkFile, tmp);
+    }
     loginFile << endl << tmp;
-    cout << endl << "Select Password: ";
+    cout << "Select Password: ";
     cin >> tmp;
     loginFile << endl << tmp;
     loginFile.close();
@@ -93,15 +111,24 @@ void RegisterStudent()
     system("cls");
     cout << "*** Register Student ***\n";
     string tmp;
+    ifstream checkFile;
     ofstream loginFile;
+    checkFile.open(studenttxt);
     loginFile.open(studenttxt, ios::app);
     cout << "Select ID: ";
     cin >> tmp;
+    bool checkEx = checkExistAccount(checkFile, tmp);
+    while (checkEx) {
+        cout << "ID exist, try again: ";
+        cin >> tmp;
+        checkEx = checkExistAccount(checkFile, tmp);
+    }
     loginFile << endl << tmp;
-    cout << endl << "Select Password: ";
+    cout << "Select Password: ";
     cin >> tmp;
     loginFile << endl << tmp;
     loginFile.close();
+    checkFile.close();
     cout << "Successful!, please login again!\n";
     system("pause");
     login();
