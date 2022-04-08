@@ -91,4 +91,47 @@ void inputStudentCSV(LinkedList<Year> &ListYear, string &className) {
 //Format for Adding students to class function
 //LinkedList StudentList;
 //addList(Class.listOfStudents, &AddStudent);
-
+Year inputYear() {
+	Year res{ 0, nullptr };
+	cout << "input year start: ";
+	cin >> res.yearStart;
+	return res;
+}
+void displayYear(LinkedList<Year>yearList) {
+	Node<Year>* temp = yearList.pHead;
+	if (yearList.pHead == nullptr) return;
+	cout << "All years shown below: " << endl;
+	while (temp) {
+		cout << temp->data.yearStart << endl;
+		temp = temp->pNext;
+	}
+}
+void viewListCoursethisSemester(LinkedList<Year> listYear) {
+	displayYear(listYear);
+	cout << "Input Year: ";
+	int year;
+	cin >> year;
+	Node<Year>* cur = listYear.pHead;
+	while (cur) {
+		if (cur->data.yearStart == year) break;
+		cur = cur->pNext;
+	}
+	cout << "Input semester (from 1 to 3) in " << year << " you want to view list courses: ";
+	int n;
+	cin >> n;
+	while (n <= 0 || n >= 4) {
+		cout << "Please choose semester again: ";
+		cin >> n;
+	}
+	if (n >= 1 && n <= 3) {
+		cout << "All courses in semester " << n << " of year " << cur->data.yearStart << " shown as below: " << endl;
+		Node <Semester>* temp = cur->data.ListSemester.pHead;
+		int count = n - 1;
+		int count2 = 0;
+		while (count2 < count) {
+			temp = temp->pNext;
+			count2++;
+		}
+		outputAllCourse(temp->data.ListCourse);
+	}
+}
