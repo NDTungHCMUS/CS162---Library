@@ -8,9 +8,21 @@ Class inputClass() {
 	getline(cin, res.classname, '\n');
 	return res;
 }
+
+bool checkExistClass(LinkedList<Class> ListClass, Class check) {
+	Node<Class>* temp = ListClass.pHead;
+	while (temp != NULL) {
+		if (temp->data.classname == check.classname) {
+			return true;
+		}
+	}
+	return false;
+}
+
 void outputClass(Class c1) {
 	cout << c1.classname << endl;
 }
+
 void outputListClass(LinkedList <Class> ListClass) {
 	system("cls");
 	if (ListClass.pHead == nullptr) cout << "No class here";

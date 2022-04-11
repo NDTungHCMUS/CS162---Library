@@ -12,6 +12,7 @@ struct Class {
 	LinkedList<Student> listOfStudents;
 };
 
+bool checkExistClass(LinkedList<Class> ListClass, Class check);
 Class inputClass();
 void outputClass(Class c1);
 void outputListClass(LinkedList <Class> ListClass);
