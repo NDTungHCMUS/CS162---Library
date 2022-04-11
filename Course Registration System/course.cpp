@@ -216,6 +216,7 @@ void outputScoreBoard(Score s1)
 void outputScoreBoardMenu()
 {
 
+    cout << "\n";
     cout << left << setw(10) << "No"
          << left << setw(15) << "ID"
          << left << setw(14) << "Full Name"
@@ -277,8 +278,125 @@ void updateAStudent(LinkedList<Course> &ListCourse)
         cout << "\nThere is no student with this ID in the course, please try again!\n";
     }
 }
-//void removeCourseEnroll(LinkedList<Course> ListCourse)
 
+void outputScoreBoardOfClassMenu(LinkedList<Course> &ListCourse)
+{
+    cout << "\n";
+
+    cout << "No"
+         << "\t" << "StudentID"
+         << "\t" << "Student Name\t";
+    Node <Course> *NodeCourse = ListCourse.pHead;
+    for (; NodeCourse != nullptr; NodeCourse = NodeCourse->pNext)
+    {
+        cout << "\t" << NodeCourse->data.ID;
+    }
+    cout << "\t" << "Semester GPA";
+    cout << "\t" << "Overall GPA\n";
+    cout << "\n";
+}
+void viewScoreBoardOfClass(LinkedList <Class> &ListClass,LinkedList<Course> &ListCourse)
+{
+    string clName;
+    cout << "\nPlease enter the class's name:";
+    getline(cin >> ws,clName);
+    Node <Class>* NodeClass = ListClass.pHead;
+    for (; NodeClass != nullptr; NodeClass = NodeClass->pNext)
+    {
+        if (NodeClass->data.classname == clName) break;
+    }
+    if (NodeClass == nullptr)
+    {
+        cout << "\nThere is no class with this name, please try again!";
+        return;
+    }
+
+    Node<Student> *NodeStudent = NodeClass->data.listOfStudents.pHead;
+    cout << "---------------------------------- Score Board of class " << clName <<" ----------------------------------------\n";
+    outputScoreBoardOfClassMenu(ListCourse);
+    int noOfStudent = 0;
+    for (; NodeStudent != nullptr; NodeStudent = NodeStudent->pNext)
+    {
+        cout<< ++noOfStudent<< "\t" << NodeStudent->data.StudentID << "\t" << NodeStudent->data.FirstName <<' ' << NodeStudent->data.LastName;
+        int countCourse = 0;
+        float sumGPA = 0;
+        Node<Course> *NodeCourse = ListCourse.pHead;
+        for (; NodeCourse != nullptr; NodeCourse = NodeCourse->pNext)
+        {
+
+            Node<Score> *NodeSore = NodeCourse->data.scoreBoard.pHead;
+            for (; NodeSore != nullptr; NodeSore = NodeSore->pNext)
+            {
+                if (NodeSore->data.ID == NodeStudent->data.StudentID)
+                {
+                    cout << "        " << NodeSore->data.totalMark;
+                    countCourse++;
+                    sumGPA += NodeSore->data.totalMark;
+                    break;
+                }
+            }
+            if (NodeSore == nullptr) cout << "        " << "X";
+        }
+        float GPAThisSemester = sumGPA / ((float) countCourse);
+        cout << "        " << fixed << setprecision(1) << GPAThisSemester;
+        float overallGPA;
+        ifstream GPAfile;
+        string classnameGPA = clName;
+        classnameGPA += "GPA.txt";
+        GPAfile.open(classnameGPA);
+        if (GPAfile)
+        {
+            int NumOfStudentInClass;
+            GPAfile >> NumOfStudentInClass;
+            int STID;
+            int allCourse;
+            float GPA;
+            for (int i = 1; i <= NumOfStudentInClass; i++)
+            {
+                GPAfile >> STID >> allCourse >> GPA;
+                if (STID == NodeStudent->data.StudentID)
+                {
+                    overallGPA = (GPA * ((float) allCourse) + GPAThisSemester) / ((float) (allCourse + 1));
+                    break;
+                }
+            }
+        }
+        else cout << "file " << classnameGPA << " cannot open !\n";
+        cout << "        " << fixed << setprecision(1) <<   overallGPA << '\n';
+    }
+}
+/*
+2021
+1
+CS162
+introduce to CS1
+Dinh Ba Tien
+4
+MON
+S1
+TUE
+S2
+1
+CM101
+comunication M
+Duong Nguyen Vu
+4
+MON
+S3
+TUE
+S4
+2
+1
+21CTT1
+1
+21CTN1
+2
+21CTT1
+1
+1
+21CTT1
+*/
+//void removeCourseEnroll(LinkedList<Course> ListCourse)
 void outputStudentInCourse(LinkedList<Course>ListCourse)
 {
     cout << "Type the Course No you want to view list of student (from 1): ";
@@ -306,80 +424,166 @@ void viewEnrollCourse(Student s1)
         }
     }
 }
+void removeCourseFromEnrollList(Student s1)
+{
+    cout << "Choose the option: " << endl;
+    cout << "1. Remove Course Data" << endl;
+    cout << "2. Exit" << endl;
+    cout << "Your choice is: ";
+    int choose;
+    cin >> choose;
+    while (choose != 1 && choose != 2)
+    {
+        cout << "Please choose again: " << endl;
+        system("pause");
+        system("cls");
+        removeCourseFromEnrollList(s1);
+    }
+    if (choose == 1)
+    {
+        system("cls");
+        viewEnrollCourse(s1);
+        cout << "Input the Course ID you want to remove: ";
+        string num;
+        cin >> num;
+        Node <CourseData>* temp = s1.ListCourseData.pHead;
+        Node <CourseData>* pre = nullptr;
+        pre->pNext = temp;
+        while (temp != nullptr)
+        {
+            if (temp->data.ID == num)
+            {
+                if (temp == s1.ListCourseData.pHead)
+                {
+                    s1.ListCourseData.pHead = s1.ListCourseData.pHead->pNext;
+                    delete temp;
+                    break;
+                }
+                else
+                {
+                    Node <CourseData>* del = temp;
+                    pre->pNext = temp->pNext;
+                    temp = temp->pNext;
+                    delete del;
+                    if (temp == nullptr)
+                    {
+                        s1.ListCourseData.pTail = pre;
+                    }
+                    break;
+                }
+            }
+            else
+            {
+                temp = temp->pNext;
+                pre = pre->pNext;
+            }
 
+        }
+        cout << "List of CourseData after removing: " << endl;
+        viewEnrollCourse(s1);
+    }
+    if (choose == 2)
+    {
+        return;
+    }
 
-void removeCourseFromEnrollList(Student s1) {
-	/*cout << "Choose the option: " << endl;
-	cout << "1. Remove Course Data" << endl;
-	cout << "2. Exit" << endl;
-	cout << "Your choice is: ";
-	int choose;
-	cin >> choose;
-	while (choose != 1 && choose != 2) {
-		cout << "Please choose again: " << endl;
-		system("pause");
-		system("cls");
-		removeCourseFromEnrollList(s1);
-	}
-	if (choose == 1) {
-		system("cls");
-		viewEnrollCourse(s1);
-		cout << "Input the Course ID you want to remove: ";
-		int num;
-		cin >> num;
-		Node <CourseData>* temp = s1.ListCourseData.pHead;
-		Node <CourseData>* pre = nullptr;
-		pre->pNext = temp;
-		while (temp != nullptr) {
-			if (temp->data.id == num) {
-				if (temp == s1.ListCourseData.pHead) {
-					s1.ListCourseData.pHead = s1.ListCourseData.pHead->pNext;
-					delete temp;
-					break;
-				}
-				else {
-					Node <CourseData>* del = temp;
-					pre->pNext = temp->pNext;
-					temp = temp->pNext;
-					delete del;
-					if (temp == nullptr) {
-						s1.ListCourseData.pTail = pre;
-					}
-					break;
-				}
-			}
-			else {
-				temp = temp->pNext;
-				pre = pre->pNext;
-			}
-
-		}
-		cout << "List of CourseData after removing: " << endl;
-		viewEnrollCourse(s1);
-	}
-	if (choose == 2) {
-		return;
-	}
-*/
 }
-/*
-1
-CS162
-introduce to CS1
-Dinh Ba Tien
-4
-MON
-S1
-TUE
-S2
-1
-CM101
-comunication M
-Duong Nguyen Vu
-4
-MON
-S3
-TUE
-S4
-2
-*/
+
+bool checkIfStudentInCourse(Course c1, Student s1)
+{
+    Node<Student>* temp = c1.EnrollStudentList.pHead;
+    while (temp != nullptr)
+    {
+        if (temp->data.StudentID == s1.StudentID) return true;
+        temp = temp->pNext;
+    }
+    return false;
+}
+bool checkIfStudentInListCourse(LinkedList<Course> listCourse, Student s)
+{
+    Node <Course>* temp = listCourse.pHead;
+    Node <Student>* cur = listCourse.pHead->data.EnrollStudentList.pHead;
+    while (temp)
+    {
+        // cur = temp->data.EnrollStudentList.pHead; ??
+        while (cur)
+        {
+            if (cur->data.StudentID == s.StudentID) return true;
+            cur = cur->pNext;
+        }
+        temp = temp->pNext;
+    }
+    return false;
+}
+//bool checkIfScoreOfCoursehasStudent(Node<Course>* c1, Student s) {
+//    if (c1 == nullptr) return false;
+//    Node <Score>* temp = c1->data.scoreBoard.pHead;
+//    while (temp != nullptr) {
+//        if (temp->data.ID == s.StudentID) return true;
+//        temp = temp->pNext;
+//    }
+//    return false;
+//}
+Score inputScore()
+{
+    Score s;
+    cout << "Input No";
+    cin >> s.no;
+    cout << "Input ID";
+    cin >> s.ID;
+    cout << "Input Student full name";
+    cin.ignore(1000, '\n');
+    getline(cin, s.fullname);
+    cout << "Input Mark";
+    cin >> s.totalMark >> s.finalMark >> s.midtermMark >> s.otherMark;
+    return s;
+}
+void scoreBoardMenu()
+{
+    cout << left << setw(15) << "Course Name"
+         << left << setw(15) << "Total Mark"
+         << left << setw(15) << "Final Mark"
+         << left << setw(15) << "MidTerm Mark"
+         << left << setw(15) << "Other Mark"
+         << endl;
+}
+void outputScore(Node<Course>* c1, Student s)
+{
+    Node <Score>* temp = c1->data.scoreBoard.pHead;
+    while (temp)
+    {
+        if (temp->data.ID == s.StudentID)
+        {
+            cout << left << setw(15) << c1->data.CourseName
+                 << left << setw(15) << temp->data.totalMark
+                 << left << setw(15) << temp->data.finalMark
+                 << left << setw(15) << temp->data.midtermMark
+                 << left << setw(15) << temp->data.otherMark
+                 << endl;
+            break;
+        }
+        temp = temp->pNext;
+    }
+}
+void viewScoreBoard(LinkedList<Course> ListCourse, Student s1)
+{
+    Node<Course>* temp = ListCourse.pHead;
+    if (ListCourse.pHead == nullptr)
+    {
+        cout << "No course";
+        return;
+    }
+    if (checkIfStudentInListCourse(ListCourse, s1))
+    {
+        scoreBoardMenu();
+    }
+    while (temp != nullptr)
+    {
+        if (checkIfStudentInCourse(temp->data, s1))
+        {
+            outputScore(temp, s1);
+        }
+        temp = temp->pNext;
+    }
+}
+
