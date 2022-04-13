@@ -69,7 +69,7 @@ void add(LinkedList<T> &l1, T item) {
     }
     l1.pTail->pNext = node;
     l1.pTail = l1.pTail->pNext;
-    cout << "Element added back." << endl;
+    cout << "Add successfully" << endl;
 }
 
 // add element before the list

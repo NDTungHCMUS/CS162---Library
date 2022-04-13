@@ -13,7 +13,7 @@ struct ListLogin
     string pas;
     ListLogin *next = NULL;
 };
-bool checkExistAccount(ifstream& fin);
+bool checkExistAccount(ifstream& fin, string toCheck);
 
 void deleteListLogin(ListLogin* &lhead);
 void outList(ListLogin* &lhead);

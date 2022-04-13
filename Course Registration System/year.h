@@ -19,3 +19,6 @@ void inputStudentCSV(LinkedList<Year> &ListYear, string &className);
 Year inputYear();
 void displayYear(LinkedList<Year> yearList);
 void viewListCoursethisSemester(LinkedList<Year> listYear);
+void outputScoreBoardOfClassMenu(LinkedList<Course>& ListCourse);
+void viewScoreBoardOfClass(LinkedList <Class>& ListClass, LinkedList<Course>& ListCourse);
+

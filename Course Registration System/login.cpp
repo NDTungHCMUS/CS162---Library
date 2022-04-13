@@ -87,15 +87,18 @@ void RegisterStaff()
     string tmp;
     ifstream checkFile;
     ofstream loginFile;
-    checkFile.open(studenttxt);
+    checkFile.open(stafftxt);
     loginFile.open(stafftxt, ios::app);
     cout << "Select ID: ";
     cin >> tmp;
     bool checkEx = checkExistAccount(checkFile, tmp);
+    checkFile.close();
     while (checkEx) {
         cout << "ID exist, try again: ";
         cin >> tmp;
+        checkFile.open(stafftxt);
         checkEx = checkExistAccount(checkFile, tmp);
+        checkFile.close();
     }
     loginFile << endl << tmp;
     cout << "Select Password: ";
@@ -118,10 +121,13 @@ void RegisterStudent()
     cout << "Select ID: ";
     cin >> tmp;
     bool checkEx = checkExistAccount(checkFile, tmp);
+    checkFile.close();
     while (checkEx) {
         cout << "ID exist, try again: ";
         cin >> tmp;
+        checkFile.open(stafftxt);
         checkEx = checkExistAccount(checkFile, tmp);
+        checkFile.close();
     }
     loginFile << endl << tmp;
     cout << "Select Password: ";
@@ -283,26 +289,49 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position)
             }
             else if (x == '2')
             {
+                system("cls");
                 cout << "*** Staff's Activities ***" << endl;
                 cout << "1. Create new school year" << endl;
                 cout << "2. Create new class" << endl;
-                cout << "3..." << endl;
+                cout << "3. Add student into class" << endl;
                 cout << "4. Import student from CSV file" << endl;
                 int temp;
                 cin >> temp;
                 if (temp == 1)
                 {
+                    system("cls");
                     CreateYear(ListYear);
                 }
                 else if (temp == 2)
                 {
+                    system("cls");
                     addList(ListYear.pHead->data.Listclass, inputClass);
                     /*displayAll(ListYear.pHead->data.Listclass, outputClass);
                     system("pause");*/
                 }
+                else if (temp == 3) {
+                    system("cls");
+                    if (ListYear.pTail == NULL) {
+                        cerr << "No year to choose" << endl;
+                        system("pause");
+                    }
+                    else {
+                        string classcheck;
+                        cout << "Type in class name: ";
+                        cin.ignore(1, '\n');
+                        getline(cin, classcheck);
+                        LinkedList<Class> track = ListYear.pTail->data.Listclass;
+                        while (track.pHead != NULL) {
+                            if (track.pHead->data.classname == classcheck) {
+                                addList(track.pHead->data.listOfStudents, &AddStudent);
+                            }
+                            track.pHead = track.pHead->pNext;
+                        }
+                    }
+                }
                 else if (temp == 4)
                 {
-
+                    system("cls");
                     string className;
                     cout << "Type in class's name: ";
                     getline(cin >> ws, className);
@@ -341,7 +370,17 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position)
                  //   outputAllStudent(s);
                     //Node<Class> *current = ListYear.pHead->data.Listclass.pHead;
                     system("pause");
-
+                }
+                else if (temp == 5) {
+                    system("cls");
+                    if (ListYear.pTail == NULL) {
+                        cerr << "No year to choose" << endl;
+                        system("pause");
+                    }
+                    else {
+                        Semester tmp1 = inputSemester();
+                        add(ListYear.pTail->data.ListSemester, tmp1);
+                    }                   
                 }
             }
             else if (x == '3')

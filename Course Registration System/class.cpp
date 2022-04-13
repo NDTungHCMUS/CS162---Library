@@ -9,10 +9,10 @@ Class inputClass() {
 	return res;
 }
 
-bool checkExistClass(LinkedList<Class> ListClass, Class check) {
+bool checkExistClass(LinkedList<Class> ListClass, string check) {
 	Node<Class>* temp = ListClass.pHead;
 	while (temp != NULL) {
-		if (temp->data.classname == check.classname) {
+		if (temp->data.classname == check) {
 			return true;
 		}
 	}
@@ -39,3 +39,4 @@ void outputStuListFile(Class c1) {
 	outputListFile(c1.listOfStudents, foutList, &outputStudentFile);
 	foutList.close();
 }
+
