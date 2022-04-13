@@ -295,6 +295,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position)
                 cout << "2. Create new class" << endl;
                 cout << "3. Add student into class" << endl;
                 cout << "4. Import student from CSV file" << endl;
+                cout << "5. Semester" << endl;
                 int temp;
                 cin >> temp;
                 if (temp == 1)
@@ -372,15 +373,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position)
                     system("pause");
                 }
                 else if (temp == 5) {
-                    system("cls");
-                    if (ListYear.pTail == NULL) {
-                        cerr << "No year to choose" << endl;
-                        system("pause");
-                    }
-                    else {
-                        Semester tmp1 = inputSemester();
-                        add(ListYear.pTail->data.ListSemester, tmp1);
-                    }                   
+                                     
                 }
             }
             else if (x == '3')
