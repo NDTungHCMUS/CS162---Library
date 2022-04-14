@@ -203,7 +203,7 @@ void loginStudent(ListLogin* &lhead, ListLogin* &position)
             }
             else if (x == '2')
             {
-                // course();
+                //student
             }
             else if (x == '3')
             {
@@ -226,6 +226,7 @@ void loginStudent(ListLogin* &lhead, ListLogin* &position)
 void loginStaff(ListLogin* &lhead, ListLogin* &position)
 {
     LinkedList<Year> ListYear;
+    Regis reg{};
     system("cls");
     cout << "** Login Staff ** \n";
     string ID, pass;
@@ -373,7 +374,12 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position)
                     system("pause");
                 }
                 else if (temp == 5) {
-                                     
+                    if (ListYear.pTail == NULL) {
+                        cout << "Create a school year first" << endl;
+                    }
+                    else {
+                        semester(ListYear.pTail->data, reg);
+                    }
                 }
             }
             else if (x == '3')

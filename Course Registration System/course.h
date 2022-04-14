@@ -2,6 +2,11 @@
 #include "linkedList.h"
 #include "student.h"
 
+struct Regis {
+	Date start;
+	Date end;
+};
+
 struct Score
 {
     int no;

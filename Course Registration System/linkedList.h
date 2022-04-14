@@ -54,6 +54,23 @@ void removeFront(LinkedList<T>& l1); // remove first element
 template <class T>
 void removeIndex(LinkedList<T>& l1, int index); // remove specific node
 
+template <class T>
+void addList(LinkedList<T>& l1, T(*inputItem)()); //add a list of things
+
+// update an existing item
+template <class T>
+//index here represent the order of the element in the list, starting with 1, not 0
+void updateIndex(LinkedList<T>& l1, int index, T(*inputT)());
+
+// read a csv file, using stringstream.
+// to use, we need an input from string function for each type of object
+template <class T>
+void inputFile(LinkedList<T>& TList, void(*inputTFile)(T&, string), string& filename);
+
+// output info of a list to a csv file
+template <class T>
+void outputListFile(LinkedList<T> TList, ofstream& foutList, void(*outputFileT)(T, ofstream&));
+
 
 
 // FUNCTIONS DEFINITIONS:
