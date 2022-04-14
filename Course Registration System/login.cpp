@@ -1,5 +1,7 @@
 #pragma warning(disable : 4996)
 #include"login.h"
+
+Regis reg{};
 const char *studenttxt = "loginStudentList.txt";
 const char *stafftxt = "loginStaffList.txt";
 using namespace std;
@@ -332,8 +334,6 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 cout << "2. Create new class" << endl;
                 cout << "3. Add student into class" << endl;
                 cout << "4. Import student from CSV file" << endl;
-                cout << "6. Semester" << endl;
-
                 cout << "5. Semester" << endl;
                 cout << "Input choice (0 - 5): ";
                 int temp;

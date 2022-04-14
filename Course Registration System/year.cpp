@@ -19,6 +19,18 @@ void CreateYear(LinkedList<Year>& yearList) {
 	}
 }
 
+Semester inputSemester(Year y1) {
+    Semester t;
+    t.schoolyear = y1.yearStart;
+    cout << "Input semester: ";
+    cin >> t.SemesterNumb;
+    cout << "Input start date: ";
+    cin >> t.startDate.day >> t.startDate.month >> t.startDate.year;
+    cout << "Input end date: ";
+    cin >> t.endDate.day >> t.endDate.month >> t.endDate.year;
+    return t;
+}
+
 void inputStudentCSV(LinkedList<Year> &ListYear, string &className)
 {
     // ListYear.pHead->data.Listclass.pHead->data.listOfStudents
@@ -341,14 +353,17 @@ void semester(LinkedList<Year> &ListYear, Regis &reg) {
 				break;
 			}
 			case 3:
-			{
-
+			{  
+                system("cls");
+                addList(ListYear.pTail->data.ListSemester.pTail->data.ListCourse, &inputCourse);
 				break;
 			}	
 			case 4:
 			{
-
-				break;
+                system("cls");
+                cout << "<---- List of current available course ---->" << endl;
+                outputAllCourse(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
+                system("pause");
 			}
 			case 5:
 			{
@@ -371,5 +386,4 @@ void semester(LinkedList<Year> &ListYear, Regis &reg) {
 			}
 		}
 	}
-}
 }
