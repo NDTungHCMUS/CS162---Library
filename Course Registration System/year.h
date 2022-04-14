@@ -22,4 +22,4 @@ void viewListCoursethisSemester(LinkedList<Year> listYear);
 void outputScoreBoardOfClassMenu(LinkedList<Course>& ListCourse);
 void viewScoreBoardOfClass(LinkedList <Class>& ListClass, LinkedList<Course>& ListCourse);
 Semester inputSemester(Year y1);
-void semester(Year y1, Regis &reg);
+void semester(LinkedList<Year> &ListYear, Regis &reg);

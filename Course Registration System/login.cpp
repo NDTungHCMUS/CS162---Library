@@ -1,3 +1,4 @@
+#pragma warning(disable : 4996)
 #include"login.h"
 const char *studenttxt = "loginStudentList.txt";
 const char *stafftxt = "loginStaffList.txt";
@@ -26,7 +27,6 @@ bool checkExistAccount(ifstream& fin, string toCheck)
 }
 
 void login()
-
 {
 
     system("cls");
@@ -81,7 +81,6 @@ void login()
             }
             else if (t == '3') login();
         }
-
     }
     else if (x == '3')
     {
@@ -233,7 +232,6 @@ void loginStudent(ListLogin* &lhead, ListLogin* &position)
         system("pause");
         login();
     }
-
 }
 void loginStaff(ListLogin* &lhead, ListLogin* &position)
 {
@@ -310,7 +308,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position)
                 cout << "3. Add student into class" << endl;
                 cout << "4. Import student from CSV file" << endl;
                 cout << "5. Semester" << endl;
-
+                cout << "Input choice (0 - 5): ";
                 int temp;
                 cin >> temp;
                 if (temp == 0)
@@ -318,10 +316,11 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position)
                     cout << "Please enter day, month and year: ";
                     cin >> today.day >> today.month >> today.year;
                 }
-                if (temp == 1)
+                else if (temp == 1)
                 {
                     system("cls");
                     CreateYear(ListYear);
+                    system("pause");
                 }
                 else if (temp == 2)
                 {
@@ -364,7 +363,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position)
                     LinkedList<Student> s;
                     // ListYear.pHead->data.Listclass.pHead->data.listOfStudents
 
-                    Node<Class> *current = ListYear.pHead->data.Listclass.pHead;
+                    Node<Class>* current = ListYear.pHead->data.Listclass.pHead;
                     bool check = false;
                     while (current != nullptr)
                     {
@@ -382,7 +381,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position)
                         continue;
                     }
                     string filename = className + "Student.csv";
-                    inputFile(s,inputStudentFile,filename);
+                    inputFile(s, inputStudentFile, filename);
                     current = ListYear.pHead->data.Listclass.pHead;
                     while (current != nullptr)
                     {
@@ -398,16 +397,13 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position)
                     //Node<Class> *current = ListYear.pHead->data.Listclass.pHead;
                     system("pause");
                 }
-                else if (temp == 5)
-                {
-
-
                 else if (temp == 5) {
                     if (ListYear.pTail == NULL) {
                         cout << "Create a school year first" << endl;
+                        system("pause");
                     }
                     else {
-                        semester(ListYear.pTail->data, reg);
+                        semester(ListYear, reg);
                     }
                 }
 

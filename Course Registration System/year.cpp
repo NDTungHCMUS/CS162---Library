@@ -9,8 +9,8 @@ void CreateYear(LinkedList<Year>& yearList) {
 	cin >> temp;
 	if (yearList.pHead == nullptr) {
 		yearList.pHead = new Node<Year>;
+		yearList.pHead->data.yearStart = temp;
 		yearList.pTail = yearList.pHead;
-		current = yearList.pHead;
 	}
 	else {
 		yearList.pTail->pNext = new Node<Year>;
@@ -236,9 +236,9 @@ Semester inputSemester(Year y1) {
 	return t;
 }
 
-void semester(Year y1, Regis &reg) {
+void semester(LinkedList<Year> &ListYear, Regis &reg) {
 	int choice;
-	while (cin >> choice) {
+	while (1) {
 		system("cls");
 		cout << "**** Semester Managing ****" << endl
 			<< "1. Create a new semester." << endl
@@ -247,45 +247,61 @@ void semester(Year y1, Regis &reg) {
 			<< "4. View list of current courses." << endl
 			<< "5. Update a course information." << endl
 			<< "6. Delete a course." << endl
-			<< "7. Exit." << endl;
+			<< "7. Back to menu." << endl;
 		cout << "Input choice (1 - 7): ";
+		cin >> choice;
 		switch (choice)
 		{
-		case 1:
-			system("cls");
-			cout << "You are creating a semester in year " << y1.yearStart << ".";
-			Semester tmp = inputSemester(y1);
-			add(y1.ListSemester, tmp);
-			system("pause");
-			break;
-		case 2:
-			system("cls");
-			cout << "You are creating a course registration session." << endl;
-			cout << "Input start date (day month year): ";
-			cin >> reg.start.day >> reg.start.month >> reg.start.year;
-			cout << "Input end date (day month year): ";
-			cin >> reg.end.day >> reg.end.month >> reg.end.year;
-			cout << "Create successfully." << endl;
-			system("pause");
-			break;
-		case 3:
+			case 1:
+			{
+				system("cls");
+				cout << "You are creating a semester in year " << ListYear.pTail->data.yearStart<< "." << endl;
+				Semester tmp = inputSemester(ListYear.pTail->data);
+				add(ListYear.pTail->data.ListSemester, tmp);
+				system("pause");
+				break;
+			}
+			case 2: 
+			{
+				system("cls");
+				cout << "You are creating a course registration session." << endl;
+				cout << "Input start date (day month year): ";
+				cin >> reg.start.day >> reg.start.month >> reg.start.year;
+				cout << "Input end date (day month year): ";
+				cin >> reg.end.day >> reg.end.month >> reg.end.year;
+				cout << "Create successfully." << endl;
+				system("pause");
+				break;
+			}
+			case 3:
+			{
 
-			break;
-		case 4:
+				break;
+			}	
+			case 4:
+			{
 
-			break;
-		case 5:
+				break;
+			}
+			case 5:
+			{
 
-			break;
-		case 6:
+				break;
+			}
+			case 6:
+			{
 
-			break;
-		case 7: 
-			return;
-			break;
-		default:
-			cout << "Invalid choice, please try again" << endl;
-			break;
+				break;
+			}
+			case 7:
+			{
+				return;
+			}
+			default:
+			{
+				cout << "Invalid choice, please try again" << endl;
+				break;
+			}
 		}
 	}
 }
