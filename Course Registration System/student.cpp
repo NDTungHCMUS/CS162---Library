@@ -118,6 +118,6 @@ Student findStudent(LinkedList<Student> ListStudent, int StudentID, bool &check)
 		int ID;
 		cout << "Type in Student ID: ";
 		cin >> ID;
-		findStudent(ListStudent, ID);
+		findStudent(ListStudent, ID,check);
 	}
 }
