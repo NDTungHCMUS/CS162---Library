@@ -48,3 +48,11 @@ void updateAStudent(LinkedList<Course> &ListCourse);
 void outputStudentInCourse(LinkedList<Course> ListCourse);
 void viewEnrollCourse(Student s1);
 void removeCourseFromEnrollList(Student s1);
+
+// view scoreboard of stu
+bool checkIfStudentInCourse(Course c1, Student s1);
+bool checkIfStudentInListCourse(LinkedList<Course> listCourse, Student s);
+Score inputScore();
+void scoreBoardMenu();
+void outputScore(Node<Course>* c1, Student s);
+void viewScoreBoard(LinkedList<Course> ListCourse, Student s1);
