@@ -2,13 +2,22 @@
 const char *studenttxt = "loginStudentList.txt";
 const char *stafftxt = "loginStaffList.txt";
 using namespace std;
-
-bool checkExistAccount(ifstream& fin, string toCheck) {
+auto now = Clock::now();
+std::time_t now_c = Clock::to_time_t(now);
+struct tm *parts = std::localtime(&now_c);
+int year = 1900 + parts->tm_year;
+int month = 1    + parts->tm_mon;
+int date = parts->tm_mday;
+Date today = {date,month,year};
+bool checkExistAccount(ifstream& fin, string toCheck)
+{
     string check;
     string skip;
-    while (!fin.eof()) {
+    while (!fin.eof())
+    {
         getline(fin, check, '\n');
-        if (check == toCheck) {
+        if (check == toCheck)
+        {
             return true;
         }
         getline(fin, skip, '\n');
@@ -19,6 +28,7 @@ bool checkExistAccount(ifstream& fin, string toCheck) {
 void login()
 
 {
+
     system("cls");
 
     ListLogin *lhead = nullptr;
@@ -93,7 +103,8 @@ void RegisterStaff()
     cin >> tmp;
     bool checkEx = checkExistAccount(checkFile, tmp);
     checkFile.close();
-    while (checkEx) {
+    while (checkEx)
+    {
         cout << "ID exist, try again: ";
         cin >> tmp;
         checkFile.open(stafftxt);
@@ -122,7 +133,8 @@ void RegisterStudent()
     cin >> tmp;
     bool checkEx = checkExistAccount(checkFile, tmp);
     checkFile.close();
-    while (checkEx) {
+    while (checkEx)
+    {
         cout << "ID exist, try again: ";
         cin >> tmp;
         checkFile.open(stafftxt);
@@ -291,13 +303,20 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position)
             {
                 system("cls");
                 cout << "*** Staff's Activities ***" << endl;
+                cout << "0. Change Date" << endl;
                 cout << "1. Create new school year" << endl;
                 cout << "2. Create new class" << endl;
                 cout << "3. Add student into class" << endl;
                 cout << "4. Import student from CSV file" << endl;
                 cout << "5. Semester" << endl;
+
                 int temp;
                 cin >> temp;
+                if (temp == 0)
+                {
+                    cout << "Please enter day, month and year: ";
+                    cin >> today.day >> today.month >> today.year;
+                }
                 if (temp == 1)
                 {
                     system("cls");
@@ -310,20 +329,25 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position)
                     /*displayAll(ListYear.pHead->data.Listclass, outputClass);
                     system("pause");*/
                 }
-                else if (temp == 3) {
+                else if (temp == 3)
+                {
                     system("cls");
-                    if (ListYear.pTail == NULL) {
+                    if (ListYear.pTail == NULL)
+                    {
                         cerr << "No year to choose" << endl;
                         system("pause");
                     }
-                    else {
+                    else
+                    {
                         string classcheck;
                         cout << "Type in class name: ";
                         cin.ignore(1, '\n');
                         getline(cin, classcheck);
                         LinkedList<Class> track = ListYear.pTail->data.Listclass;
-                        while (track.pHead != NULL) {
-                            if (track.pHead->data.classname == classcheck) {
+                        while (track.pHead != NULL)
+                        {
+                            if (track.pHead->data.classname == classcheck)
+                            {
                                 addList(track.pHead->data.listOfStudents, &AddStudent);
                             }
                             track.pHead = track.pHead->pNext;
@@ -368,13 +392,16 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position)
                         }
                         current = current->pNext;
                     }
-                 //   outputAllStudent(s);
+                    //   outputAllStudent(s);
                     //Node<Class> *current = ListYear.pHead->data.Listclass.pHead;
                     system("pause");
                 }
-                else if (temp == 5) {
-                                     
+                else if (temp == 5)
+                {
+
+
                 }
+
             }
             else if (x == '3')
             {
