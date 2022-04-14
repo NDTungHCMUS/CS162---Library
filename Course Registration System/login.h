@@ -30,7 +30,7 @@ void RegisterStudent();
 void saveStaff(ListLogin* &lhead);
 void saveStudent(ListLogin* &lhead);
 
-void loginStudent(ListLogin* &lhead, ListLogin* &position);
-void loginStaff(ListLogin* &lhead, ListLogin* &position);
+void loginStudent(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListYear);
+void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListYear);
 
 #endif // LOGIN_H_INCLUDED

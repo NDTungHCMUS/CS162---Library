@@ -21,5 +21,6 @@ void displayYear(LinkedList<Year> yearList);
 void viewListCoursethisSemester(LinkedList<Year> listYear);
 void outputScoreBoardOfClassMenu(LinkedList<Course>& ListCourse);
 void viewScoreBoardOfClass(LinkedList <Class>& ListClass, LinkedList<Course>& ListCourse);
+void EndofSemester(LinkedList<Year> ListYear);
 Semester inputSemester(Year y1);
 void semester(LinkedList<Year> &ListYear, Regis &reg);

@@ -28,7 +28,7 @@ bool checkExistAccount(ifstream& fin, string toCheck)
 
 void login()
 {
-
+    LinkedList<Year> ListYear;
     system("cls");
 
     ListLogin *lhead = nullptr;
@@ -58,7 +58,7 @@ void login()
             }
             else if (t == '2')
             {
-                loginStudent(lhead, position );
+                loginStudent(lhead, position,ListYear );
             }
             else if (t == '3') login();
         }
@@ -77,7 +77,7 @@ void login()
             }
             else if (t == '2')
             {
-                loginStaff(lhead, position );
+                loginStaff(lhead, position,ListYear );
             }
             else if (t == '3') login();
         }
@@ -150,13 +150,15 @@ void RegisterStudent()
     system("pause");
     login();
 }
-void loginStudent(ListLogin* &lhead, ListLogin* &position)
+void loginStudent(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListYear)
 {
     system("cls");
     cout << "** Login Student ** \n";
-    string ID, pass;
+    string ID,pass;
+    int id;
     cout << "ID: ";
-    cin >> ID;
+    cin >> id;
+    ID = to_string(id);
     cout << "PASSWORD: ";
     cin >> pass;
     ifstream loginFile;
@@ -214,7 +216,32 @@ void loginStudent(ListLogin* &lhead, ListLogin* &position)
             }
             else if (x == '2')
             {
-                //student
+                // course();
+                int tmp;
+                cout << "26. View your scoreboard";
+                cin >> tmp;
+                if (tmp == 26)
+                {
+                    Student user;
+                    //ListYear.pHead->data.ListSemester.pHead->data.ListCourse
+                    Node <Class> *NodeClass = ListYear.pHead->data.Listclass.pHead;
+                    bool check = true;
+                    for(; NodeClass != nullptr; NodeClass = NodeClass->pNext)
+                    {
+                        user = findStudent(NodeClass->data.listOfStudents,id,check);
+                        if (check == true)
+                            break;
+                    }
+                    if (check == false)
+                    {
+                        cout << "Can not find your information, please try again!\n";
+                    }
+                    else
+                    {
+                        viewScoreBoard(ListYear.pHead->data.ListSemester.pHead->data.ListCourse,user);
+                    }
+                }
+
             }
             else if (x == '3')
             {
@@ -233,10 +260,8 @@ void loginStudent(ListLogin* &lhead, ListLogin* &position)
         login();
     }
 }
-void loginStaff(ListLogin* &lhead, ListLogin* &position)
+void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListYear)
 {
-    LinkedList<Year> ListYear;
-    Regis reg{};
     system("cls");
     cout << "** Login Staff ** \n";
     string ID, pass;
@@ -307,12 +332,15 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position)
                 cout << "2. Create new class" << endl;
                 cout << "3. Add student into class" << endl;
                 cout << "4. Import student from CSV file" << endl;
+                cout << "6. Semester" << endl;
+
                 cout << "5. Semester" << endl;
                 cout << "Input choice (0 - 5): ";
                 int temp;
                 cin >> temp;
                 if (temp == 0)
                 {
+                    //    cout << today.day <<' '<<today.month <<' '<<today.year<<endl;
                     cout << "Please enter day, month and year: ";
                     cin >> today.day >> today.month >> today.year;
                 }
@@ -393,7 +421,6 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position)
                         current = current->pNext;
                     }
                     //   outputAllStudent(s);
-                 //   outputAllStudent(s);
                     //Node<Class> *current = ListYear.pHead->data.Listclass.pHead;
                     system("pause");
                 }
@@ -406,6 +433,9 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position)
                         semester(ListYear, reg);
                     }
                 }
+                else if (temp == 6) {
+                    EndofSemester(ListYear);
+				}
 
             }
             else if (x == '3')
