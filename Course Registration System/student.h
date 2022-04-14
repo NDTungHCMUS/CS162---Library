@@ -41,4 +41,4 @@ void outputStudent(Student s1);
 void displayStudentMenu();
 void outputAllStudent(LinkedList<Student> ListStudent);
 void outputStudentFile(Student s1, ofstream& foutList);
-Student findStudent(LinkedList<Student> ListStudent, int StudentID);
+Student findStudent(LinkedList<Student> ListStudent, int StudentID, bool &check);
