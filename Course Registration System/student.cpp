@@ -104,6 +104,7 @@ Student findStudent(LinkedList<Student> ListStudent, int StudentID, bool &check)
         check = false;
         return a;
     }
+    else check = true;
 	displayStudentMenu();
 	outputStudent(a);
 	cout << "Is this the right student?" << endl;
@@ -118,6 +119,6 @@ Student findStudent(LinkedList<Student> ListStudent, int StudentID, bool &check)
 		int ID;
 		cout << "Type in Student ID: ";
 		cin >> ID;
-		findStudent(ListStudent, ID);
+		findStudent(ListStudent, ID,check);
 	}
 }
