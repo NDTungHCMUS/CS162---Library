@@ -1,7 +1,5 @@
 #pragma warning(disable : 4996)
 #include"login.h"
-
-Regis reg{};
 const char *studenttxt = "loginStudentList.txt";
 const char *stafftxt = "loginStaffList.txt";
 using namespace std;
@@ -334,7 +332,13 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 cout << "2. Create new class" << endl;
                 cout << "3. Add student into class" << endl;
                 cout << "4. Import student from CSV file" << endl;
+                cout << "6. Semester" << endl;
+
                 cout << "5. Semester" << endl;
+                cout << "17. View List of class" << endl;
+                cout << "18. View a list of students in a class" << endl;
+                cout << "19. View a list of all courses" << endl;
+                cout << "20. View a list of students in a course" << endl;
                 cout << "Input choice (0 - 5): ";
                 int temp;
                 cin >> temp;
@@ -436,6 +440,37 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 else if (temp == 6) {
                     EndofSemester(ListYear);
 				}
+				else if (tmp == 17)
+                {
+                    outputListClass(ListYear.pHead->data.Listclass);
+                }
+                else if (tmp == 18)
+                {
+                    string classnow;
+                    cout << "Please enter the class name (ex: 20CTT1...)" << endl;
+                    cin >> classnow;
+                    Node<Class> *current = ListYear.pHead->data.Listclass.pHead;
+                    for (; current != nullptr; current = current->pNext)
+                    {
+                        if (current->data.classname == classnow)
+                        {
+                            outputAllStudent(current->data.listOfStudents);
+                            break;
+                        }
+                    }
+                    if (current == nullptr)
+                    {
+                        cout << "Can not find this class, please try again!"<<endl;
+                    }
+                }
+                else if (tmp == 19)
+                {
+                    outputAllCourse(ListYear.pHead->data.ListSemester.pHead->data.ListCourse);
+                }
+                else if (tmp == 20)
+                {
+                    outputStudentInCourse(ListYear.pHead->data.ListSemester.pHead->data.ListCourse);
+                }
 
             }
             else if (x == '3')
