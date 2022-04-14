@@ -33,6 +33,7 @@ struct Student {
 	Date dob;
 	int SocialID;
 	LinkedList<CourseData> ListCourseData;
+	int numCourse = 0;
 };
 
 Student AddStudent();
