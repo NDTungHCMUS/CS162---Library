@@ -336,10 +336,9 @@ void viewEnrollCourse(Student s1)
     {
         cout << "All Enrolled Course by " << s1.FirstName << " " << s1.LastName << " are: ";
         Node<CourseData>* temp = s1.ListCourseData.pHead;
-        for (int i = 0; i < length(s1.ListCourseData); ++i)
+        for (temp; temp!=nullptr; temp=temp->pNext)
         {
             cout << temp->data.CourseName << " (" << temp->data.ID << ") " << endl;
-            temp = temp->pNext;
         }
     }
 }
@@ -505,41 +504,36 @@ void viewScoreBoard(LinkedList<Course> ListCourse, Student s1)
     }
 }
 
-void student(string ID, LinkedList <Course> ListCourse) {
-    LinkedList <Student> ListStudent;
-    bool check;
+void student(string ID, LinkedList <Course> ListCourse, LinkedList <Student> ListStudent) {  
+    bool check = false;
     Student stutemp = findStudent(ListStudent, stoi(ID), check);
     if (check == true) {
-        system("cls");
-        cout << "Student Activities" << endl;
-        cout << "1. Enroll Course" << endl;
-        cout << "2. View list of enroll courses" << endl;
-        cout << "3. Remove Course" << endl;
-        cout << "4. Back" << endl;
-        cout << "Your choice is: ";
         int choice;
-        cin >> choice;
-        while (choice != 1 && choice != 2 && choice != 3) {
-            cout << "Input again: ";
+        while (1) {
+            system("cls");
+            cout << "Student Activities" << endl;
+            cout << "1. Enroll Course" << endl;
+            cout << "2. View list of enroll courses" << endl;
+            cout << "3. Remove Course" << endl;
+            cout << "4. Back" << endl;
+            cout << "Input choice: ";
             cin >> choice;
-        }
-        if (choice == 1) {
-            if (stutemp.numCourse < 5) {
-                system("cls");
+            if (choice == 1) {
                 enrollCourse(ListCourse, stutemp);
             }
-            else cout << "Enrolled 5 courses, cannot enroll more";
-        }
-        else if (choice == 2) {
-            system("cls");
-            viewEnrollCourse(stutemp);
-        }
-        else if (choice == 3) {
-            system("cls");
-            removeCourseFromEnrollList(stutemp);
-        }
-        else if (choice == 4) {
-            return;
+            else if (choice == 2) {
+                system("cls");
+                viewEnrollCourse(stutemp);
+                system("pause");
+            }
+            else if (choice == 3) {
+                system("cls");
+                removeCourseFromEnrollList(stutemp);
+            }
+            else if (choice == 4) {
+                return;
+
+            }
         }
     }
 }
