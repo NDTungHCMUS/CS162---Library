@@ -123,32 +123,37 @@ void enrollCourse(LinkedList<Course> &ListCourse, Student &a)
     cin >> numb;
     if (numb == 1)
     {
-        outputAllCourse(ListCourse);
-        cout << "Enter the Course No you want to enroll: ";
-        cin >> numb;
-        Course temp;
-        if (findIndex(ListCourse, numb, temp))
-        {
-            if (checkAvailable(temp, a) && temp.NumbOfStudent < temp.MaxStudent)
+        if (a.numCourse == 5) {
+            cout << "Number of courses reached maximum" << endl;
+            return;
+        }
+        else {
+            outputAllCourse(ListCourse);
+            cout << "Enter the Course No you want to enroll: ";
+            cin >> numb;
+            Course temp;
+            if (findIndex(ListCourse, numb, temp))
             {
-                //temp.NumbOfStudent++;
-                add(ListCourse.pHead->data.EnrollStudentList, a);
+                if (checkAvailable(temp, a) && temp.NumbOfStudent < temp.MaxStudent)
+                {
+                    Node<Course>* current = ListCourse.pHead;
+                    for (int i = 1; i < numb; ++i) {
+                        current = current->pNext;
+                    }
+                    add(current->data.EnrollStudentList, a);
+                    current->data.NumbOfStudent++;
 
-                /*Node<Course>* cur = ListCourse.pHead;
-                for (int i = 1; i < numb; i++) {
-                	cur = cur->pNext;
+                    CourseData dtemp = addCourseData(temp);
+                    add(a.ListCourseData, dtemp);
+                    a.numCourse++;
+                    cout << "Enrolled Successfully.";
+                    system("pause");
                 }
-                add(cur->data.EnrollStudentList, a);
-                add(valueAtIndex(ListCourse, numb)->data.EnrollStudentList, a);*/
-                CourseData dtemp = addCourseData(temp);
-                add(a.ListCourseData, dtemp);
-                cout << "Enrolled Successfully.";
-                system("pause");
-            }
-            else
-            {
-                cout << "Timetable conflicted. Please choose other courses.";
-                enrollCourse(ListCourse, a);
+                else
+                {
+                    cout << "Timetable conflicted. Please choose other courses.";
+                    enrollCourse(ListCourse, a);
+                }
             }
         }
     }

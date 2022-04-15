@@ -39,4 +39,3 @@ void outputStuListFile(Class c1) {
 	outputListFile(c1.listOfStudents, foutList, &outputStudentFile);
 	foutList.close();
 }
-
