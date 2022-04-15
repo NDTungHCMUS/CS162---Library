@@ -366,7 +366,7 @@ void removeCourseFromEnrollList(Student s1)
         string num;
         cin >> num;
         Node <CourseData>* temp = s1.ListCourseData.pHead;
-        Node <CourseData>* pre = nullptr;
+        Node <CourseData>* pre = new Node <CourseData>;
         pre->pNext = temp;
         while (temp != nullptr)
         {
@@ -396,7 +396,6 @@ void removeCourseFromEnrollList(Student s1)
                 temp = temp->pNext;
                 pre = pre->pNext;
             }
-
         }
         cout << "List of CourseData after removing: " << endl;
         viewEnrollCourse(s1);
