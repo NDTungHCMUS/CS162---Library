@@ -1,11 +1,10 @@
 #pragma warning(disable : 4996)
 #include"login.h"
-
-Regis reg{};
 const char *studenttxt = "loginStudentList.txt";
 const char *stafftxt = "loginStaffList.txt";
 using namespace std;
 auto now = Clock::now();
+Regis reg{};
 std::time_t now_c = Clock::to_time_t(now);
 struct tm *parts = std::localtime(&now_c);
 int year = 1900 + parts->tm_year;
@@ -30,66 +29,80 @@ bool checkExistAccount(ifstream& fin, string toCheck)
 
 void login()
 {
-    LinkedList<Year> ListYear;
-    system("cls");
-
-    ListLogin *lhead = nullptr;
-    ListLogin *position = nullptr;
-
-    cout << "WELCOME TO OUR COURSE REGISTRATION SYSTEM" << endl;
-    cout << "Are you:" << endl;
-    cout << "1. Student" << endl;
-    cout << "2. Staff member" << endl;
-    cout << "3. Exit" << endl;
-    char x;
-    cin >> x;
-    if (x == '1' || x == '2')
+    bool check = false;
+    while(check == false)
     {
-        if (x == '1')
+
+
+        LinkedList<Year> ListYear;
+        system("cls");
+
+        ListLogin *lhead = nullptr;
+        ListLogin *position = nullptr;
+
+        cout << "WELCOME TO OUR COURSE REGISTRATION SYSTEM" << endl;
+        cout << "Are you:" << endl;
+        cout << "1. Student" << endl;
+        cout << "2. Staff member" << endl;
+        cout << "3. Exit" << endl;
+        char x;
+        cin >> x;
+        if (x == '1' || x == '2')
         {
-            system("cls");
-            char t;
-            cout << "** Student  ** \n";
-            cout << "1. Register" << endl;
-            cout << "2. login" << endl;
-            cout << "3. Back" << endl;
-            cin >> t;
-            if (t == '1')
+            check = true;
+            if (x == '1')
             {
-                RegisterStudent();
+                system("cls");
+                char t;
+                cout << "** Student  ** \n";
+                cout << "1. Register" << endl;
+                cout << "2. login" << endl;
+                cout << "3. Back" << endl;
+                cin >> t;
+                if (t == '1')
+                {
+                    RegisterStudent();
+                }
+                else if (t == '2')
+                {
+                    loginStudent(lhead, position,ListYear );
+                }
+                else if (t == '3') login();
             }
-            else if (t == '2')
+            else if (x == '2')
             {
-                loginStudent(lhead, position,ListYear );
+                system("cls");
+                cout << "** Academic Staff  ** \n";
+                cout << "1. Register" << endl;
+                cout << "2. login" << endl;
+                cout << "3. Back" << endl;
+                char t;
+                cin >> t;
+                if (t == '1')
+                {
+                    RegisterStaff();
+                }
+                else if (t == '2')
+                {
+                    loginStaff(lhead, position,ListYear );
+                }
+                else if (t == '3') login();
             }
-            else if (t == '3') login();
         }
-        else if (x == '2')
+        else if (x == '3')
         {
-            system("cls");
-            cout << "** Academic Staff  ** \n";
-            cout << "1. Register" << endl;
-            cout << "2. login" << endl;
-            cout << "3. Back" << endl;
-            char t;
-            cin >> t;
-            if (t == '1')
-            {
-                RegisterStaff();
-            }
-            else if (t == '2')
-            {
-                loginStaff(lhead, position, ListYear);
-            }
-            else if (t == '3') login();
+            check = true;
+            deleteListLogin(lhead);
+            exit(0);
         }
-    }
-    else if (x == '3')
-    {
+        else
+        {
+            cout << "invalid input, please try again!" << endl;
+            system("pause");
+            check = false;
+        }
         deleteListLogin(lhead);
-        exit(0);
     }
-    deleteListLogin(lhead);
 }
 void RegisterStaff()
 {
@@ -334,8 +347,9 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 cout << "2. Create new class" << endl;
                 cout << "3. Add student into class" << endl;
                 cout << "4. Import student from CSV file" << endl;
+                cout << "6. Semester" << endl;
+
                 cout << "5. Semester" << endl;
-                cout << "6. End of semester functions" << endl;
                 cout << "17. View List of class" << endl;
                 cout << "18. View a list of students in a class" << endl;
                 cout << "19. View a list of all courses" << endl;
@@ -343,9 +357,9 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 cout << "Input choice (0 - 5): ";
                 int temp;
                 cin >> temp;
+
                 if (temp == 0)
                 {
-                    //    cout << today.day <<' '<<today.month <<' '<<today.year<<endl;
                     cout << "Please enter day, month and year: ";
                     cin >> today.day >> today.month >> today.year;
                 }
@@ -429,23 +443,30 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                     //Node<Class> *current = ListYear.pHead->data.Listclass.pHead;
                     system("pause");
                 }
-                else if (temp == 5) {
-                    if (ListYear.pTail == NULL) {
+                else if (temp == 5)
+                {
+                    if (ListYear.pTail == NULL)
+                    {
                         cout << "Create a school year first" << endl;
                         system("pause");
                     }
-                    else {
+                    else
+                    {
                         semester(ListYear, reg);
                     }
                 }
-                else if (temp == 6) {
-                    EndofSemester(ListYear);
-				}
-				else if (tmp == 17)
+                else if (temp == 6)
                 {
-                    outputListClass(ListYear.pHead->data.Listclass);
+                    EndofSemester(ListYear);
                 }
-                else if (tmp == 18)
+                else if (temp == 17)
+                {
+                    // cout << "tmp = 17!" << endl;
+                    // system("pause");
+                    outputListClass(ListYear.pHead->data.Listclass);
+                    system("pause");
+                }
+                else if (temp == 18)
                 {
                     string classnow;
                     cout << "Please enter the class name (ex: 20CTT1...)" << endl;
@@ -456,21 +477,25 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                         if (current->data.classname == classnow)
                         {
                             outputAllStudent(current->data.listOfStudents);
+                            system("pause");
                             break;
                         }
                     }
                     if (current == nullptr)
                     {
                         cout << "Can not find this class, please try again!"<<endl;
+                        system("pause");
                     }
                 }
-                else if (tmp == 19)
+                else if (temp == 19)
                 {
                     outputAllCourse(ListYear.pHead->data.ListSemester.pHead->data.ListCourse);
+                    system("pause");
                 }
-                else if (tmp == 20)
+                else if (temp == 20)
                 {
                     outputStudentInCourse(ListYear.pHead->data.ListSemester.pHead->data.ListCourse);
+                    system("pause");
                 }
 
             }
@@ -479,9 +504,6 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 deleteListLogin(lhead);
                 loginFile.close();
                 login();
-            }
-            else {
-                cout << "INVALID, PLEASE TRY AGAIN." << endl;
             }
         }
     }
