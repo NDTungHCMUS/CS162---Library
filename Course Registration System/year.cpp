@@ -361,18 +361,46 @@ void semester(LinkedList<Year> &ListYear, Regis &reg) {
 			case 4:
 			{
                 system("cls");
-                cout << "<---- List of current available course ---->" << endl;
+                cout << setw(40) <<  " " << "<----List of current available course---->" << endl;
                 outputAllCourse(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
                 system("pause");
+                break;
 			}
 			case 5:
 			{
-
+                system("cls");
+                if (ListYear.pTail->data.ListSemester.pTail->data.ListCourse.pHead == NULL) {
+                    cout << "No courses to modify" << endl;
+                    system("pause");
+                }
+                else {
+                    int ind;
+                    cout << setw(40) << " " << "<----List of current available course---->" << endl;
+                    outputAllCourse(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
+                    cout << "Input the index of the course you want to update: ";
+                    cin >> ind;
+                    updateIndex(ListYear.pTail->data.ListSemester.pTail->data.ListCourse, ind, &inputCourse);
+                    system("pause");
+                }
 				break;
 			}
 			case 6:
 			{
-
+                system("cls");
+                if (ListYear.pTail->data.ListSemester.pTail->data.ListCourse.pHead == NULL) {
+                    cout << "No courses to delete" << endl;
+                    system("pause");
+                }
+                else {
+                    int ind;
+                    cout << setw(40) << " " << "<----List of current available course---->" << endl;
+                    outputAllCourse(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
+                    cout << "Input the index of the course you want to delete: ";
+                    cin >> ind;
+                    removeIndex(ListYear.pTail->data.ListSemester.pTail->data.ListCourse, ind);
+                    cout << "Delete successfully" << endl;
+                    system("pause");
+                }
 				break;
 			}
 			case 7:
@@ -382,6 +410,7 @@ void semester(LinkedList<Year> &ListYear, Regis &reg) {
 			default:
 			{
 				cout << "Invalid choice, please try again" << endl;
+                system("pauese");
 				break;
 			}
 		}

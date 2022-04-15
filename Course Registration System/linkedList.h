@@ -196,13 +196,11 @@ void deallocateAll(LinkedList<T> &l1) {
 template <class T>
 void removeFront(LinkedList<T> &l1) {
     if (l1.pHead == NULL) {
-        cout << "linked list is empty !" << endl;
         return;
     }
     Node<T>* tmp = l1.pHead;
     l1.pHead = l1.pHead->pNext;
     delete tmp;
-    cout << "front item removed" << endl;
 }
 
 // remove a node at a specific index
@@ -218,7 +216,6 @@ void removeIndex(LinkedList<T> &l1, int index) {
     }
     if (index == 1) {
         removeFront(l1);
-        cout << "Item removed" << endl;
         return;
     }
 

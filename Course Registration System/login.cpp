@@ -1,5 +1,7 @@
 #pragma warning(disable : 4996)
 #include"login.h"
+
+Regis reg{};
 const char *studenttxt = "loginStudentList.txt";
 const char *stafftxt = "loginStaffList.txt";
 using namespace std;
@@ -77,7 +79,7 @@ void login()
             }
             else if (t == '2')
             {
-                loginStaff(lhead, position,ListYear );
+                loginStaff(lhead, position, ListYear);
             }
             else if (t == '3') login();
         }
@@ -332,9 +334,8 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 cout << "2. Create new class" << endl;
                 cout << "3. Add student into class" << endl;
                 cout << "4. Import student from CSV file" << endl;
-                cout << "6. Semester" << endl;
-
                 cout << "5. Semester" << endl;
+                cout << "6. End of semester functions" << endl;
                 cout << "17. View List of class" << endl;
                 cout << "18. View a list of students in a class" << endl;
                 cout << "19. View a list of all courses" << endl;
@@ -478,6 +479,9 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 deleteListLogin(lhead);
                 loginFile.close();
                 login();
+            }
+            else {
+                cout << "INVALID, PLEASE TRY AGAIN." << endl;
             }
         }
     }
