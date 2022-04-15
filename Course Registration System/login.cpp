@@ -237,31 +237,32 @@ void loginStudent(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &Lis
             }
             else if (x == '2')
             {
+                student(id, ListYear);
                 // course();
-                int tmp;
-                cout << "26. View your scoreboard\n";
-                cin >> tmp;
-                if (tmp == 26)
-                {
-                    Student user;
-                    //ListYear.pHead->data.ListSemester.pHead->data.ListCourse
-                    Node <Class> *NodeClass = ListYear.pHead->data.Listclass.pHead;
-                    bool check = true;
-                    for(; NodeClass != nullptr; NodeClass = NodeClass->pNext)
-                    {
-                        user = findStudent(NodeClass->data.listOfStudents,id,check);
-                        if (check == true)
-                            break;
-                    }
-                    if (check == false)
-                    {
-                        cout << "Can not find your information, please try again!\n";
-                    }
-                    else
-                    {
-                        viewScoreBoard(ListYear.pHead->data.ListSemester.pHead->data.ListCourse,user);
-                    }
-                }
+                //int tmp;
+                //cout << "26. View your scoreboard\n";
+                //cin >> tmp;
+                //if (tmp == 26)
+                //{
+                //    Student user;
+                //    //ListYear.pHead->data.ListSemester.pHead->data.ListCourse
+                //    Node <Class> *NodeClass = ListYear.pHead->data.Listclass.pHead;
+                //    bool check = true;
+                //    for(; NodeClass != nullptr; NodeClass = NodeClass->pNext)
+                //    {
+                //        user = findStudent(NodeClass->data.listOfStudents,id,check);
+                //        if (check == true)
+                //            break;
+                //    }
+                //    if (check == false)
+                //    {
+                //        cout << "Can not find your information, please try again!\n";
+                //    }
+                //    else
+                //    {
+                //        viewScoreBoard(ListYear.pHead->data.ListSemester.pHead->data.ListCourse,user);
+                //    }
+                //}
 
             }
             else if (x == '3')

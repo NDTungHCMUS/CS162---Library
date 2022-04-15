@@ -421,3 +421,62 @@ void semester(LinkedList<Year> &ListYear, Regis &reg) {
 		}
 	}
 }
+
+void student(int id, LinkedList<Year>& ListYear) {
+    LinkedList <Course> ListCourse = ListYear.pHead->data.ListSemester.pHead->data.ListCourse;
+    Student user;
+    string ID = to_string(id);
+    //ListYear.pHead->data.ListSemester.pHead->data.ListCourse
+    Node <Class>* NodeClass = ListYear.pHead->data.Listclass.pHead;
+    bool check1 = true;
+    for (; NodeClass != nullptr; NodeClass = NodeClass->pNext)
+    {
+        user = findStudent(NodeClass->data.listOfStudents, id, check1);
+        if (check1 == true)
+            break;
+    }
+    if (check1 == false)
+    {
+        cout << "Can not find your information, please try again!\n";
+        return;
+    }
+
+    LinkedList <Student> ListStudent = NodeClass->data.listOfStudents;
+    bool check = false;
+    Student stutemp = findStudent(ListStudent, stoi(ID), check);
+    if (check == true) {
+        int choice;
+        while (1) {
+            system("cls");
+            cout << "Student Activities" << endl;
+            cout << "1. Enroll Course" << endl;
+            cout << "2. View list of enroll courses" << endl;
+            cout << "3. Remove Course" << endl;
+            cout << "4. View your scoreboard" << endl;
+            cout << "5. Back" << endl;
+            cout << "Input choice: ";
+            cin >> choice;
+            if (choice == 1) {
+                enrollCourse(ListCourse, stutemp);
+            }
+            else if (choice == 2) {
+                system("cls");
+                viewEnrollCourse(stutemp);
+                system("pause");
+            }
+            else if (choice == 3) {
+                system("cls");
+                removeCourseFromEnrollList(stutemp);
+            }
+            else if (choice == 4) {
+
+                viewScoreBoard(ListYear.pHead->data.ListSemester.pHead->data.ListCourse, user);
+
+            }
+            else if (choice == 5) {
+                return;
+
+            }
+        }
+    }
+}

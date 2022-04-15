@@ -504,36 +504,3 @@ void viewScoreBoard(LinkedList<Course> ListCourse, Student s1)
     }
 }
 
-void student(string ID, LinkedList <Course> ListCourse, LinkedList <Student> ListStudent) {  
-    bool check = false;
-    Student stutemp = findStudent(ListStudent, stoi(ID), check);
-    if (check == true) {
-        int choice;
-        while (1) {
-            system("cls");
-            cout << "Student Activities" << endl;
-            cout << "1. Enroll Course" << endl;
-            cout << "2. View list of enroll courses" << endl;
-            cout << "3. Remove Course" << endl;
-            cout << "4. Back" << endl;
-            cout << "Input choice: ";
-            cin >> choice;
-            if (choice == 1) {
-                enrollCourse(ListCourse, stutemp);
-            }
-            else if (choice == 2) {
-                system("cls");
-                viewEnrollCourse(stutemp);
-                system("pause");
-            }
-            else if (choice == 3) {
-                system("cls");
-                removeCourseFromEnrollList(stutemp);
-            }
-            else if (choice == 4) {
-                return;
-
-            }
-        }
-    }
-}

@@ -24,3 +24,4 @@ void viewScoreBoardOfClass(LinkedList <Class>& ListClass, LinkedList<Course>& Li
 void EndofSemester(LinkedList<Year> ListYear);
 Semester inputSemester(Year y1);
 void semester(LinkedList<Year> &ListYear, Regis &reg);
+void student(int id, LinkedList<Year>& ListYear);
