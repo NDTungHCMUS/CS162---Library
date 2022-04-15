@@ -21,11 +21,12 @@ bool checkExistAccount(ifstream& fin, string toCheck);
 void deleteListLogin(ListLogin* &lhead);
 void outList(ListLogin* &lhead);
 
-void login();
+void login(LinkedList<Year> &ListYear);
+
 bool loginSt(string &ID,string &pass, ListLogin* &lhead, ListLogin* &position,ifstream &loginFile);
 
-void RegisterStaff();
-void RegisterStudent();
+void RegisterStaff(LinkedList<Year> &ListYear);
+void RegisterStudent(LinkedList<Year> &ListYear);
 
 void saveStaff(ListLogin* &lhead);
 void saveStudent(ListLogin* &lhead);
