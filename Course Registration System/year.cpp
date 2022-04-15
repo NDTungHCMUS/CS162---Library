@@ -270,18 +270,18 @@ void EndofSemester(LinkedList<Year> ListYear)
         return;
     }
     int tmp;
-    cout << "21. Export a list of students in a course to a CSV file" << endl;
-    cout << "22. Import the scoreboard of a course." << endl;
-    cout << "23. View the scoreboard of a course." << endl;
-    cout << "24. Update a student result." << endl;
-    cout << "25. View the scoreboard of a class" << endl;
-    cout << "26. Back" << endl;
+    cout << "1. Export a list of students in a course to a CSV file" << endl;
+    cout << "2. Import the scoreboard of a course." << endl;
+    cout << "3. View the scoreboard of a course." << endl;
+    cout << "4. Update a student result." << endl;
+    cout << "5. View the scoreboard of a class" << endl;
+    cout << "6. Back" << endl;
     cin >> tmp;
-    if (tmp == 26)
+    if (tmp == 6)
     {
         return;
     }
-    if(tmp == 21)
+    if(tmp == 1)
     {
         cout << "Please choose the course you want (from 1) :\n";
         outputAllCourse(ListYear.pHead->data.ListSemester.pHead->data.ListCourse);
@@ -296,22 +296,22 @@ void EndofSemester(LinkedList<Year> ListYear)
         fout.close();
         system("pause");
     }
-    if (tmp == 22)
+    if (tmp == 2)
     {
         importScoreboard(ListYear.pHead->data.ListSemester.pHead->data.ListCourse);
         system("pause");
     }
-    if (tmp == 23)
+    if (tmp == 3)
     {
         viewScoreBoardOfCourse(ListYear.pHead->data.ListSemester.pHead->data.ListCourse);
         system("pause");
     }
-    if (tmp == 24)
+    if (tmp == 4)
     {
         updateAStudent(ListYear.pHead->data.ListSemester.pHead->data.ListCourse);
         system("pause");
     }
-    if (tmp == 25)
+    if (tmp == 5)
     {
         viewScoreBoardOfClass(ListYear.pHead->data.Listclass,ListYear.pHead->data.ListSemester.pHead->data.ListCourse);
         system("pause");
