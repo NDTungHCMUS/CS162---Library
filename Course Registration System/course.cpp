@@ -342,7 +342,7 @@ void viewEnrollCourse(Student s1)
         }
     }
 }
-void removeCourseFromEnrollList(Student s1)
+void removeCourseFromEnrollList(Student &s1)
 {
     cout << "Choose the option: " << endl;
     cout << "1. Remove Course Data" << endl;
@@ -398,6 +398,7 @@ void removeCourseFromEnrollList(Student s1)
         }
         cout << "List of CourseData after removing: " << endl;
         viewEnrollCourse(s1);
+        system("pause");
     }
     if (choose == 2)
     {
@@ -503,4 +504,3 @@ void viewScoreBoard(LinkedList<Course> ListCourse, Student s1)
         temp = temp->pNext;
     }
 }
-

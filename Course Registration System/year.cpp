@@ -2,24 +2,28 @@
 #include<sstream>
 using namespace std;
 
-void CreateYear(LinkedList<Year>& yearList) {
-	Node<Year>* current = yearList.pHead;
-	int temp;
-	cout << "Type in Year Start: ";
-	cin >> temp;
-	if (yearList.pHead == nullptr) {
-		yearList.pHead = new Node<Year>;
-		yearList.pHead->data.yearStart = temp;
-		yearList.pTail = yearList.pHead;
-	}
-	else {
-		yearList.pTail->pNext = new Node<Year>;
-		yearList.pTail = yearList.pTail->pNext;
-		yearList.pTail->data.yearStart = temp;
-	}
+void CreateYear(LinkedList<Year>& yearList)
+{
+    Node<Year>* current = yearList.pHead;
+    int temp;
+    cout << "Type in Year Start: ";
+    cin >> temp;
+    if (yearList.pHead == nullptr)
+    {
+        yearList.pHead = new Node<Year>;
+        yearList.pHead->data.yearStart = temp;
+        yearList.pTail = yearList.pHead;
+    }
+    else
+    {
+        yearList.pTail->pNext = new Node<Year>;
+        yearList.pTail = yearList.pTail->pNext;
+        yearList.pTail->data.yearStart = temp;
+    }
 }
 
-Semester inputSemester(Year y1) {
+Semester inputSemester(Year y1)
+{
     Semester t;
     t.schoolyear = y1.yearStart;
     cout << "Input semester: ";
@@ -247,6 +251,24 @@ void viewScoreBoardOfClass(LinkedList <Class>& ListClass, LinkedList<Course>& Li
 }
 void EndofSemester(LinkedList<Year> ListYear)
 {
+    if (ListYear.pHead == nullptr)
+    {
+        cout << "create year first!" << endl;
+        system("pause");
+        return;
+    }
+    if (ListYear.pHead->data.ListSemester.pHead== nullptr)
+    {
+        cout << "create semester first!" << endl;
+        system("pause");
+        return;
+    }
+    if (ListYear.pHead->data.ListSemester.pHead->data.ListCourse.pHead == nullptr)
+    {
+        cout << "0 course found! " << endl;
+        system("pause");
+        return;
+    }
     int tmp;
     cout << "21. Export a list of students in a course to a CSV file" << endl;
     cout << "22. Import the scoreboard of a course." << endl;
@@ -320,109 +342,134 @@ void EndofSemester(LinkedList<Year> ListYear)
 5
 21
 */
-void semester(LinkedList<Year> &ListYear, Regis &reg) {
-	int choice;
-	while (1) {
-		system("cls");
-		cout << "**** Semester Managing ****" << endl
-			<< "1. Create a new semester." << endl
-			<< "2. Create a course registration session." << endl
-			<< "3. Add a course into semester." << endl
-			<< "4. View list of current courses." << endl
-			<< "5. Update a course information." << endl
-			<< "6. Delete a course." << endl
-			<< "7. Back to menu." << endl;
-		cout << "Input choice (1 - 7): ";
-		cin >> choice;
-		switch (choice)
-		{
-			case 1:
-			{
-				system("cls");
-				cout << "You are creating a semester in year " << ListYear.pTail->data.yearStart<< "." << endl;
-				Semester tmp = inputSemester(ListYear.pTail->data);
-				add(ListYear.pTail->data.ListSemester, tmp);
-				system("pause");
-				break;
-			}
-			case 2:
-			{
-				system("cls");
-				cout << "You are creating a course registration session." << endl;
-				cout << "Input start date (day month year): ";
-				cin >> reg.start.day >> reg.start.month >> reg.start.year;
-				cout << "Input end date (day month year): ";
-				cin >> reg.end.day >> reg.end.month >> reg.end.year;
-				cout << "Create successfully." << endl;
-				system("pause");
-				break;
-			}
-			case 3:
-			{
-                system("cls");
-                addList(ListYear.pTail->data.ListSemester.pTail->data.ListCourse, &inputCourse);
-				break;
-			}
-			case 4:
-			{
-                system("cls");
-                cout << setw(40) <<  " " << "<----List of current available course---->" << endl;
-                outputAllCourse(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
+void semester(LinkedList<Year> &ListYear, Regis &reg)
+{
+    int choice;
+    while (1)
+    {
+        system("cls");
+        cout << "**** Semester Managing ****" << endl
+             << "1. Create a new semester." << endl
+             << "2. Create a course registration session." << endl
+             << "3. Add a course into semester." << endl
+             << "4. View list of current courses." << endl
+             << "5. Update a course information." << endl
+             << "6. Delete a course." << endl
+             << "7. Back to menu." << endl;
+        cout << "Input choice (1 - 7): ";
+        cin >> choice;
+        switch (choice)
+        {
+        case 1:
+        {
+            system("cls");
+            cout << "You are creating a semester in year " << ListYear.pTail->data.yearStart<< "." << endl;
+            Semester tmp = inputSemester(ListYear.pTail->data);
+            add(ListYear.pTail->data.ListSemester, tmp);
+            system("pause");
+            break;
+        }
+        case 2:
+        {
+            system("cls");
+            cout << "You are creating a course registration session." << endl;
+            cout << "Input start date (day month year): ";
+            cin >> reg.start.day >> reg.start.month >> reg.start.year;
+            cout << "Input end date (day month year): ";
+            cin >> reg.end.day >> reg.end.month >> reg.end.year;
+            cout << "Create successfully." << endl;
+            system("pause");
+            break;
+        }
+        case 3:
+        {
+            system("cls");
+            addList(ListYear.pTail->data.ListSemester.pTail->data.ListCourse, &inputCourse);
+            break;
+        }
+        case 4:
+        {
+            system("cls");
+            cout << setw(40) <<  " " << "<----List of current available course---->" << endl;
+            outputAllCourse(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
+            system("pause");
+            break;
+        }
+        case 5:
+        {
+            system("cls");
+            if (ListYear.pTail->data.ListSemester.pTail->data.ListCourse.pHead == NULL)
+            {
+                cout << "No courses to modify" << endl;
                 system("pause");
-                break;
-			}
-			case 5:
-			{
-                system("cls");
-                if (ListYear.pTail->data.ListSemester.pTail->data.ListCourse.pHead == NULL) {
-                    cout << "No courses to modify" << endl;
-                    system("pause");
-                }
-                else {
-                    int ind;
-                    cout << setw(40) << " " << "<----List of current available course---->" << endl;
-                    outputAllCourse(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
-                    cout << "Input the index of the course you want to update: ";
-                    cin >> ind;
-                    updateIndex(ListYear.pTail->data.ListSemester.pTail->data.ListCourse, ind, &inputCourse);
-                    system("pause");
-                }
-				break;
-			}
-			case 6:
-			{
-                system("cls");
-                if (ListYear.pTail->data.ListSemester.pTail->data.ListCourse.pHead == NULL) {
-                    cout << "No courses to delete" << endl;
-                    system("pause");
-                }
-                else {
-                    int ind;
-                    cout << setw(40) << " " << "<----List of current available course---->" << endl;
-                    outputAllCourse(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
-                    cout << "Input the index of the course you want to delete: ";
-                    cin >> ind;
-                    removeIndex(ListYear.pTail->data.ListSemester.pTail->data.ListCourse, ind);
-                    cout << "Delete successfully" << endl;
-                    system("pause");
-                }
-				break;
-			}
-			case 7:
-			{
-				return;
-			}
-			default:
-			{
-				cout << "Invalid choice, please try again" << endl;
-                system("pauese");
-				break;
-			}
-		}
-	}
+            }
+            else
+            {
+                int ind;
+                cout << setw(40) << " " << "<----List of current available course---->" << endl;
+                outputAllCourse(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
+                cout << "Input the index of the course you want to update: ";
+                cin >> ind;
+                updateIndex(ListYear.pTail->data.ListSemester.pTail->data.ListCourse, ind, &inputCourse);
+                system("pause");
+            }
+            break;
+        }
+        case 6:
+        {
+            system("cls");
+            if (ListYear.pTail->data.ListSemester.pTail->data.ListCourse.pHead == NULL)
+            {
+                cout << "No courses to delete" << endl;
+                system("pause");
+            }
+            else
+            {
+                int ind;
+                cout << setw(40) << " " << "<----List of current available course---->" << endl;
+                outputAllCourse(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
+                cout << "Input the index of the course you want to delete: ";
+                cin >> ind;
+                removeIndex(ListYear.pTail->data.ListSemester.pTail->data.ListCourse, ind);
+                cout << "Delete successfully" << endl;
+                system("pause");
+            }
+            break;
+        }
+        case 7:
+        {
+            return;
+        }
+        default:
+        {
+            cout << "Invalid choice, please try again" << endl;
+            system("pauese");
+            break;
+        }
+        }
+    }
 }
 
-void student(int id, LinkedList<Year>& ListYear) {
+void student(int id, LinkedList<Year>& ListYear)
+{
+    if (ListYear.pHead == nullptr)
+    {
+        cout << "create year first!" << endl;
+        system("pause");
+        return;
+    }
+    if (ListYear.pHead->data.ListSemester.pHead== nullptr)
+    {
+        cout << "create semester first!" << endl;
+        system("pause");
+        return;
+    }
+    if (ListYear.pHead->data.ListSemester.pHead->data.ListCourse.pHead == nullptr)
+    {
+        cout << "0 course found! " << endl;
+        system("pause");
+        return;
+    }
     LinkedList <Course> ListCourse = ListYear.pHead->data.ListSemester.pHead->data.ListCourse;
     Student user;
     string ID = to_string(id);
@@ -442,41 +489,48 @@ void student(int id, LinkedList<Year>& ListYear) {
     }
 
     LinkedList <Student> ListStudent = NodeClass->data.listOfStudents;
-    bool check = false;
-    Student stutemp = findStudent(ListStudent, stoi(ID), check);
-    if (check == true) {
-        int choice;
-        while (1) {
+    Student stutemp = user;
+    int choice;
+    while (1)
+    {
+        system("cls");
+        cout << "Student Activities" << endl;
+        cout << "1. Enroll Course" << endl;
+        cout << "2. View list of enroll courses" << endl;
+        cout << "3. Remove Course" << endl;
+        cout << "4. View your scoreboard" << endl;
+        cout << "5. Back" << endl;
+        cout << "Input choice: ";
+        cin >> choice;
+        if (choice == 1)
+        {
+            enrollCourse(ListCourse, stutemp);
+            system("pause");
+        }
+        else if (choice == 2)
+        {
             system("cls");
-            cout << "Student Activities" << endl;
-            cout << "1. Enroll Course" << endl;
-            cout << "2. View list of enroll courses" << endl;
-            cout << "3. Remove Course" << endl;
-            cout << "4. View your scoreboard" << endl;
-            cout << "5. Back" << endl;
-            cout << "Input choice: ";
-            cin >> choice;
-            if (choice == 1) {
-                enrollCourse(ListCourse, stutemp);
-            }
-            else if (choice == 2) {
-                system("cls");
-                viewEnrollCourse(stutemp);
-                system("pause");
-            }
-            else if (choice == 3) {
-                system("cls");
-                removeCourseFromEnrollList(stutemp);
-            }
-            else if (choice == 4) {
-
-                viewScoreBoard(ListYear.pHead->data.ListSemester.pHead->data.ListCourse, user);
-
-            }
-            else if (choice == 5) {
-                return;
-
-            }
+            viewEnrollCourse(stutemp);
+            system("pause");
+        }
+        else if (choice == 3)
+        {
+            system("cls");
+            removeCourseFromEnrollList(stutemp);
+        }
+        else if (choice == 4)
+        {
+            viewScoreBoard(ListYear.pHead->data.ListSemester.pHead->data.ListCourse, user);
+            system("pause");
+        }
+        else if (choice == 5)
+        {
+            return;
+        }
+        else
+        {
+            cout << "invalid input, please try again!" << endl;
         }
     }
+
 }

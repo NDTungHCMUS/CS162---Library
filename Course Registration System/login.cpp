@@ -27,14 +27,13 @@ bool checkExistAccount(ifstream& fin, string toCheck)
     return false;
 }
 
-void login()
+void login(LinkedList<Year> &ListYear)
 {
     bool check = false;
     while(check == false)
     {
 
 
-        LinkedList<Year> ListYear;
         system("cls");
 
         ListLogin *lhead = nullptr;
@@ -61,13 +60,13 @@ void login()
                 cin >> t;
                 if (t == '1')
                 {
-                    RegisterStudent();
+                    RegisterStudent(ListYear);
                 }
                 else if (t == '2')
                 {
                     loginStudent(lhead, position,ListYear );
                 }
-                else if (t == '3') login();
+                else if (t == '3') login(ListYear);
             }
             else if (x == '2')
             {
@@ -80,13 +79,13 @@ void login()
                 cin >> t;
                 if (t == '1')
                 {
-                    RegisterStaff();
+                    RegisterStaff(ListYear);
                 }
                 else if (t == '2')
                 {
                     loginStaff(lhead, position,ListYear );
                 }
-                else if (t == '3') login();
+                else if (t == '3') login(ListYear);
             }
         }
         else if (x == '3')
@@ -104,7 +103,7 @@ void login()
         deleteListLogin(lhead);
     }
 }
-void RegisterStaff()
+void RegisterStaff(LinkedList<Year> &ListYear)
 {
     system("cls");
     cout << "*** Register Staff ***\n";
@@ -132,9 +131,9 @@ void RegisterStaff()
     loginFile.close();
     cout << "Successful!, please login again!\n";
     system("pause");
-    login();
+    login(ListYear);
 }
-void RegisterStudent()
+void RegisterStudent(LinkedList<Year> &ListYear)
 {
     system("cls");
     cout << "*** Register Student ***\n";
@@ -163,7 +162,7 @@ void RegisterStudent()
     checkFile.close();
     cout << "Successful!, please login again!\n";
     system("pause");
-    login();
+    login(ListYear);
 }
 void loginStudent(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListYear)
 {
@@ -225,7 +224,7 @@ void loginStudent(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &Lis
                         system("pause");
                         deleteListLogin(lhead);
 
-                        login();
+                        login(ListYear);
                     }
                 }
                 else
@@ -267,9 +266,8 @@ void loginStudent(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &Lis
             }
             else if (x == '3')
             {
-                deleteListLogin(lhead);
                 loginFile.close();
-                login();
+                login(ListYear);
             }
             else
             {
@@ -284,7 +282,7 @@ void loginStudent(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &Lis
         deleteListLogin(lhead);
         cout <<"ID OR PASSWORD INCORECT, PLEASE TRY AGAIN" << endl;
         system("pause");
-        login();
+        login(ListYear);
     }
 }
 void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListYear)
@@ -345,7 +343,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                         system("pause");
                         deleteListLogin(lhead);
 
-                        login();
+                        login(ListYear);
                     }
                 }
 
@@ -514,7 +512,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
             {
                 deleteListLogin(lhead);
                 loginFile.close();
-                login();
+                login(ListYear);
             }
         }
     }
@@ -524,7 +522,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
         deleteListLogin(lhead);
         cout <<"ID OR PASSWORD INCORECT, PLEASE TRY AGIAIN" << endl;
         system("pause");
-        login();
+        login(ListYear);
     }
 }
 void saveStaff(ListLogin* &lhead)
@@ -594,3 +592,65 @@ bool loginSt(string &ID,string &pass, ListLogin* &lhead, ListLogin* &position, i
     if (check == true) return true;
     else return false;
 }
+/*
+2
+2
+1
+1
+2
+1
+2021
+.
+2
+2
+1
+21CTT1
+1
+20APCS2
+2
+2
+4
+21CTT1
+
+2
+5
+1
+1
+15 5 2021
+15 10 2021
+
+2
+15 5 2021
+14 20 2021
+
+3
+1
+CS162
+introduce to CS1
+Dinh Ba Tien
+4
+MON
+S1
+TUE
+S2
+1
+CM101
+comunication M
+Duong Nguyen Vu
+4
+MON
+S3
+TUE
+S4
+2
+
+7
+3
+1
+2
+21125087
+1
+2
+1
+
+*/
