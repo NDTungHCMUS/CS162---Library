@@ -56,3 +56,4 @@ Score inputScore();
 void scoreBoardMenu();
 void outputScore(Node<Course>* c1, Student s);
 void viewScoreBoard(LinkedList<Course> ListCourse, Student s1);
+void student(string ID, LinkedList <Course> ListCourse);
