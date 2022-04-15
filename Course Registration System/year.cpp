@@ -272,22 +272,27 @@ void EndofSemester(LinkedList<Year> ListYear)
         fout.open(coursename);
         outputListFile(a.EnrollStudentList,fout,outputStudentFile);
         fout.close();
+        system("pause");
     }
     if (tmp == 22)
     {
         importScoreboard(ListYear.pHead->data.ListSemester.pHead->data.ListCourse);
+        system("pause");
     }
     if (tmp == 23)
     {
         viewScoreBoardOfCourse(ListYear.pHead->data.ListSemester.pHead->data.ListCourse);
+        system("pause");
     }
     if (tmp == 24)
     {
         updateAStudent(ListYear.pHead->data.ListSemester.pHead->data.ListCourse);
+        system("pause");
     }
     if (tmp == 25)
     {
         viewScoreBoardOfClass(ListYear.pHead->data.Listclass,ListYear.pHead->data.ListSemester.pHead->data.ListCourse);
+        system("pause");
     }
 
 }
@@ -340,7 +345,7 @@ void semester(LinkedList<Year> &ListYear, Regis &reg) {
 				system("pause");
 				break;
 			}
-			case 2: 
+			case 2:
 			{
 				system("cls");
 				cout << "You are creating a course registration session." << endl;
@@ -353,11 +358,11 @@ void semester(LinkedList<Year> &ListYear, Regis &reg) {
 				break;
 			}
 			case 3:
-			{  
+			{
                 system("cls");
                 addList(ListYear.pTail->data.ListSemester.pTail->data.ListCourse, &inputCourse);
 				break;
-			}	
+			}
 			case 4:
 			{
                 system("cls");

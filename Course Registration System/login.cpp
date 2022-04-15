@@ -196,9 +196,9 @@ void loginStudent(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &Lis
                 cout << "1. Change password" << endl;
                 cout << "2. Back "<< endl;
                 cin >> tmp;
-                if (tmp == '2') continue;
                 string current = "";
-                if (tmp == '1')
+                if (tmp == '2') continue;
+                else if (tmp == '1')
                 {
                     while (current != position->next->pas)
                     {
@@ -228,12 +228,18 @@ void loginStudent(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &Lis
                         login();
                     }
                 }
+                else
+                {
+                    cout << "invalid input, please try again !" << endl;
+                    system("pause");
+                    continue;
+                }
             }
             else if (x == '2')
             {
                 // course();
                 int tmp;
-                cout << "26. View your scoreboard";
+                cout << "26. View your scoreboard\n";
                 cin >> tmp;
                 if (tmp == 26)
                 {
@@ -263,6 +269,11 @@ void loginStudent(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &Lis
                 deleteListLogin(lhead);
                 loginFile.close();
                 login();
+            }
+            else
+            {
+                cout << "invalid input, please try again !" << endl;
+                system("pause");
             }
         }
     }
@@ -347,14 +358,13 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 cout << "2. Create new class" << endl;
                 cout << "3. Add student into class" << endl;
                 cout << "4. Import student from CSV file" << endl;
-                cout << "6. Semester" << endl;
-
                 cout << "5. Semester" << endl;
-                cout << "17. View List of class" << endl;
-                cout << "18. View a list of students in a class" << endl;
-                cout << "19. View a list of all courses" << endl;
-                cout << "20. View a list of students in a course" << endl;
-                cout << "Input choice (0 - 5): ";
+                cout << "6. View List of class" << endl;
+                cout << "7. View a list of students in a class" << endl;
+                cout << "8. View a list of all courses" << endl;
+                cout << "9. View a list of students in a course" << endl;
+                cout << "10. End of semester functions" << endl;
+                cout << "Input choice (0 - 10): ";
                 int temp;
                 cin >> temp;
 
@@ -457,16 +467,12 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 }
                 else if (temp == 6)
                 {
-                    EndofSemester(ListYear);
-                }
-                else if (temp == 17)
-                {
                     // cout << "tmp = 17!" << endl;
                     // system("pause");
                     outputListClass(ListYear.pHead->data.Listclass);
                     system("pause");
                 }
-                else if (temp == 18)
+                else if (temp == 7)
                 {
                     string classnow;
                     cout << "Please enter the class name (ex: 20CTT1...)" << endl;
@@ -487,15 +493,19 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                         system("pause");
                     }
                 }
-                else if (temp == 19)
+                else if (temp == 8)
                 {
                     outputAllCourse(ListYear.pHead->data.ListSemester.pHead->data.ListCourse);
                     system("pause");
                 }
-                else if (temp == 20)
+                else if (temp == 9)
                 {
                     outputStudentInCourse(ListYear.pHead->data.ListSemester.pHead->data.ListCourse);
                     system("pause");
+                }
+                else if (temp == 10)
+                {
+                    EndofSemester(ListYear);
                 }
 
             }
