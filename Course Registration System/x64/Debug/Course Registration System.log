@@ -1,0 +1,15 @@
+﻿  class.cpp
+  Course Registration System.cpp
+  course.cpp
+  linkedList.cpp
+  linkedListTemplate.cpp
+  login.cpp
+  main.cpp
+  semester.cpp
+  staff.cpp
+  student.cpp
+  UI.cpp
+  year.cpp
+  Generating Code...
+C:\Users\phucc\Desktop\Project-CS162\Course Registration System\student.cpp(133): warning C4715: 'findStudent': not all control paths return a value
+  Course Registration System.vcxproj -> C:\Users\phucc\Desktop\Project-CS162\Course Registration System\x64\Debug\Course Registration System.exe

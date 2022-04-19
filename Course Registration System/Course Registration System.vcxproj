@@ -139,13 +139,40 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="class.cpp" />
     <ClCompile Include="Course Registration System.cpp" />
+    <ClCompile Include="course.cpp" />
     <ClCompile Include="linkedList.cpp" />
+    <ClCompile Include="linkedListTemplate.cpp" />
+    <ClCompile Include="login.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="semester.cpp" />
+    <ClCompile Include="staff.cpp" />
+    <ClCompile Include="student.cpp" />
+    <ClCompile Include="UI.cpp" />
     <ClCompile Include="year.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="class.h" />
+    <ClInclude Include="course.h" />
     <ClInclude Include="linkedList.h" />
+    <ClInclude Include="linkedListTemplate.h" />
+    <ClInclude Include="login.h" />
+    <ClInclude Include="semester.h" />
+    <ClInclude Include="staff.h" />
+    <ClInclude Include="student.h" />
     <ClInclude Include="year.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="21CTT1GPA.txt" />
+    <Text Include="loginStaffList.txt" />
+    <Text Include="loginStudentList.txt" />
+    <Text Include="scoreboard.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="21CTT1OutputCSV.csv" />
+    <None Include="21CTT1Student.csv" />
+    <None Include="Student.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
