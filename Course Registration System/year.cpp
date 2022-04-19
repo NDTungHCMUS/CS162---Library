@@ -37,9 +37,6 @@ Semester inputSemester(Year y1)
 
 void inputStudentCSV(LinkedList<Year> &ListYear, string &className)
 {
-    // ListYear.pHead->data.Listclass.pHead->data.listOfStudents
-
-    //  Node<Class> *current = ListYear.pHead->data.Listclass.pHead;
     LinkedList<Student> s;
     /* bool check = false;
      while (current != nullptr)
@@ -106,9 +103,6 @@ void inputStudentCSV(LinkedList<Year> &ListYear, string &className)
        // outputAllStudent()
     */
 }
-//Format for Adding students to class function
-//LinkedList StudentList;
-//addList(Class.listOfStudents, &AddStudent);
 Year inputYear()
 {
     Year res{ 0, nullptr };
@@ -450,7 +444,7 @@ void semester(LinkedList<Year> &ListYear, Regis &reg)
     }
 }
 
-void student(int id, LinkedList<Year>& ListYear)
+void student(int id, LinkedList<Year>& ListYear, Date &today, Regis &reg)
 {
     if (ListYear.pHead == nullptr)
     {
@@ -504,7 +498,7 @@ void student(int id, LinkedList<Year>& ListYear)
         cin >> choice;
         if (choice == 1)
         {
-            enrollCourse(ListCourse, stutemp);
+            enrollCourse(ListCourse, stutemp,today,reg);
             system("pause");
         }
         else if (choice == 2)

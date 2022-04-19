@@ -114,9 +114,10 @@ CourseData addCourseData(Course a)
     return b;
 }
 
-void enrollCourse(LinkedList<Course> &ListCourse, Student &a)
+void enrollCourse(LinkedList<Course> &ListCourse, Student &a, Date & today, Regis &reg)
 {
-    cout << "Choose the option: " << endl;
+    if (compareDate(reg.start,today) == true && compareDate(today,reg.end) == true )
+    {cout << "Choose the option: " << endl;
     cout << "1. Enroll Course" << endl;
     cout << "2. Exit" << endl;
     int numb;
@@ -152,7 +153,7 @@ void enrollCourse(LinkedList<Course> &ListCourse, Student &a)
                 else
                 {
                     cout << "Timetable conflicted. Please choose other courses.";
-                    enrollCourse(ListCourse, a);
+                    enrollCourse(ListCourse, a, today,reg);
                 }
             }
         }
@@ -161,6 +162,9 @@ void enrollCourse(LinkedList<Course> &ListCourse, Student &a)
     {
         return;
     }
+    }
+    else cout << "course registration session is close!\n";
+    system("pause");
 }
 
 void outputCourseData(Student a)

@@ -43,6 +43,15 @@ void inputStudentFile(Student &s1, string line) {
 	sdate >> s1.dob.year;
 	sline >> s1.SocialID;
 }
+bool compareDate(Date a, Date b)
+{
+    if (a.year < b.year) return true;
+    if (a.year > b.year) return false;
+    if (a.month < b.month) return true;
+    if (a.month > b.month) return false;
+    if (a.day > b.day) return false;
+    return true;
+}
 
 void outputStudent(Student s1) {
 	cout << left << setw(10) << s1.No

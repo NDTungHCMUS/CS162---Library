@@ -236,7 +236,7 @@ void loginStudent(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &Lis
             }
             else if (x == '2')
             {
-                student(id, ListYear);
+                student(id, ListYear, today, reg);
                 // course();
                 //int tmp;
                 //cout << "26. View your scoreboard\n";

@@ -34,7 +34,7 @@ void outputAllCourse(LinkedList<Course> ListCourse);
 void removeCourse(LinkedList<Course> ListCourse);
 void outputCourseMenu();
 bool checkAvailable(Course a, Student s);
-void enrollCourse(LinkedList<Course> &ListCourse, Student &a);
+void enrollCourse(LinkedList<Course> &ListCourse, Student &a, Date & today, Regis &reg);
 bool checkSessionConflict(Session s1, Session s2);
 CourseData addCourseData(Course a); //of a student
 void outputCourseData(Student a);
