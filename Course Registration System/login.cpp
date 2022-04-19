@@ -32,8 +32,6 @@ void login(LinkedList<Year> &ListYear)
     bool check = false;
     while(check == false)
     {
-
-
         system("cls");
 
         ListLogin *lhead = nullptr;
@@ -57,10 +55,6 @@ void login(LinkedList<Year> &ListYear)
             {
                 system("cls");
                 char t;
-                /*cout << "** Student  ** \n";
-                cout << "1. Register" << endl;
-                cout << "2. login" << endl;
-                cout << "3. Back" << endl;*/
 
                 cout << setw(53) << " " << "** Student  **" << endl;
                 cout << setw(45) << " " << "------------------------------" << endl;
@@ -70,9 +64,13 @@ void login(LinkedList<Year> &ListYear)
                 cout << setw(45) << " " << "------------------------------" << endl;
                 cout << setw(45) << " " << "| " << "3. Back" << setw(20) << " " << "|" << endl;
                 cout << setw(45) << " " << "------------------------------" << endl;
-
-                cout << setw(45) << " ";
-                cin >> t;
+                cout << setw(45) << " " << "Input your choice (1 - 3): ";
+                while (cin >> t && (t != '1' && t != '2' && t != '3')) {
+                    cout << setw(45) << " " << "Invalid choice, please try again!" << endl;
+                    cout << setw(45) << " "; system("pause");
+                    cout << "\033[A\33[2K\r" << "\033[A\33[2K\r" << "\033[A\33[2K\r";
+                    cout << setw(45) << " " << "Input your choice (1 - 3): ";
+                }
                 if (t == '1')
                 {
                     RegisterStudent(ListYear);
@@ -235,35 +233,31 @@ void loginStudent(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &Lis
                     while (current != position->next->pas)
                     {
                         system("cls");
-                        cout << "*** Change Password ***\n";
-                        cout << "Please enter current password :";
+                        cout << setw(45) << " " << "*** Change Password ***\n";
+                        cout << setw(40) << " " << "Please enter current password :";
                         cin >> current;
                         if (current != position->next->pas)
                         {
-
                             cout << endl;
-                            cout << "Password Incorrect, Please try again!";
-                            system("pause");
+                            cout << setw(40) << " " << "Password Incorrect, Please try again!";
+                            cout << setw(40) << " "; system("pause");
                             continue;
                         }
-                        cout << endl;
-                        cout << "Please enter new password : ";
+                        cout << setw(40) << " " << "Please enter new password : ";
                         cin >> current;
                         position->next->pas = current;
                         loginFile.close();
                         saveStudent(lhead);
-                        cout << endl;
-                        cout << "Change Password successful, please login again!";
-                        system("pause");
+                        cout << setw(40) << " " << "Change Password successful, please login again!\n";
+                        cout << setw(40) << " "; system("pause");
                         deleteListLogin(lhead);
-
                         login(ListYear);
                     }
                 }
                 else
                 {
-                    cout << "invalid input, please try again !" << endl;
-                    system("pause");
+                    cout << setw(45) << " " << "Invalid input, please try again !" << endl;
+                    cout << setw(45) << " ";  system("pause");
                     continue;
                 }
             }
@@ -304,8 +298,8 @@ void loginStudent(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &Lis
             }
             else
             {
-                cout << "invalid input, please try again !" << endl;
-                system("pause");
+                cout << setw(45) << " " << "Invalid input, please try again !" << endl;
+                cout << setw(45) << " "; system("pause");
             }
         }
     }
@@ -358,7 +352,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 if (tmp == '1')
                 {
                     while (current != position->next->pas)
-                    {
+                    {   
                         system("cls");
                         cout << "*** Change Password ***\n";
                         cout << "Please enter current password :";
