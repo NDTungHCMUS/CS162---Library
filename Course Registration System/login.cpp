@@ -386,37 +386,36 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 system("cls");
                 cout << setw(51) <<' '<< "***** Staff's Activities *****" << endl;
                 cout << setw(45) <<' '<<"-----------------------------------------" << endl;
-                cout << setw(45) <<" "<< "| "<< "0. Change Date" << setw(26) <<" " "| "<< endl;
+                cout << setw(45) <<" "<< "| "<< "0. Change Date" << setw(24) <<" " << "| "<< endl;
                 cout << setw(45) <<' '<<"-----------------------------------------" << endl;
-                cout << setw(45) <<" "<< "| "<< "1. Create new school year" << setw(15) <<" " "| "<< endl;
+                cout << setw(45) <<" "<< "| "<< "1. Create new school year" << setw(13) <<" " << "| "<< endl;
                 cout << setw(45) <<' '<<"-----------------------------------------" << endl;
-                cout << setw(45) <<" "<< "| "<< "2. Create new class" << setw(21) <<" " "| "<< endl;
+                cout << setw(45) <<" "<< "| "<< "2. Create new class" << setw(19) <<" " << "| "<< endl;
                 cout << setw(45) <<' '<<"-----------------------------------------" << endl;
-                cout << setw(45) <<" "<< "| "<< "3. Add student into class" << setw(15) <<" " "| "<< endl;
+                cout << setw(45) <<" "<< "| "<< "3. Add student into class" << setw(13) <<" " << "| "<< endl;
                 cout << setw(45) <<' '<<"-----------------------------------------" << endl;
-                cout << setw(45) <<" "<< "| "<< "4. Import student from CSV file" << setw(9) <<" " "| "<< endl;
+                cout << setw(45) <<" "<< "| "<< "4. Import student from CSV file" << setw(7) <<" " << "| "<< endl;
                 cout << setw(45) <<' '<<"-----------------------------------------" << endl;
                 cout << setw(45) <<" "<< "| "<< "5. Semester" << setw(29) <<" " "| "<< endl;
                 cout << setw(45) <<' '<<"-----------------------------------------" << endl;
-                cout << setw(45) <<" "<< "| "<< "6. View List of class" << setw(19) <<" " "| "<< endl;
+                cout << setw(45) <<" "<< "| "<< "6. View List of class" << setw(17) <<" " << "| "<< endl;
                 cout << setw(45) <<' '<<"-----------------------------------------" << endl;
-                cout << setw(45) <<" "<< "| "<< "7. View a list of students in a class" << setw(2) <<" " "| "<< endl;
+                cout << setw(45) <<" "<< "| "<< "7. View a list of students in a class" << " " << "| "<< endl;
                 cout << setw(45) <<' '<<"-----------------------------------------" << endl;
-                cout << setw(45) <<" "<< "| "<< "8. View a list of all courses" << setw(11) <<" " "| "<< endl;
+                cout << setw(45) <<" "<< "| "<< "8. View a list of all courses" << setw(9) <<" " << "| "<< endl;
                 cout << setw(45) <<' '<<"-----------------------------------------" << endl;
                 cout << setw(45) <<" "<< "| "<< "9. View a list of students in a course" <<"| "<< endl;
                 cout << setw(45) <<' '<<"-----------------------------------------" << endl;
-                cout << setw(45) <<" "<< "| "<< "10. End of semester functions" << setw(11) <<" " "| "<< endl;
+                cout << setw(45) <<" "<< "| "<< "10. End of semester functions" << setw(9) <<" " << "| "<< endl;
                 cout << setw(45) <<' '<<"-----------------------------------------" << endl;
                 cout << setw(45) << " " << "| " << "11. Back" << setw(30) << " " << "| " << endl;
                 cout << setw(45) << ' ' << "-----------------------------------------" << endl;
                 cout << setw(45) <<"  "<< "Input choice (0 - 11): ";
                 int temp;
                 cin >> temp;
-
                 if (temp == 0)
                 {
-                    cout << "Please enter day, month and year: ";
+                    cout << setw(40) << " " << "Please enter day, month and year: ";
                     cin >> today.day >> today.month >> today.year;
                 }
                 else if (temp == 1)
@@ -443,7 +442,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                     else
                     {
                         string classcheck;
-                        cout << "Type in class name: ";
+                        cout << setw(40) << " " << "Type in class name: ";
                         cin.ignore(1, '\n');
                         getline(cin, classcheck);
                         LinkedList<Class> track = ListYear.pTail->data.Listclass;
@@ -480,7 +479,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                     }
                     if (check == false)
                     {
-                        cout << "Can not find this class, please try again!" << endl;
+                        cout << "Cannot find this class, please try again!" << endl;
                         continue;
                     }
                     string filename = className + "Student.csv";

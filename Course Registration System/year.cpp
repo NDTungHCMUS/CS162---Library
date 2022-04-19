@@ -6,7 +6,7 @@ void CreateYear(LinkedList<Year>& yearList)
 {
     Node<Year>* current = yearList.pHead;
     int temp;
-    cout << "Type in Year Start: ";
+    cout << setw(40) << " " << "Type in Year Start: ";
     cin >> temp;
     if (yearList.pHead == nullptr)
     {
@@ -20,17 +20,18 @@ void CreateYear(LinkedList<Year>& yearList)
         yearList.pTail = yearList.pTail->pNext;
         yearList.pTail->data.yearStart = temp;
     }
+    cout << setw(40) << " " << "Added successfully. ";
 }
 
 Semester inputSemester(Year y1)
 {
     Semester t;
     t.schoolyear = y1.yearStart;
-    cout << "Input semester: ";
+    cout << setw(40) << " " << "Input semester: ";
     cin >> t.SemesterNumb;
-    cout << "Input start date: ";
+    cout << setw(40) << " " << "Input start date: ";
     cin >> t.startDate.day >> t.startDate.month >> t.startDate.year;
-    cout << "Input end date: ";
+    cout << setw(40) << " " << "Input end date: ";
     cin >> t.endDate.day >> t.endDate.month >> t.endDate.year;
     return t;
 }
@@ -133,7 +134,7 @@ void viewListCoursethisSemester(LinkedList<Year> listYear)
         if (cur->data.yearStart == year) break;
         cur = cur->pNext;
     }
-    cout << "Input semester (from 1 to 3) in " << year << " you want to view list courses: ";
+    cout << setw(20) << " " << "Input semester (from 1 to 3) in " << year << " you want to view list courses: ";
     int n;
     cin >> n;
     while (n <= 0 || n >= 4)
@@ -342,22 +343,30 @@ void semester(LinkedList<Year> &ListYear, Regis &reg)
     while (1)
     {
         system("cls");
-        cout << "**** Semester Managing ****" << endl
-             << "1. Create a new semester." << endl
-             << "2. Create a course registration session." << endl
-             << "3. Add a course into semester." << endl
-             << "4. View list of current courses." << endl
-             << "5. Update a course information." << endl
-             << "6. Delete a course." << endl
-             << "7. Back to menu." << endl;
-        cout << "Input choice (1 - 7): ";
+        cout << setw(53) << ' ' << "**** Semester Managing ****" << endl;
+        cout << setw(45) << ' ' << "-------------------------------------------" << endl;
+        cout << setw(45) << " " << "| " << "1. Create a new semester " << setw(15) << " " << "| " << endl;
+        cout << setw(45) << ' ' << "-------------------------------------------" << endl;
+        cout << setw(45) << " " << "| " << "2. Create a course registration session " << "| " << endl;
+        cout << setw(45) << ' ' << "-------------------------------------------" << endl;
+        cout << setw(45) << " " << "| " << "3. Add a course into semester " << setw(10) << " " << "| " << endl;
+        cout << setw(45) << ' ' << "-------------------------------------------" << endl;
+        cout << setw(45) << " " << "| " << "4. View list of current courses " << setw(8) << " " << "| " << endl;
+        cout << setw(45) << ' ' << "-------------------------------------------" << endl;
+        cout << setw(45) << " " << "| " << "5. Update a course information " << setw(9) << " " << "| " << endl;
+        cout << setw(45) << ' ' << "-------------------------------------------" << endl;
+        cout << setw(45) << " " << "| " << "6. Delete a course " << setw(23) << " " "| " << endl;
+        cout << setw(45) << ' ' << "-------------------------------------------" << endl;
+        cout << setw(45) << " " << "| " << "7. Back to menu " << setw(24) << " " << "| " << endl;
+        cout << setw(45) << ' ' << "-------------------------------------------" << endl;
+        cout << setw(45) << "  " << "Input choice (1 - 7): ";
         cin >> choice;
         switch (choice)
         {
         case 1:
         {
             system("cls");
-            cout << "You are creating a semester in year " << ListYear.pTail->data.yearStart<< "." << endl;
+            cout << setw(40) << " " << "You are creating a semester in year " << ListYear.pTail->data.yearStart << "." << endl;
             Semester tmp = inputSemester(ListYear.pTail->data);
             add(ListYear.pTail->data.ListSemester, tmp);
             system("pause");
@@ -366,12 +375,12 @@ void semester(LinkedList<Year> &ListYear, Regis &reg)
         case 2:
         {
             system("cls");
-            cout << "You are creating a course registration session." << endl;
-            cout << "Input start date (day month year): ";
+            cout << setw(40) << " " << "You are creating a course registration session." << endl;
+            cout << setw(40) << " " << "Input start date (day month year): ";
             cin >> reg.start.day >> reg.start.month >> reg.start.year;
-            cout << "Input end date (day month year): ";
+            cout << setw(40) << " " << "Input end date (day month year): ";
             cin >> reg.end.day >> reg.end.month >> reg.end.year;
-            cout << "Create successfully." << endl;
+            cout << setw(40) << " " << "Create successfully." << endl;
             system("pause");
             break;
         }

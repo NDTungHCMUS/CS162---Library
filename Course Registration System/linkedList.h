@@ -237,11 +237,13 @@ void removeIndex(LinkedList<T> &l1, int index) {
 // add a list of item
 template <class T>
 void addList(LinkedList<T> &l1, T(*inputItem)()) {
-    cout << "Choose your option: " << endl
-         << "1. Input." << endl
-         << "2. Exit." << endl;
+    cout << setw(40) << " " << "Choose your option: " << endl
+         << setw(40) << " " << "1. Input." << endl
+         << setw(40) << " " << "2. Exit." << endl;
+    cout << setw(40) << " " << "Choice: ";
     char choice;
     cin >> choice;
+    system("cls");
     if (choice == '1') {
         T temp = inputItem();
         Node<T>* tmp = new Node<T>;
