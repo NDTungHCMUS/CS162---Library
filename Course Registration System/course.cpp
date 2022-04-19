@@ -443,14 +443,14 @@ bool checkIfStudentInListCourse(LinkedList<Course> listCourse, Student s)
 Score inputScore()
 {
     Score s;
-    cout << setw(40) << " " << << "Input No" << endl;
+    cout << setw(40) << " " << "Input No" << endl;
     cin >> s.no;
-    cout << setw(40) << " " << << "Input ID" << endl;
+    cout << setw(40) << " " << "Input ID" << endl;
     cin >> s.ID;
-    cout << setw(40) << " " << << "Input Student full name" << endl;
+    cout << setw(40) << " " << "Input Student full name" << endl;
     cin.ignore(1000, '\n');
     getline(cin, s.fullname);
-    cout << setw(40) << " " << << "Input Mark" << endl;
+    cout << setw(40) << " " << "Input Mark" << endl;
     cin >> s.totalMark >> s.finalMark >> s.midtermMark >> s.otherMark;
     return s;
 }
