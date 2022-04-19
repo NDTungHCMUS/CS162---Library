@@ -448,13 +448,13 @@ void student(int id, LinkedList<Year>& ListYear, Date &today, Regis &reg)
 {
     if (ListYear.pHead == nullptr)
     {
-        cout << "create year first!" << endl;
+        cout << "Create year first!" << endl;
         system("pause");
         return;
     }
     if (ListYear.pHead->data.ListSemester.pHead== nullptr)
     {
-        cout << "create semester first!" << endl;
+        cout << "Create semester first!" << endl;
         system("pause");
         return;
     }
@@ -488,13 +488,19 @@ void student(int id, LinkedList<Year>& ListYear, Date &today, Regis &reg)
     while (1)
     {
         system("cls");
-        cout << "Student Activities" << endl;
-        cout << "1. Enroll Course" << endl;
-        cout << "2. View list of enroll courses" << endl;
-        cout << "3. Remove Course" << endl;
-        cout << "4. View your scoreboard" << endl;
-        cout << "5. Back" << endl;
-        cout << "Input choice: ";
+        cout << setw(60) << ' ' << "*****  Student's Activities *****" << endl;
+        cout << setw(60) << ' ' << "---------------------------------" << endl;
+        cout << setw(60) << " " << "| " << "1. Enroll Course" << setw(14) << " " << "|" << endl;
+        cout << setw(60) << ' ' << "---------------------------------" << endl;
+        cout << setw(60) << " " << "| " << "2. View list of enroll course" << " " << "|" << endl;
+        cout << setw(60) << ' ' << "---------------------------------" << endl;
+        cout << setw(60) << " " << "| " << "3. Remove Course" << setw(16) << " " "| " << endl;
+        cout << setw(60) << ' ' << "---------------------------------" << endl;
+        cout << setw(60) << " " << "| " << "4. View your scoreboard" << setw(9) << " " "| " << endl;
+        cout << setw(60) << ' ' << "---------------------------------" << endl;
+        cout << setw(60) << " " << "| " << "5. Back" << setw(25) << " " "| " << endl;
+        cout << setw(60) << ' ' << "---------------------------------" << endl;
+        cout << setw(60) << "  " << "Input choice (0 - 5): ";
         cin >> choice;
         if (choice == 1)
         {
