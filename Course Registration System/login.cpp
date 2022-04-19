@@ -48,7 +48,7 @@ void login(LinkedList<Year> &ListYear)
         cout << setw(45) << " " << "| " << "3. Exit" << setw(20) << " " << "|" << endl;
         cout << setw(45) << " " << "------------------------------" << endl;
         char x;
-        cout << setw(40) << " " << "Input your choice (1 - 3): ";
+        cout << setw(45) << " " << "Input your choice (1 - 3): ";
         cin >> x;
         if (x == '1' || x == '2')
         {
@@ -86,10 +86,6 @@ void login(LinkedList<Year> &ListYear)
             else if (x == '2')
             {
                 system("cls");
-                /*cout << "** Academic Staff  ** \n";
-                cout << "1. Register" << endl;
-                cout << "2. login" << endl;
-                cout << "3. Back" << endl;*/
 
                 cout << setw(50) << " " << "** Academic Staff **" << endl;
                 cout << setw(45) << " " << "------------------------------" << endl;
@@ -194,13 +190,13 @@ void RegisterStudent(LinkedList<Year> &ListYear)
 void loginStudent(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListYear)
 {
     system("cls");
-    cout << setw(40) << " " << "** Login Student ** \n";
+    cout << setw(45) << " " << "** Login Student ** \n";
     string ID,pass;
     int id;
-    cout << setw(40) << " " << "ID: ";
+    cout << setw(45) << " " << "ID: ";
     cin >> id;
     ID = to_string(id);
-    cout << setw(40) << " " << "PASSWORD: ";
+    cout << setw(45) << " " << "PASSWORD: ";
     cin >> pass;
     ifstream loginFile;
     loginFile.open(studenttxt);
@@ -210,18 +206,27 @@ void loginStudent(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &Lis
         while(tmp == '2')
         {
             system("cls");
-            cout << setw(40) << " " << "** Welcome " << ID << " **\n";
-            cout << setw(40) << " " << "1. My Account" << endl;
-            cout << setw(40) << " " << "2. My Course" << endl;
-            cout << setw(40) << " " << "3. Log out" << endl;
+            cout << setw(46) << " " << "**** Welcome " << ID << " ****\n";
+            cout << setw(45) << ' ' << "----------------------------" << endl;
+            cout << setw(45) << " " << "| " << "1. My Account" << setw(11) << " " << " |" << endl;
+            cout << setw(45) << ' ' << "----------------------------" << endl;
+            cout << setw(45) << " " << "| " << "2. My Course" << setw(12) << " " << " |" << endl;
+            cout << setw(45) << ' ' << "----------------------------" << endl;
+            cout << setw(45) << " " << "| " << "3. Log out" << setw(14) << " " << " |" << endl;
+            cout << setw(45) << ' ' << "----------------------------" << endl;
             char x;
-            cout << setw(40) << " " << "Input your choice (1 - 3): ";
+            cout << setw(45) << " " << "Input your choice (1 - 3): ";
             cin >> x;
             if (x == '1')
             {
-                cout << "*** User account ***\n";
-                cout << "1. Change password" << endl;
-                cout << "2. Back "<< endl;
+                system("cls");
+                cout << setw(47) << " " << "*** User account ***\n";
+                cout << setw(45) << ' ' << "------------------------" << endl;
+                cout << setw(45) << " " << "| " << "1. Change password" << setw(2) << " " << " |" << endl;
+                cout << setw(45) << ' ' << "------------------------" << endl;
+                cout << setw(45) << " " << "| " << "2. Back" << setw(13) << " " << " |" << endl;
+                cout << setw(45) << ' ' << "------------------------" << endl;
+                cout << setw(45) << " " << "Your choice: ";
                 cin >> tmp;
                 string current = "";
                 if (tmp == '2') continue;
@@ -317,11 +322,11 @@ void loginStudent(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &Lis
 void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListYear)
 {
     system("cls");
-    cout << setw(40) << " " << "** Login Staff ** \n";
+    cout << setw(45) << " " << "** Login Staff ** \n";
     string ID, pass;
-    cout << setw(40) << " " << "ID: ";
+    cout << setw(45) << " " << "ID: ";
     cin >> ID;
-    cout << setw(40) << " " << "PASSWORD: ";
+    cout << setw(45) << " " << "PASSWORD: ";
     cin >> pass;
     ifstream loginFile;
     loginFile.open(stafftxt);
@@ -331,12 +336,16 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
         while(tmp == '2')
         {
             system("cls");
-            cout << setw(40) << " " << "** Welcome " << ID << " **\n";
-            cout << setw(40) << " " << "1. My Account" << endl;
-            cout << setw(40) << " " << "2. Staff's Activities" << endl;
-            cout << setw(40) << " " << "3. log out" << endl;
+            cout << setw(46) << " " << "**** Welcome " << ID << " ****\n";
+            cout << setw(45) << ' ' << "----------------------------" << endl;
+            cout << setw(45) << " " << "| " << "1. My Account" << setw(11) << " " << " |" << endl;
+            cout << setw(45) << ' ' << "----------------------------" << endl;
+            cout << setw(45) << " " << "| " << "2. Staff's Activities" << setw(3) << " " << " |" << endl;
+            cout << setw(45) << ' ' << "----------------------------" << endl;
+            cout << setw(45) << " " << "| " << "3. Log out" << setw(14) << " " << " |" << endl;
+            cout << setw(45) << ' ' << "----------------------------" << endl;
             char x;
-            cout << setw(40) << " " << "Input your choice (1 - 3): ";
+            cout << setw(45) << " " << "Input your choice (1 - 3): ";
             cin >> x;
             if (x == '1')
             {
@@ -405,7 +414,9 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 cout << setw(45) <<' '<<"-----------------------------------------" << endl;
                 cout << setw(45) <<" "<< "| "<< "10. End of semester functions" << setw(11) <<" " "| "<< endl;
                 cout << setw(45) <<' '<<"-----------------------------------------" << endl;
-                cout << setw(45) <<"  "<< "Input choice (0 - 10): ";
+                cout << setw(45) << " " << "| " << "11. Back" << setw(30) << " " << "| " << endl;
+                cout << setw(45) << ' ' << "-----------------------------------------" << endl;
+                cout << setw(45) <<"  "<< "Input choice (0 - 11): ";
                 int temp;
                 cin >> temp;
 
@@ -548,7 +559,9 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 {
                     EndofSemester(ListYear);
                 }
-
+                else if (temp == 11) 
+                {
+                }
             }
             else if (x == '3')
             {
