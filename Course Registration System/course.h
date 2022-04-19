@@ -34,7 +34,7 @@ void outputAllCourse(LinkedList<Course> ListCourse);
 void removeCourse(LinkedList<Course> ListCourse);
 void outputCourseMenu();
 bool checkAvailable(Course a, Student s);
-void enrollCourse(LinkedList<Course> &ListCourse, Student &a, Date & today, Regis &reg);
+void enrollCourse(LinkedList<Course> &ListCourse, Student &a, Date &today, Regis &reg);
 bool checkSessionConflict(Session s1, Session s2);
 CourseData addCourseData(Course a); //of a student
 void outputCourseData(Student a);
@@ -56,4 +56,3 @@ Score inputScore();
 void scoreBoardMenu();
 void outputScore(Node<Course>* c1, Student s);
 void viewScoreBoard(LinkedList<Course> ListCourse, Student s1);
-void student(string ID, LinkedList <Course> ListCourse);
