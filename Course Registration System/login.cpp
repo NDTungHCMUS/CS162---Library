@@ -19,7 +19,7 @@ bool checkExistAccount(ifstream& fin, string toCheck)
     {
         getline(fin, check, '\n');
         if (check == toCheck)
-        {
+        {   
             return true;
         }
         getline(fin, skip, '\n');
@@ -133,7 +133,6 @@ void RegisterStaff(LinkedList<Year> &ListYear)
     ifstream checkFile;
     ofstream loginFile;
     checkFile.open(stafftxt);
-    loginFile.open(stafftxt, ios::app);
     cout << setw(40) << " " << "Select ID: ";
     cin >> tmp;
     bool checkEx = checkExistAccount(checkFile, tmp);
@@ -146,6 +145,7 @@ void RegisterStaff(LinkedList<Year> &ListYear)
         checkEx = checkExistAccount(checkFile, tmp);
         checkFile.close();
     }
+    loginFile.open(stafftxt, ios::app);
     loginFile << endl << tmp;
     cout << setw(40) << " " << "Select Password: ";
     cin >> tmp;
@@ -164,7 +164,6 @@ void RegisterStudent(LinkedList<Year> &ListYear)
     ifstream checkFile;
     ofstream loginFile;
     checkFile.open(studenttxt);
-    loginFile.open(studenttxt, ios::app);
     cout << setw(40) << " " << "Select ID: ";
     cin >> tmp;
     bool checkEx = checkExistAccount(checkFile, tmp);
@@ -173,10 +172,11 @@ void RegisterStudent(LinkedList<Year> &ListYear)
     {
         cout << setw(40) << " " << "ID exist, try again: ";
         cin >> tmp;
-        checkFile.open(stafftxt);
+        checkFile.open(studenttxt);
         checkEx = checkExistAccount(checkFile, tmp);
         checkFile.close();
     }
+    loginFile.open(studenttxt, ios::app);
     loginFile << endl << tmp;
     cout << setw(40) << " " << "Select Password: ";
     cin >> tmp;
