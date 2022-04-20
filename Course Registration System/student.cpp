@@ -54,8 +54,23 @@ bool compareDate(Date a, Date b)
 }
 
 void outputStudent(Student s1) {
-	cout << left << setw(10) << s1.No
-		<< left << setw(15) << s1.StudentID
+    /*
+    2 2 1 1 2 1 2021
+.
+2
+2
+1
+21CTT1
+1
+20APCS2
+2
+2
+4
+21CTT1
+.
+
+    */
+	cout <<setw(5) <<' '<<  setw(15) << left << s1.StudentID
 		<< left << setw(14) << s1.LastName
 		<< left << setw(14) << s1.FirstName
 		<< left << setw(12) << ((s1.Gender == 1) ? "Male" : "Famale")
@@ -115,7 +130,16 @@ Student findStudent(LinkedList<Student> ListStudent, int StudentID, bool &check)
     }
     else check = true;
 	displayStudentMenu();
-	outputStudent(a);
+	Student s1 = a;
+	cout << "1         " <<  setw(15) << left << s1.StudentID
+		<< left << setw(14) << s1.LastName
+		<< left << setw(14) << s1.FirstName
+		<< left << setw(12) << ((s1.Gender == 1) ? "Male" : "Famale")
+		<< ((s1.dob.day < 10) ? "0" : "") << s1.dob.day << "/"
+		<< ((s1.dob.month < 10) ? "0" : "") << s1.dob.month << "/"
+		<< left << setw(10) << s1.dob.year
+		<< left << setw(25) << s1.SocialID
+		<< endl;
 	cout << "Is this the right student?" << endl;
 	cout << "1.YES" << endl;
 	cout << "2.NO" << endl;
