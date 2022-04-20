@@ -128,7 +128,7 @@ void viewListCoursethisSemester(LinkedList<Year> listYear)
     cout << "Input Year: ";
     int year;
     cin >> year;
-    Node<Year>* cur = listYear.pHead;
+    Node<Year>* cur = listYear.pTail;
     while (cur)
     {
         if (cur->data.yearStart == year) break;
@@ -145,7 +145,7 @@ void viewListCoursethisSemester(LinkedList<Year> listYear)
     if (n >= 1 && n <= 3)
     {
         cout << "All courses in semester " << n << " of year " << cur->data.yearStart << " shown as below: " << endl;
-        Node <Semester>* temp = cur->data.ListSemester.pHead;
+        Node <Semester>* temp = cur->data.ListSemester.pTail;
         int count = n - 1;
         int count2 = 0;
         while (count2 < count)
@@ -164,7 +164,7 @@ void outputScoreBoardOfClassMenu(LinkedList<Course>& ListCourse)
     cout << "No"
          << "\t" << "StudentID"
          << "\t" << "Student Name\t";
-    Node <Course>* NodeCourse = ListCourse.pHead;
+    Node <Course>* NodeCourse = ListCourse.pTail;
     for (; NodeCourse != nullptr; NodeCourse = NodeCourse->pNext)
     {
         cout << "\t" << NodeCourse->data.ID;
@@ -190,7 +190,7 @@ void viewScoreBoardOfClass(LinkedList <Class>& ListClass, LinkedList<Course>& Li
         return;
     }
 
-    Node<Student>* NodeStudent = NodeClass->data.listOfStudents.pHead;
+    Node<Student>* NodeStudent = NodeClass->data.listOfStudents.pTail;
     cout << "---------------------------------- Score Board of class " << clName << " ----------------------------------------\n";
     outputScoreBoardOfClassMenu(ListCourse);
     int noOfStudent = 0;
@@ -199,11 +199,11 @@ void viewScoreBoardOfClass(LinkedList <Class>& ListClass, LinkedList<Course>& Li
         cout << ++noOfStudent << "\t" << NodeStudent->data.StudentID << "\t" << NodeStudent->data.FirstName << ' ' << NodeStudent->data.LastName;
         int countCourse = 0;
         float sumGPA = 0;
-        Node<Course>* NodeCourse = ListCourse.pHead;
+        Node<Course>* NodeCourse = ListCourse.pTail;
         for (; NodeCourse != nullptr; NodeCourse = NodeCourse->pNext)
         {
 
-            Node<Score>* NodeSore = NodeCourse->data.scoreBoard.pHead;
+            Node<Score>* NodeSore = NodeCourse->data.scoreBoard.pTail;
             for (; NodeSore != nullptr; NodeSore = NodeSore->pNext)
             {
                 if (NodeSore->data.ID == NodeStudent->data.StudentID)
@@ -246,19 +246,19 @@ void viewScoreBoardOfClass(LinkedList <Class>& ListClass, LinkedList<Course>& Li
 }
 void EndofSemester(LinkedList<Year> ListYear)
 {
-    if (ListYear.pHead == nullptr)
+    if (ListYear.pTail == nullptr)
     {
         cout << "create year first!" << endl;
         system("pause");
         return;
     }
-    if (ListYear.pHead->data.ListSemester.pHead== nullptr)
+    if (ListYear.pTail->data.ListSemester.pTail== nullptr)
     {
         cout << "create semester first!" << endl;
         system("pause");
         return;
     }
-    if (ListYear.pHead->data.ListSemester.pHead->data.ListCourse.pHead == nullptr)
+    if (ListYear.pTail->data.ListSemester.pTail->data.ListCourse.pTail == nullptr)
     {
         cout << "0 course found! " << endl;
         system("pause");
@@ -279,11 +279,11 @@ void EndofSemester(LinkedList<Year> ListYear)
     if(tmp == 1)
     {
         cout << "Please choose the course you want (from 1) :\n";
-        outputAllCourse(ListYear.pHead->data.ListSemester.pHead->data.ListCourse);
+        outputAllCourse(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
         int num;
         cin >> num;
         Course a;
-        findIndex(ListYear.pHead->data.ListSemester.pHead->data.ListCourse, num, a);
+        findIndex(ListYear.pTail->data.ListSemester.pTail->data.ListCourse, num, a);
         ofstream fout;
         string coursename = a.CourseName + ".CSV";
         fout.open(coursename);
@@ -293,22 +293,22 @@ void EndofSemester(LinkedList<Year> ListYear)
     }
     if (tmp == 2)
     {
-        importScoreboard(ListYear.pHead->data.ListSemester.pHead->data.ListCourse);
+        importScoreboard(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
         system("pause");
     }
     if (tmp == 3)
     {
-        viewScoreBoardOfCourse(ListYear.pHead->data.ListSemester.pHead->data.ListCourse);
+        viewScoreBoardOfCourse(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
         system("pause");
     }
     if (tmp == 4)
     {
-        updateAStudent(ListYear.pHead->data.ListSemester.pHead->data.ListCourse);
+        updateAStudent(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
         system("pause");
     }
     if (tmp == 5)
     {
-        viewScoreBoardOfClass(ListYear.pHead->data.Listclass,ListYear.pHead->data.ListSemester.pHead->data.ListCourse);
+        viewScoreBoardOfClass(ListYear.pTail->data.Listclass,ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
         system("pause");
     }
 
@@ -401,7 +401,7 @@ void semester(LinkedList<Year> &ListYear, Regis &reg)
         case 5:
         {
             system("cls");
-            if (ListYear.pTail->data.ListSemester.pTail->data.ListCourse.pHead == NULL)
+            if (ListYear.pTail->data.ListSemester.pTail->data.ListCourse.pTail == NULL)
             {
                 cout << "No courses to modify" << endl;
                 system("pause");
@@ -421,7 +421,7 @@ void semester(LinkedList<Year> &ListYear, Regis &reg)
         case 6:
         {
             system("cls");
-            if (ListYear.pTail->data.ListSemester.pTail->data.ListCourse.pHead == NULL)
+            if (ListYear.pTail->data.ListSemester.pTail->data.ListCourse.pTail == NULL)
             {
                 cout << "No courses to delete" << endl;
                 system("pause");
@@ -455,29 +455,29 @@ void semester(LinkedList<Year> &ListYear, Regis &reg)
 
 void student(int id, LinkedList<Year>& ListYear, Date &today, Regis &reg)
 {
-    if (ListYear.pHead == nullptr)
+    if (ListYear.pTail == nullptr)
     {
         cout << "create year first!" << endl;
         system("pause");
         return;
     }
-    if (ListYear.pHead->data.ListSemester.pHead== nullptr)
+    if (ListYear.pTail->data.ListSemester.pTail== nullptr)
     {
         cout << "create semester first!" << endl;
         system("pause");
         return;
     }
-    if (ListYear.pHead->data.ListSemester.pHead->data.ListCourse.pHead == nullptr)
+    if (ListYear.pTail->data.ListSemester.pTail->data.ListCourse.pTail == nullptr)
     {
         cout << "0 course found! " << endl;
         system("pause");
         return;
     }
-    LinkedList <Course> ListCourse = ListYear.pHead->data.ListSemester.pHead->data.ListCourse;
+    LinkedList <Course> ListCourse = ListYear.pTail->data.ListSemester.pTail->data.ListCourse;
     Student user;
     string ID = to_string(id);
-    //ListYear.pHead->data.ListSemester.pHead->data.ListCourse
-    Node <Class>* NodeClass = ListYear.pHead->data.Listclass.pHead;
+    //ListYear.pTail->data.ListSemester.pTail->data.ListCourse
+    Node <Class>* NodeClass = ListYear.pTail->data.Listclass.pHead;
     bool check1 = true;
     for (; NodeClass != nullptr; NodeClass = NodeClass->pNext)
     {
@@ -488,6 +488,7 @@ void student(int id, LinkedList<Year>& ListYear, Date &today, Regis &reg)
     if (check1 == false)
     {
         cout << "Can not find your information, please try again!\n";
+        system("pause");
         return;
     }
 
@@ -514,7 +515,6 @@ void student(int id, LinkedList<Year>& ListYear, Date &today, Regis &reg)
         if (choice == 1)
         {
             enrollCourse(ListCourse, stutemp,today,reg);
-            system("pause");
         }
         else if (choice == 2)
         {
@@ -529,7 +529,7 @@ void student(int id, LinkedList<Year>& ListYear, Date &today, Regis &reg)
         }
         else if (choice == 4)
         {
-            viewScoreBoard(ListYear.pHead->data.ListSemester.pHead->data.ListCourse, user);
+            viewScoreBoard(ListYear.pTail->data.ListSemester.pTail->data.ListCourse, user);
             system("pause");
         }
         else if (choice == 5)

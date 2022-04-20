@@ -111,54 +111,62 @@ void enrollCourse(LinkedList<Course> &ListCourse, Student &a, Date & today, Regi
 {
     system("cls");
     if (compareDate(reg.start,today) == true && compareDate(today,reg.end) == true )
-    {cout << setw(40) << " " << "Choose the option: " << endl;
-    cout << setw(40) << " " << "1. Enroll Course" << endl;
-    cout << setw(40) << " " << "2. Exit" << endl;
-    int numb;
-    cin >> numb;
-    if (numb == 1)
     {
-        if (a.numCourse == 5) {
-            cout << setw(40) << " " << "Number of courses reached maximum" << endl;
-            return;
-        }
-        else {
-            outputAllCourse(ListCourse);
-            cout << setw(40) << " " << "Enter the Course No you want to enroll: ";
-            cin >> numb;
-            Course temp;
-            if (findIndex(ListCourse, numb, temp))
+        cout << setw(40) << " " << "Choose the option: " << endl;
+        cout << setw(40) << " " << "1. Enroll Course" << endl;
+        cout << setw(40) << " " << "2. Exit" << endl;
+        cout << setw(40) << " ";
+        int numb;
+        cin >> numb;
+        if (numb == 1)
+        {
+            if (a.numCourse == 5)
             {
-                if (checkAvailable(temp, a) && temp.NumbOfStudent < temp.MaxStudent)
+                cout << setw(40) << " " << "Number of courses reached maximum" << endl;
+                return;
+            }
+            else
+            {
+                outputAllCourse(ListCourse);
+                cout << setw(40) << " " << "Enter the Course No you want to enroll: ";
+                cin >> numb;
+                Course temp;
+                if (findIndex(ListCourse, numb, temp))
                 {
-                    Node<Course>* current = ListCourse.pHead;
-                    for (int i = 1; i < numb; ++i) {
-                        current = current->pNext;
-                    }
-                    add(current->data.EnrollStudentList, a);
-                    current->data.NumbOfStudent++;
+                    if (checkAvailable(temp, a) && temp.NumbOfStudent < temp.MaxStudent)
+                    {
+                        Node<Course>* current = ListCourse.pHead;
+                        for (int i = 1; i < numb; ++i)
+                        {
+                            current = current->pNext;
+                        }
+                        add(current->data.EnrollStudentList, a);
+                        current->data.NumbOfStudent++;
 
-                    CourseData dtemp = addCourseData(temp);
-                    add(a.ListCourseData, dtemp);
-                    a.numCourse++;
-                    cout << setw(40) << "Enrolled Successfully.";
-                    system("pause");
-                }
-                else
-                {
-                    cout << setw(40) << " " << "Timetable conflicted. Please choose other courses.";
-                    enrollCourse(ListCourse, a, today,reg);
+                        CourseData dtemp = addCourseData(temp);
+                        add(a.ListCourseData, dtemp);
+                        a.numCourse++;
+                        cout << setw(40) << "Enrolled Successfully.";
+                        system("pause");
+                    }
+                    else
+                    {
+                        cout << setw(40) << " " << "Timetable conflicted. Please choose other courses.";
+                        enrollCourse(ListCourse, a, today,reg);
+                    }
                 }
             }
+        }
+        else
+        {
+            return;
         }
     }
     else
     {
-        return;
+        cout << setw(40) << " " << "Course registration session is close!\n";
+        system("pause");
     }
-    }
-    else cout << setw(40) << " " << "Course registration session is close!\n";
-    system("pause");
 }
 
 void outputCourseData(Student a)
@@ -332,7 +340,7 @@ void viewEnrollCourse(Student s1)
     if (s1.ListCourseData.pHead == nullptr) cout << "This student hasn't enrolled course";
     else
     {
-        cout << setw(40) << " " << "All Enrolled Course by " << s1.FirstName << " " << s1.LastName << " are: ";
+        cout << "All Enrolled Course by " << s1.FirstName << " " << s1.LastName << " are: ";
         Node<CourseData>* temp = s1.ListCourseData.pHead;
         for (temp; temp!=nullptr; temp=temp->pNext)
         {
@@ -359,7 +367,7 @@ void removeCourseFromEnrollList(Student &s1)
     {
         system("cls");
         viewEnrollCourse(s1);
-        cout << setw(40) << " " << "Input the Course ID you want to remove: ";
+        cout << "Input the Course ID you want to remove: ";
         string num;
         cin >> num;
         Node <CourseData>* temp = s1.ListCourseData.pHead;
@@ -394,7 +402,7 @@ void removeCourseFromEnrollList(Student &s1)
                 pre = pre->pNext;
             }
         }
-        cout << setw(40) << " " << "List of CourseData after removing: " << endl;
+        cout << "List of CourseData after removing: " << endl;
         viewEnrollCourse(s1);
         system("pause");
     }
