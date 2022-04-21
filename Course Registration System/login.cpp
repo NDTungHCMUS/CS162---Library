@@ -545,14 +545,21 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                         cout << setw(45) << " " << "Type in class name: ";
                         cin.ignore(1, '\n');
                         getline(cin, classcheck);
+                        bool flag = false;
                         LinkedList<Class> track = ListYear.pTail->data.Listclass;
                         while (track.pHead != NULL)
                         {
                             if (track.pHead->data.classname == classcheck)
                             {
                                 addList(track.pHead->data.listOfStudents, &AddStudent);
+                                flag = true;
                             }
                             track.pHead = track.pHead->pNext;
+                        }
+                        if (flag == false) {
+                            cout << setw(45) << " " << "Invalid class" << endl;
+                            cout << setw(45) << " ";
+                            system("pause");
                         }
                     }
                 }
