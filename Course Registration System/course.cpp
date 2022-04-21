@@ -112,10 +112,10 @@ void enrollCourse(LinkedList<Course> &ListCourse, Student &a, Date & today, Regi
     system("cls");
     if (compareDate(reg.start,today) == true && compareDate(today,reg.end) == true )
     {
-        cout << setw(50) << " " << "Choose the option: " << endl;
-        cout << setw(50) << " " << "1. Enroll Course" << endl;
-        cout << setw(50) << " " << "2. Exit" << endl;
-        cout << setw(50) << " " << "Your choice: ";
+        cout << setw(40) << " " << "Choose the option: " << endl;
+        cout << setw(40) << " " << "1. Enroll Course" << endl;
+        cout << setw(40) << " " << "2. Exit" << endl;
+        cout << setw(40) << " ";
         int numb;
         cin >> numb;
         if (numb == 1)
@@ -146,15 +146,12 @@ void enrollCourse(LinkedList<Course> &ListCourse, Student &a, Date & today, Regi
                         CourseData dtemp = addCourseData(temp);
                         add(a.ListCourseData, dtemp);
                         a.numCourse++;
-                        cout << setw(40) << " " << "Enrolled Successfully.\n";
-                        cout << setw(40) << " ";
+                        cout << setw(40) << "Enrolled Successfully.\n";
                         system("pause");
                     }
                     else
                     {
-                        cout << setw(40) << " " << "Timetable conflicted. Please choose other courses." << endl;
-                        cout << setw(40) << " ";
-                        system("pause");
+                        cout << setw(40) << " " << "Timetable conflicted. Please choose other courses.";
                         enrollCourse(ListCourse, a, today,reg);
                     }
                 }
@@ -191,8 +188,9 @@ void importScoreboard(LinkedList<Course> &ListCourse)
     {
         a = a->pNext;
     }
+    string filename = a->data.ID + "scoreboard.txt";
     ifstream FileScore;
-    FileScore.open("scoreboard.txt");
+    FileScore.open(filename);
     if (FileScore)
     {
         cout << setw(40) << " " << "Importing successful!\n";
@@ -345,12 +343,11 @@ void viewEnrollCourse(Student s1)
     if (s1.ListCourseData.pHead == nullptr) cout << "This student hasn't enrolled course\n";
     else
     {
-        cout << setw(40) << " " << "All Enrolled Course by " << s1.FirstName << " " << s1.LastName << " are: \n";
+        cout << "All Enrolled Course by " << s1.FirstName << " " << s1.LastName << " are: \n";
         Node<CourseData>* temp = s1.ListCourseData.pHead;
-        int i = 1;
         for (temp; temp!=nullptr; temp=temp->pNext)
         {
-            cout << setw(45) << " " << i++ << " " << temp->data.CourseName << " ( ID: " << temp->data.ID << ") " << endl;
+            cout << temp->data.CourseName << " (" << temp->data.ID << ") " << endl;
         }
     }
 }
@@ -373,7 +370,7 @@ void removeCourseFromEnrollList(Student &s1)
     {
         system("cls");
         viewEnrollCourse(s1);
-        cout << setw(40) << " " << "Input the Course ID you want to remove: ";
+        cout << "Input the Course ID you want to remove: ";
         string num;
         cin >> num;
         Node <CourseData>* temp = s1.ListCourseData.pHead;
@@ -408,8 +405,8 @@ void removeCourseFromEnrollList(Student &s1)
                 pre = pre->pNext;
             }
         }
+        cout << "List of CourseData after removing: " << endl;
         viewEnrollCourse(s1);
-        cout << setw(40) << " ";
         system("pause");
     }
     if (choose == 2)
