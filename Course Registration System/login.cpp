@@ -272,7 +272,7 @@ void loginStudent(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &Lis
                         if (current != position->next->pas)
                         {
                             cout << endl;
-                            cout << setw(40) << " " << "Password Incorrect, Please try again!";
+                            cout << setw(40) << " " << "Password Incorrect, Please try again!\n";
                             cout << setw(40) << " ";
                             system("pause");
                             continue;
@@ -394,7 +394,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                         {
 
                             cout << endl;
-                            cout << setw(40) << " " << "Password Incorrect, Please try again!";
+                            cout << setw(40) << " " << "Password Incorrect, Please try again!\n";
                             cout << setw(40) << " ";
                             system("pause");
                             continue;
@@ -479,11 +479,11 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 {
                     system("cls");
                     CreateYear(ListYear);
-                    cout << setw(40) << " ";
+                    cout << endl << setw(40) << " ";
                     system("pause");
                 }
                 else if (temp == 2)
-                {   
+                {
                     if (ListYear.pTail == nullptr) {
                         cout << setw(45) << ' ' << "Create year first! ";
                         cout << endl << setw(45) << ' ';
@@ -496,7 +496,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 }
                 else if (temp == 3)
                 {
-                    
+
                     if (ListYear.pTail == NULL)
                     {
                         cerr << setw(45) << " " << "No year to choose" << endl;
@@ -582,7 +582,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                         //   outputAllStudent(s);
                         //Node<Class> *current = ListYear.pHead->data.Listclass.pHead;
                         system("pause");
-                    }                  
+                    }
                 }
                 else if (temp == 5)
                 {
@@ -600,6 +600,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 else if (temp == 6)
                 {
                     outputListClass(ListYear.pHead->data.Listclass);
+                    cout << endl;
                     system("pause");
                 }
                 else if (temp == 7)
@@ -613,6 +614,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                         if (current->data.classname == classnow)
                         {
                             outputAllStudent(current->data.listOfStudents);
+                            cout << endl;
                             system("pause");
                             break;
                         }
@@ -629,7 +631,10 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                     {
                         cout << setw(45) << ' ' << "Create a school year first" << endl;
                         cout << setw(45) << ' ';
+<<<<<<< HEAD
                         cout << setw(45) << " " << "Create year first!" << endl;
+=======
+>>>>>>> fbcd82cc9f7c96f63d1974231a2032553f6aa7fc
                         system("pause");
                         continue;
                     }
@@ -637,7 +642,10 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                     {
                         cout << setw(45) << ' ' << "Create semester first!" << endl;
                         cout << setw(45) << " ";
+<<<<<<< HEAD
                         cout << setw(45) << " " << "Create semester first!" << endl;
+=======
+>>>>>>> fbcd82cc9f7c96f63d1974231a2032553f6aa7fc
                         system("pause");
                         continue;
                     }
@@ -651,11 +659,13 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                     }
                     system("cls");
                     outputAllCourse(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
+                    cout << endl;
                     system("pause");
                 }
                 else if (temp == 9)
                 {
                     outputStudentInCourse(ListYear.pHead->data.ListSemester.pHead->data.ListCourse);
+                    cout << endl;
                     system("pause");
                 }
                 else if (temp == 10)
@@ -806,6 +816,34 @@ MON
 S3
 TUE
 S4
+
+1
+CS163
+data structure
+Dinh Ba Tien
+4
+MON
+S1
+TUE
+S2
+1
+MATH1
+linear algeobra
+Nguyen Huu Anh
+4
+MON
+S3
+TUE
+S4
+1
+MATH2
+caculus2
+Nguyen Huu Anh
+4
+THU
+S3
+SAT
+S4
 2
 
 7
@@ -816,5 +854,6 @@ S4
 0
 2
 1
+
 
 */

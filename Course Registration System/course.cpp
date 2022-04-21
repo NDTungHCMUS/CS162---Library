@@ -123,6 +123,8 @@ void enrollCourse(LinkedList<Course> &ListCourse, Node<Student> *a, Date &today,
             if (a->data.numCourse == 5)
             {
                 cout << setw(40) << " " << "Number of courses reached maximum" << endl;
+                cout << setw(40) << " ";
+                system("pause");
                 return;
             }
             else
@@ -146,12 +148,15 @@ void enrollCourse(LinkedList<Course> &ListCourse, Node<Student> *a, Date &today,
                         CourseData dtemp = addCourseData(temp);
                         add(a->data.ListCourseData, dtemp);
                         a->data.numCourse++;
-                        cout << setw(40) << "Enrolled Successfully.\n";
+                        cout << setw(40) << " " << "Enrolled Successfully.\n";
+                        cout << setw(40) << " ";
                         system("pause");
                     }
                     else
                     {
-                        cout << setw(40) << " " << "Timetable conflicted. Please choose other courses.";
+                        cout << setw(40) << " " << "Timetable conflicted. Please choose other courses.\n";
+                        cout << setw(40) << " ";
+                        system("pause");
                         enrollCourse(ListCourse, a, today,reg);
                     }
                 }
@@ -165,6 +170,7 @@ void enrollCourse(LinkedList<Course> &ListCourse, Node<Student> *a, Date &today,
     else
     {
         cout << setw(40) << " " << "Course registration session is close!\n";
+        cout << setw(40) << " ";
         system("pause");
     }
 }
@@ -180,9 +186,10 @@ void outputCourseData(Student a)
 void importScoreboard(LinkedList<Course> &ListCourse)
 {
     outputAllCourse(ListCourse);
-    cout << setw(40) << " " << "Type the Course that you want import score board (from 1):\n ";
+    cout << setw(40) << " " << "Type the Course that you want import score board (from 1): ";
     int num;
     cin >> num;
+    cout << endl;
     Node<Course>*a = ListCourse.pHead;
     for (int i = 1; i < num; i++)
     {
@@ -242,10 +249,13 @@ void outputScoreBoardMenu()
 }
 void viewScoreBoardOfCourse(LinkedList<Course> &ListCourse)
 {
-    cout << setw(20) << " " << "Type the Course that you want to view score board (from 1): \n";
+
     outputAllCourse(ListCourse);
+    cout << endl;
+    cout << setw(20) << " " << "Type the Course that you want to view score board (from 1): ";
     int num;
     cin >> num;
+    cout << endl;
     Course a;
     findIndex(ListCourse, num, a);
     outputScoreBoardMenu();
@@ -254,31 +264,37 @@ void viewScoreBoardOfCourse(LinkedList<Course> &ListCourse)
 void updateAStudent(LinkedList<Course> &ListCourse)
 {
     outputAllCourse(ListCourse);
-    cout << setw(40) << " " << "Please enter the course you want to update(from 1) :\n";
+    cout << setw(40) << " " << "Please enter the course you want to update(from 1) :";
     int num;
     cin >> num;
+    cout << endl;
     Course a;
     findIndex(ListCourse, num, a);
-    cout << setw(40) << " " << "Please enter the ID of the student you want to update:\n";
+    cout << setw(40) << " " << "Please enter the ID of the student you want to update:";
     int ID;
     cin >> ID;
+    cout << endl;
     bool flag = false;
     for (Node<Score> *tmp = a.scoreBoard.pHead; tmp != nullptr; tmp = tmp->pNext)
     {
         if (tmp->data.ID == ID)
         {
             float finalmark;
-            cout << setw(40) << " " << "Final mark:" << endl;
+            cout << setw(40) << " " << "Final mark: ";
             cin >> finalmark;
+            cout << endl;
             float midtermmark;
-            cout << setw(40) << " " << "Midterm mark:" << endl;
+            cout << setw(40) << " " << "Midterm mark: ";
             cin >> midtermmark;
+            cout << endl;
             float othermmark;
-            cout << setw(40) << " " << "Other mark:" << endl;
+            cout << setw(40) << " " << "Other mark: ";
             cin >> othermmark;
+            cout << endl;
             float totalmark;
-            cout << setw(40) << " " << "Total mark:" << endl;
+            cout << setw(40) << " " << "Total mark: ";
             cin >> totalmark;
+            cout << endl;
             tmp->data.midtermMark = midtermmark;
             tmp->data.finalMark = finalmark;
             tmp->data.totalMark = totalmark;
@@ -351,7 +367,7 @@ void viewEnrollCourse(Student s1)
         }
     }
 }
-void removeCourseFromEnrollList(Student &s1)
+void removeCourseFromEnrollList(Node<Student> *s1)
 {
     cout << setw(40) << " " << "Choose the option: " << endl;
     cout << setw(40) << " " << "1. Remove Course Data" << endl;
@@ -369,20 +385,20 @@ void removeCourseFromEnrollList(Student &s1)
     if (choose == 1)
     {
         system("cls");
-        viewEnrollCourse(s1);
+        viewEnrollCourse(s1->data);
         cout << "Input the Course ID you want to remove: ";
         string num;
         cin >> num;
-        Node <CourseData>* temp = s1.ListCourseData.pHead;
+        Node <CourseData>* temp = s1->data.ListCourseData.pHead;
         Node <CourseData>* pre = new Node <CourseData>;
         pre->pNext = temp;
         while (temp != nullptr)
         {
             if (temp->data.ID == num)
             {
-                if (temp == s1.ListCourseData.pHead)
+                if (temp == s1->data.ListCourseData.pHead)
                 {
-                    s1.ListCourseData.pHead = s1.ListCourseData.pHead->pNext;
+                    s1->data.ListCourseData.pHead = s1->data.ListCourseData.pHead->pNext;
                     delete temp;
                     break;
                 }
@@ -394,7 +410,7 @@ void removeCourseFromEnrollList(Student &s1)
                     delete del;
                     if (temp == nullptr)
                     {
-                        s1.ListCourseData.pTail = pre;
+                        s1->data.ListCourseData.pTail = pre;
                     }
                     break;
                 }
@@ -406,7 +422,7 @@ void removeCourseFromEnrollList(Student &s1)
             }
         }
         cout << "List of CourseData after removing: " << endl;
-        viewEnrollCourse(s1);
+        viewEnrollCourse(s1->data);
         system("pause");
     }
     if (choose == 2)
