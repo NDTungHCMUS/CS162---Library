@@ -325,7 +325,13 @@ S4
 */
 //void removeCourseEnroll(LinkedList<Course> ListCourse)
 void outputStudentInCourse(LinkedList<Course>ListCourse)
-{
+{   
+    if (ListCourse.pHead == nullptr) {
+        cout << setw(45) << ' ' << "No Course here. " << endl;
+        cout << setw(45) << ' ';
+        return;
+    }
+    system("cls");
     cout << "Type the Course No you want to view list of student (from 1): \n";
     outputAllCourse(ListCourse);
     int num;
