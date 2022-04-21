@@ -421,13 +421,7 @@ void semester(LinkedList<Year> &ListYear, Regis &reg)
         case 4:
         {
             system("cls");
-<<<<<<< HEAD
-            if (ListYear.pTail->data.ListSemester.pTail->data.ListCourse.pHead != nullptr) {
-                cout << setw(40) <<  " " << "<----List of current available course---->" << endl;
-            }
-=======
             cout << setw(40) <<  " " << "<----List of current available course---->" << endl;
->>>>>>> bd36a19701c4178af9155da5e8adc9d2df5dc700
             outputAllCourse(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
             system("pause");
             break;
@@ -533,9 +527,7 @@ void student(int id, LinkedList<Year>& ListYear, Date &today, Regis &reg)
         system("pause");
         return;
     }
-    user = NodeStudent->data;
     LinkedList <Student> ListStudent = NodeClass->data.listOfStudents;
-    Student stutemp = user;
     int choice;
     while (1)
     {
@@ -561,13 +553,14 @@ void student(int id, LinkedList<Year>& ListYear, Date &today, Regis &reg)
         else if (choice == 2)
         {
             system("cls");
+            Student stutemp = NodeStudent->data;
             viewEnrollCourse(stutemp);
             system("pause");
         }
         else if (choice == 3)
         {
             system("cls");
-            removeCourseFromEnrollList(stutemp);
+            removeCourseFromEnrollList(NodeStudent);
         }
         else if (choice == 4)
         {
