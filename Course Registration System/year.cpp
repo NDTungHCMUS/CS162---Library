@@ -20,7 +20,7 @@ void CreateYear(LinkedList<Year>& yearList)
         yearList.pTail = yearList.pTail->pNext;
         yearList.pTail->data.yearStart = temp;
     }
-    cout << setw(40) << " " << "Added successfully.\n";
+    cout << setw(40) << " " << "Added successfully. ";
 }
 
 Semester inputSemester(Year y1)
@@ -485,22 +485,19 @@ void student(int id, LinkedList<Year>& ListYear, Date &today, Regis &reg)
 {
     if (ListYear.pTail == nullptr)
     {
-        cout << setw(45) << " " << "Create year first!" << endl;
-        cout << setw(45) << " ";
+        cout << "create year first!" << endl;
         system("pause");
         return;
     }
     if (ListYear.pTail->data.ListSemester.pTail== nullptr)
     {
-        cout << setw(45) << " " << "Create semester first!" << endl;
-        cout << setw(45) << " ";
+        cout << "create semester first!" << endl;
         system("pause");
         return;
     }
     if (ListYear.pTail->data.ListSemester.pTail->data.ListCourse.pTail == nullptr)
     {
-        cout << setw(45) << " " << "No course found" << endl;
-        cout << setw(45) << " ";
+        cout << "0 course found! " << endl;
         system("pause");
         return;
     }
@@ -508,6 +505,12 @@ void student(int id, LinkedList<Year>& ListYear, Date &today, Regis &reg)
     Student user;
     string ID = to_string(id);
     //ListYear.pTail->data.ListSemester.pTail->data.ListCourse
+    if (ListYear.pTail->data.Listclass.pHead == nullptr)
+    {
+        cout << "There is no class now, please try again later!\n";;
+        system("pause");
+        return;
+    }
     Node <Class>* NodeClass = ListYear.pTail->data.Listclass.pHead;
     bool check1 = true;
     for (; NodeClass != nullptr; NodeClass = NodeClass->pNext)
