@@ -65,7 +65,7 @@ void login(LinkedList<Year> &ListYear)
 
                 cout << setw(53) << " " << "** Student  **" << endl;
                 cout << setw(45) << " " << "------------------------------" << endl;
-                cout << setw(45) << " " << "| " << "1. Register" << setw(17) << " " << "|" << endl;
+                cout << setw(45) << " " << "| " << "1. Register" << setw(16) << " " << "|" << endl;
                 cout << setw(45) << " " << "------------------------------" << endl;
                 cout << setw(45) << " " << "| " << "2. Login" << setw(19) << " " << "|" << endl;
                 cout << setw(45) << " " << "------------------------------" << endl;
@@ -96,7 +96,7 @@ void login(LinkedList<Year> &ListYear)
 
                 cout << setw(50) << " " << "** Academic Staff **" << endl;
                 cout << setw(45) << " " << "------------------------------" << endl;
-                cout << setw(45) << " " << "| " << "1. Register" << setw(17) << " "  "|" << endl;
+                cout << setw(45) << " " << "| " << "1. Register" << setw(16) << " " <<  "|" << endl;
                 cout << setw(45) << " " << "------------------------------" << endl;
                 cout << setw(45) << " " << "| " << "2. Login" << setw(19) << " " << "|" << endl;
                 cout << setw(45) << " " << "------------------------------" << endl;
@@ -253,15 +253,16 @@ void loginStudent(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &Lis
                 cout << setw(45) << ' ' << "------------------------" << endl;
                 cout << setw(45) << " " << "| " << "1. Change password" << setw(2) << " " << " |" << endl;
                 cout << setw(45) << ' ' << "------------------------" << endl;
-                cout << setw(45) << " " << "| " << "2. view your profile" << setw(0) << "" << " |" << endl;
+                cout << setw(45) << " " << "| " << "2. View your profile" << setw(0) << "" << " |" << endl;
                 cout << setw(45) << ' ' << "------------------------" << endl;
                 cout << setw(45) << " " << "| " << "3. Back" << setw(13) << " " << " |" << endl;
                 cout << setw(45) << ' ' << "------------------------" << endl;
                 cout << setw(45) << " " << "Your choice: ";
-                cin >> tmp;
+                int tmp1;
+                cin >> tmp1;
                 string current = "";
-                if (tmp == '3') continue;
-                else if (tmp == '1')
+                if (tmp1 == 3) continue;
+                else if (tmp1 == 1)
                 {
                     while (current != position->next->pas)
                     {
@@ -289,18 +290,20 @@ void loginStudent(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &Lis
                         login(ListYear);
                     }
                 }
-                else if (tmp == '2')
+                else if (tmp1 == 2)
                 {
+                    system("cls");
                     cout << setw(47) << " " << "*** User profile ***\n";
-                    cout << setw(45) << ' ' << "------------";
+                    cout << setw(47) << ' ' << "------------";
                     for (int i = 0; i <= ID.size(); i++)
                         cout << '-';
                     cout << endl;
-                    cout << setw(45) << " " << "| " << "Your ID: " << ID <<" |" << endl;
-                    cout << setw(45) << ' ' << "------------";
+                    cout << setw(47) << " " << "| " << "Your ID: " << ID <<" |" << endl;
+                    cout << setw(47) << ' ' << "------------";
                     for (int i = 0; i <= ID.size(); i++)
                         cout << '-';
                     cout << endl;
+                    cout << setw(43) << " ";
                     system("pause");
                 }
                 else
@@ -415,15 +418,16 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 else if (tmp == '2')
                 {
                     cout << setw(47) << " " << "*** User profile ***\n";
-                    cout << setw(45) << ' ' << "------------";
+                    cout << setw(47) << ' ' << "------------";
                     for (int i = 0; i <= ID.size(); i++)
                         cout << '-';
                     cout << endl;
-                    cout << setw(45) << " " << "| " << "Your ID: " << ID <<" |" << endl;
-                    cout << setw(45) << ' ' << "------------";
+                    cout << setw(47) << " " << "| " << "Your ID: " << ID <<" |" << endl;
+                    cout << setw(47) << ' ' << "------------";
                     for (int i = 0; i <= ID.size(); i++)
                         cout << '-';
                     cout << endl;
+                    cout << setw(43) << " ";
                     system("pause");
                 }
             }
@@ -653,6 +657,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                     if (current == nullptr)
                     {
                         cout << setw(40) << " " << "Cannot find this class, please try again!" << endl;
+                        cout << setw(40) << " ";
                         system("pause"); 
                     }
                 }

@@ -1,10 +1,5 @@
 #include "class.h"
 using namespace std;
-	return res;
-}
-
-	return res;
-}
 
 bool checkExistClass(LinkedList<Class> ListClass, string check) {
 	Node<Class>* temp = ListClass.pHead;

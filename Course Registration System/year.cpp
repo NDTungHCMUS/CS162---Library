@@ -418,7 +418,7 @@ void semester(LinkedList<Year> &ListYear, Regis &reg)
         cout << setw(45) << ' ' << "-------------------------------------------" << endl;
         cout << setw(45) << " " << "| " << "5. Update a course information " << setw(9) << " " << "| " << endl;
         cout << setw(45) << ' ' << "-------------------------------------------" << endl;
-        cout << setw(45) << " " << "| " << "6. Delete a course " << setw(23) << " " << "| " << endl;
+        cout << setw(45) << " " << "| " << "6. Delete a course " << setw(21) << " " << "| " << endl;
         cout << setw(45) << ' ' << "-------------------------------------------" << endl;
         cout << setw(45) << " " << "| " << "7. Back to menu " << setw(24) << " " << "| " << endl;
         cout << setw(45) << ' ' << "-------------------------------------------" << endl;
@@ -462,6 +462,7 @@ void semester(LinkedList<Year> &ListYear, Regis &reg)
                 cout << setw(40) <<  " " << "<----List of current available course---->" << endl;
             }
             outputAllCourse(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
+            cout << endl;
             system("pause");
             break;
         }
@@ -480,6 +481,7 @@ void semester(LinkedList<Year> &ListYear, Regis &reg)
                 outputAllCourse(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
                 cout << "Input the index of the course you want to update: ";
                 cin >> ind;
+                system("cls");
                 updateIndex(ListYear.pTail->data.ListSemester.pTail->data.ListCourse, ind, &inputCourse);
                 system("pause");
             }
@@ -525,22 +527,22 @@ void student(int id, LinkedList<Year>& ListYear, Date &today, Regis &reg)
 {
     if (ListYear.pTail == nullptr)
     {
-        cout << setw(40) << " " << "Create year first!" << endl;
-        cout << setw(40) << " ";
+        cout << setw(45) << " " << "Create year first!" << endl;
+        cout << setw(45) << " ";
         system("pause");
         return;
     }
     if (ListYear.pTail->data.ListSemester.pTail== nullptr)
     {
-        cout << setw(40) << " " << "Create semester first!" << endl;
-        cout << setw(40) << " ";
+        cout << setw(45) << " " << "Create semester first!" << endl;
+        cout << setw(45) << " ";
         system("pause");
         return;
     }
     if (ListYear.pTail->data.ListSemester.pTail->data.ListCourse.pTail == nullptr)
     {
-        cout << setw(40) << " " << "0 course found! " << endl;
-        cout << setw(40) << " ";
+        cout << setw(45) << " " << "No course found! " << endl;
+        cout << setw(45) << " ";
         system("pause");
         return;
     }
@@ -550,8 +552,8 @@ void student(int id, LinkedList<Year>& ListYear, Date &today, Regis &reg)
     string ID = to_string(id);
     if (ListYear.pTail->data.Listclass.pHead == nullptr)
     {
-        cout << setw(40) << " " << "There is no class now, please try again later!\n";
-        cout << setw(40) << " ";
+        cout << setw(45) << " " << "There is no class now, please try again later!\n";
+        cout << setw(45) << " ";
         system("pause");
         return;
     }
@@ -567,8 +569,8 @@ void student(int id, LinkedList<Year>& ListYear, Date &today, Regis &reg)
 
     if (check1 == false)
     {
-        cout << setw(40) << " " << "Cannot find your information, please try again!\n";
-        cout << setw(40) << " ";
+        cout << setw(45) << " " << "Cannot find your information, please try again!\n";
+        cout << setw(45) << " ";
         system("pause");
         return;
     }
@@ -583,11 +585,11 @@ void student(int id, LinkedList<Year>& ListYear, Date &today, Regis &reg)
         cout << setw(45) << ' ' << "---------------------------------" << endl;
         cout << setw(45) << " " << "| " << "2. View list of enroll course" << " " << "|" << endl;
         cout << setw(45) << ' ' << "---------------------------------" << endl;
-        cout << setw(45) << " " << "| " << "3. Remove Course" << setw(16) << " " "| " << endl;
+        cout << setw(45) << " " << "| " << "3. Remove Course" << setw(16) << " " << "| " << endl;
         cout << setw(45) << ' ' << "---------------------------------" << endl;
-        cout << setw(45) << " " << "| " << "4. View your scoreboard" << setw(9) << " " "| " << endl;
+        cout << setw(45) << " " << "| " << "4. View your scoreboard" << setw(9) << " " << "| " << endl;
         cout << setw(45) << ' ' << "---------------------------------" << endl;
-        cout << setw(45) << " " << "| " << "5. Back" << setw(25) << " " "| " << endl;
+        cout << setw(45) << " " << "| " << "5. Back" << setw(25) << " " << "| " << endl;
         cout << setw(45) << ' ' << "---------------------------------" << endl;
         cout << setw(45) << "  " << "Input choice (0 - 5): ";
         cin >> choice;

@@ -33,8 +33,8 @@ Course inputCourse()
 // Pass in the outputCourse as a function parameter
 void outputCourse(Course c1)
 {
-    cout << left << setw(25) << c1.ID
-         << left << setw(25) << c1.CourseName
+    cout << left << setw(10) << c1.ID
+         << left << setw(40) << c1.CourseName
          << left << setw(25) << c1.TeacherName
          << left << setw(10) << c1.NumbOfCredits
          << left << setw(14) << (c1.s1.day + " - " + c1.s1.period)
@@ -45,8 +45,8 @@ void outputCourse(Course c1)
 void outputCourseMenu()
 {
     cout << left << setw(5) << "No"
-         << left << setw(25) << "Course ID"
-         << left << setw(25) << "Course Name"
+         << left << setw(10) << "Course ID"
+         << left << setw(40) << "Course Name"
          << left << setw(25) << "Lecturer"
          << left << setw(10) << "Credits"
          << left << setw(14) << "Session 1"
@@ -56,7 +56,9 @@ void outputCourseMenu()
 
 void outputAllCourse(LinkedList<Course> ListCourse)
 {
-    outputCourseMenu();
+    if (ListCourse.pHead != nullptr) {
+        outputCourseMenu();
+    }
     displayAll(ListCourse, &outputCourse);
 }
 
@@ -359,12 +361,12 @@ void viewEnrollCourse(Student s1)
     if (s1.ListCourseData.pHead == nullptr) cout << "This student hasn't enrolled course\n";
     else
     {
-        cout << setw(40) << " " << "All Enrolled Course by " << s1.FirstName << " " << s1.LastName << " are: \n";
-        Node<CourseData>* temp = s1.ListCourseData.pHead;
-        int i = 0;
+        cout << setw(40) << " " << "All Enrolled Courses by " << s1.FirstName << " " << s1.LastName << " are: \n";
+        Node<CourseData>* temp = s1.ListCourseData.pHead;   
+        int i = 1;
         for (temp; temp!=nullptr; temp=temp->pNext)
         {
-            cout << setw(45) << " " << i++ << " " << temp->data.CourseName << " (ID: " << temp->data.ID << ") " << endl;
+            cout << setw(50) << " " << i++ << ". " << temp->data.CourseName << " (ID: " << temp->data.ID << ") " << endl;
         }
     }
 }

@@ -169,7 +169,7 @@ void addIndex(LinkedList<T> &l1, T item, int index) {
 template <class T>
 void displayAll(LinkedList<T> l1, void(*outputItem)(T data)) {
     if (l1.pHead == NULL) {
-        cout << "Nothing to display";
+        cout << setw(50) << " " << "Nothing to display";
         return;
     }
     Node<T>* temp = l1.pHead;
@@ -210,7 +210,7 @@ void removeIndex(LinkedList<T> &l1, int index) {
         cout << "Empty list, nothing to remove." << endl;
         return;
     }
-    if (index >= length(l1) || index < 0) {
+    if (index > length(l1) || index < 0) {
         cout << "Invalid." << endl;
         return;
     }
@@ -278,11 +278,11 @@ template <class T>
 //index here represent the order of the element in the list, starting with 1, not 0
 void updateIndex(LinkedList<T>& l1, int index, T(*inputT)()) {
     if (index > length(l1)) {
-        cout << "Invalid choice." << endl;
+        cout << setw(40) << " " << "Invalid choice." << endl;
         return;
     }
     else if (l1.pHead == nullptr) {
-        cout << "List empty." << endl;
+        cout << setw(40) << " " << "List empty." << endl;
         return;
     }
     else {
@@ -293,7 +293,7 @@ void updateIndex(LinkedList<T>& l1, int index, T(*inputT)()) {
             ++count;
         }
         track->data = inputT();
-        cout << "Data modified !" << endl;
+        cout << setw(40) << " " << "Data modified !" << endl;
         return;
     }
 }
