@@ -86,7 +86,6 @@ void add(LinkedList<T> &l1, T item) {
     }
     l1.pTail->pNext = node;
     l1.pTail = l1.pTail->pNext;
-    cout << "Add successfully" << endl;
 }
 
 // add element before the list
@@ -261,12 +260,12 @@ void addList(LinkedList<T> &l1, T(*inputItem)()) {
         return;
     }
     else if (choice == '2') {
-        cout << "Quit inputing" << endl;
+        cout << setw(40) << " " << "Quit inputing" << endl;
         return;
     }
     else {
-        cout << "Invalid, try another choice." << endl;
-        system("pause");
+        cout << setw(40) << " " << "Invalid, try another choice." << endl;
+        cout << setw(40) << " "; system("pause");
         system("cls");
         addList(l1, inputItem);
         return;
