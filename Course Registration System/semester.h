@@ -8,4 +8,3 @@ struct Semester {
 	Date endDate;
 	LinkedList<Course> ListCourse;
 };
-

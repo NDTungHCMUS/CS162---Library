@@ -5,19 +5,19 @@ using namespace std;
 Student AddStudent()
 {
     Student a;
-    cout << "Student No: ";
+    cout << setw(45) << " " << "Student No: ";
     cin >> a.No;
-    cout << "Student ID: ";
+    cout << setw(45) << " " << "Student ID: ";
     cin >> a.StudentID;
-    cout << "Student First Name: ";
+    cout << setw(45) << " " << "Student First Name: ";
     cin >> a.FirstName;
-    cout << "Student Last Name: ";
+    cout << setw(45) << " " << "Student Last Name: ";
     cin >> a.LastName;
-    cout << "Student Gender (1 is Male, 2 is Female): ";
+    cout << setw(45) << " " << "Student Gender (1 is Male, 2 is Female): ";
     cin >> a.Gender;
-    cout << "Student Date Of Birth (DD/MM/YYYY): ";
+    cout << setw(45) << " " << "Student Date Of Birth (DD/MM/YYYY): ";
     cin >> a.dob.day >> a.dob.month >> a.dob.year;
-    cout << "Student Social ID: ";
+    cout << setw(45) << " " << "Student Social ID: ";
     cin >> a.SocialID;
     return a;
 }
@@ -144,16 +144,16 @@ Node<Student> *findStudent(LinkedList<Student> ListStudent, int StudentID, bool 
     cout << "1         " <<  setw(15) << left << s1.StudentID
          << left << setw(14) << s1.LastName
          << left << setw(14) << s1.FirstName
-         << left << setw(12) << ((s1.Gender == 1) ? "Male" : "Famale")
+         << left << setw(12) << ((s1.Gender == 1) ? "Male" : "Female")
          << ((s1.dob.day < 10) ? "0" : "") << s1.dob.day << "/"
          << ((s1.dob.month < 10) ? "0" : "") << s1.dob.month << "/"
          << left << setw(10) << s1.dob.year
          << left << setw(25) << s1.SocialID
          << endl;
-    cout << "Is this the right student?" << endl;
-    cout << "1.YES" << endl;
-    cout << "2.NO" << endl;
-    cout << "Your choice: ";
+    cout << setw(40) << " " << "Is this the right student?" << endl;
+    cout << setw(40) << " " << "1.YES" << endl;
+    cout << setw(40) << " " << "2.NO" << endl;
+    cout << setw(40) << " " << "Your choice: ";
     cin >> choice;
     if (choice == 1)
     {
@@ -162,7 +162,7 @@ Node<Student> *findStudent(LinkedList<Student> ListStudent, int StudentID, bool 
     else
     {
         int ID;
-        cout << "Type in Student ID: ";
+        cout << setw(40) << " " << "Type in Student ID: ";
         cin >> ID;
         findStudent(ListStudent, ID,check);
     }

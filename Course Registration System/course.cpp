@@ -112,10 +112,10 @@ void enrollCourse(LinkedList<Course> &ListCourse, Node<Student> *a, Date &today,
     system("cls");
     if (compareDate(reg.start,today) == true && compareDate(today,reg.end) == true )
     {
-        cout << setw(40) << " " << "Choose the option: " << endl;
-        cout << setw(40) << " " << "1. Enroll Course" << endl;
-        cout << setw(40) << " " << "2. Exit" << endl;
-        cout << setw(40) << " ";
+        cout << setw(50) << " " << "Choose the option: " << endl;
+        cout << setw(50) << " " << "1. Enroll Course" << endl;
+        cout << setw(50) << " " << "2. Exit" << endl;
+        cout << setw(50) << " " << "Your choice: ";
         int numb;
         cin >> numb;
         if (numb == 1)
@@ -359,11 +359,12 @@ void viewEnrollCourse(Student s1)
     if (s1.ListCourseData.pHead == nullptr) cout << "This student hasn't enrolled course\n";
     else
     {
-        cout << "All Enrolled Course by " << s1.FirstName << " " << s1.LastName << " are: \n";
+        cout << setw(40) << " " << "All Enrolled Course by " << s1.FirstName << " " << s1.LastName << " are: \n";
         Node<CourseData>* temp = s1.ListCourseData.pHead;
+        int i = 0;
         for (temp; temp!=nullptr; temp=temp->pNext)
         {
-            cout << temp->data.CourseName << " (" << temp->data.ID << ") " << endl;
+            cout << setw(45) << " " << i++ << " " << temp->data.CourseName << " (ID: " << temp->data.ID << ") " << endl;
         }
     }
 }
@@ -386,7 +387,7 @@ void removeCourseFromEnrollList(Node<Student> *s1)
     {
         system("cls");
         viewEnrollCourse(s1->data);
-        cout << "Input the Course ID you want to remove: ";
+        cout << setw(40) << " " << "Input the Course ID you want to remove: ";
         string num;
         cin >> num;
         Node <CourseData>* temp = s1->data.ListCourseData.pHead;
@@ -421,8 +422,8 @@ void removeCourseFromEnrollList(Node<Student> *s1)
                 pre = pre->pNext;
             }
         }
-        cout << "List of CourseData after removing: " << endl;
         viewEnrollCourse(s1->data);
+        cout << setw(40) << " ";
         system("pause");
     }
     if (choose == 2)

@@ -513,7 +513,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                     {
                         system("cls");
                         string classcheck;
-                        cout << setw(40) << " " << "Type in class name: ";
+                        cout << setw(45) << " " << "Type in class name: ";
                         cin.ignore(1, '\n');
                         getline(cin, classcheck);
                         LinkedList<Class> track = ListYear.pTail->data.Listclass;
@@ -544,10 +544,9 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                     else {
                         system("cls");
                         string className;
-                        cout << /*setw(40) << " " <<*/"Type in class's name: ";
+                        cout << setw(45) << " " << "Type in class's name: ";
                         getline(cin >> ws, className);
                         LinkedList<Student> s;
-                        // ListYear.pHead->data.Listclass.pHead->data.listOfStudents
 
                         Node<Class>* current = ListYear.pHead->data.Listclass.pHead;
                         bool check = false;
@@ -581,6 +580,8 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                         }
                         //   outputAllStudent(s);
                         //Node<Class> *current = ListYear.pHead->data.Listclass.pHead;
+                        cout << setw(45) << " " << "Imported successfully." << endl;
+                        cout << setw(45) << " ";
                         system("pause");
                     }
                 }
@@ -605,8 +606,10 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 }
                 else if (temp == 7)
                 {
+                    system("cls");
                     string classnow;
-                    cout << "Please enter the class name (ex: 20CTT1...)" << endl;
+                    cout << setw(40) << " " << "Please enter the class name (ex: 21CTT1...)" << endl;
+                    cout << setw(40) << " " << "Name: ";
                     cin >> classnow;
                     Node<Class> *current = ListYear.pHead->data.Listclass.pHead;
                     for (; current != nullptr; current = current->pNext)
@@ -621,8 +624,8 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                     }
                     if (current == nullptr)
                     {
-                        cout << "Can not find this class, please try again!"<<endl;
-                        system("pause");
+                        cout << setw(40) << " " << "Cannot find this class, please try again!" << endl;
+                        system("pause"); 
                     }
                 }
                 else if (temp == 8)
@@ -631,21 +634,14 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                     {
                         cout << setw(45) << ' ' << "Create a school year first" << endl;
                         cout << setw(45) << ' ';
-<<<<<<< HEAD
-                        cout << setw(45) << " " << "Create year first!" << endl;
-=======
->>>>>>> fbcd82cc9f7c96f63d1974231a2032553f6aa7fc
                         system("pause");
                         continue;
                     }
                     if (ListYear.pTail->data.ListSemester.pTail == nullptr)
                     {
+                        system("cls");
                         cout << setw(45) << ' ' << "Create semester first!" << endl;
                         cout << setw(45) << " ";
-<<<<<<< HEAD
-                        cout << setw(45) << " " << "Create semester first!" << endl;
-=======
->>>>>>> fbcd82cc9f7c96f63d1974231a2032553f6aa7fc
                         system("pause");
                         continue;
                     }
@@ -653,7 +649,6 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                     {
                         cout << setw(45) << ' ' << "There is no course in this semester!" << endl;
                         cout << setw(45) << " ";
-                        cout << setw(45) << " " << "There is no course in this semester!" << endl;
                         system("pause");
                         continue;
                     }

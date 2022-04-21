@@ -6,13 +6,10 @@ Class inputClass() {
 	cin.ignore(1000, '\n');
 	cout << setw(40) << " " << "Input classcode (e.g: 21CTT1): ";
 	getline(cin, res.classname, '\n');
-	//while (checkExistClass(ListClass, res.classname)) {
-	//	cout << setw(40) << " " << "Class already exist." << endl;
-	//	cout << setw(40) << " " << "Please input another classcode: ";
-	//	getline(cin, res.classname, '\n');
-	//}
-	cout << setw(40) << " " << "Added Successfully.";
-	return res;
+	cout << setw(40) << " " << "Added Successfully." << endl;
+	cout << setw(40) << " ";
+	system("pause");
+	return res; 
 }
 
 bool checkExistClass(LinkedList<Class> ListClass, string check) {
@@ -33,7 +30,7 @@ void outputListClass(LinkedList <Class> ListClass) {
 	if (ListClass.pHead == nullptr) cout << setw(45) << " " << "No class here. " << endl << setw(45) << " ";
 	else {
 		system("cls");
-		cout <<  " " << "All Class Name showed below: " << endl;
+		cout << setw(40) <<  " " << "All Class Name showed below: " << endl;
 		displayAll(ListClass, &outputClass);
 	}
 }
