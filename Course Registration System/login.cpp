@@ -808,6 +808,34 @@ MON
 S3
 TUE
 S4
+
+1
+CS163
+data structure
+Dinh Ba Tien
+4
+MON
+S1
+TUE
+S2
+1
+MATH1
+linear algeobra
+Nguyen Huu Anh
+4
+MON
+S3
+TUE
+S4
+1
+MATH2
+caculus2
+Nguyen Huu Anh
+4
+THU
+S3
+SAT
+S4
 2
 
 7
@@ -818,5 +846,6 @@ S4
 0
 2
 1
+
 
 */

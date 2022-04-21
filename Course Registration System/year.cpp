@@ -216,9 +216,10 @@ void viewScoreBoardOfClass(LinkedList <Class>& ListClass, LinkedList<Course>& Li
         cout << "\nThere is no class with this name, please try again!";
         return;
     }
-
+    cout << endl;
     Node<Student>* NodeStudent = NodeClass->data.listOfStudents.pHead;
     cout << "---------------------------------- Score Board of class " << clName << " ----------------------------------------\n";
+    cout << endl;
     outputScoreBoardOfClassMenu(ListCourse);
     int noOfStudent = 0;
     for (; NodeStudent != nullptr; NodeStudent = NodeStudent->pNext)
@@ -292,52 +293,86 @@ void EndofSemester(LinkedList<Year> ListYear)
         system("pause");
         return;
     }
-    int tmp;
-    cout << "1. Export a list of students in a course to a CSV file" << endl;
-    cout << "2. Import the scoreboard of a course." << endl;
-    cout << "3. View the scoreboard of a course." << endl;
-    cout << "4. Update a student result." << endl;
-    cout << "5. View the scoreboard of a class" << endl;
-    cout << "6. Back" << endl;
-    cin >> tmp;
-    if (tmp == 6)
+    int tmp = 1;
+    while(1)
     {
-        return;
-    }
-    if(tmp == 1)
-    {
-        cout << "Please choose the course you want (from 1) :\n";
-        outputAllCourse(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
-        int num;
-        cin >> num;
-        Course a;
-        findIndex(ListYear.pTail->data.ListSemester.pTail->data.ListCourse, num, a);
-        ofstream fout;
-        string coursename = a.CourseName + ".CSV";
-        fout.open(coursename);
-        outputListFile(a.EnrollStudentList,fout,outputStudentFile);
-        fout.close();
-        system("pause");
-    }
-    if (tmp == 2)
-    {
-        importScoreboard(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
-        system("pause");
-    }
-    if (tmp == 3)
-    {
-        viewScoreBoardOfCourse(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
-        system("pause");
-    }
-    if (tmp == 4)
-    {
-        updateAStudent(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
-        system("pause");
-    }
-    if (tmp == 5)
-    {
-        viewScoreBoardOfClass(ListYear.pTail->data.Listclass,ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
-        system("pause");
+        system("cls");
+        cout << setw(45) <<' '<<"<--------------End of semester functions---------------->" << endl;
+        cout << endl;
+        cout << setw(45) << ' ' << "---------------------------------------------------------" << endl;
+        cout << setw(45) << " " << "| " << "1. Export a list of students in a course to a CSV file|"<< endl;
+        cout << setw(45) << ' ' << "---------------------------------------------------------" << endl;
+        cout << setw(45) << " " << "| " << "2. Import the scoreboard of a course.                 |"<< endl;
+        cout << setw(45) << ' ' << "---------------------------------------------------------" << endl;
+        cout << setw(45) << " " << "| " << "3. View the scoreboard of a course.                   |"<< endl;
+        cout << setw(45) << ' ' << "---------------------------------------------------------" << endl;
+        cout << setw(45) << " " << "| " << "4. Update a student result.                           |"<< endl;
+        cout << setw(45) << ' ' << "---------------------------------------------------------" << endl;
+        cout << setw(45) << " " << "| " << "5. View the scoreboard of a class.                    |"<< endl;
+        cout << setw(45) << ' ' << "---------------------------------------------------------" << endl;
+        cout << setw(45) << " " << "| " << "6. Back                                               |"<< endl;
+        cout << setw(45) << ' ' << "---------------------------------------------------------" << endl;
+        cout << setw(45) << ' ' <<  "Your choice: ";
+        cin >> tmp;
+
+        if(tmp == 1)
+        {
+            outputAllCourse(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
+            cout << endl;
+            cout << "Please choose the course you want (from 1) :";
+            int num;
+            cin >> num;
+            cout << endl;
+            Course a;
+            findIndex(ListYear.pTail->data.ListSemester.pTail->data.ListCourse, num, a);
+            ofstream fout;
+            string coursename = a.CourseName + ".CSV";
+            fout.open(coursename);
+            outputListFile(a.EnrollStudentList,fout,outputStudentFile);
+            fout.close();
+            cout << endl;
+            cout <<setw(40) << " ";
+            system("pause");
+        }
+        else if (tmp == 2)
+        {
+            importScoreboard(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
+            cout << endl;
+            cout <<setw(40) << " ";
+            system("pause");
+        }
+        else if (tmp == 3)
+        {
+            viewScoreBoardOfCourse(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
+            cout << endl;
+            cout <<setw(40) << " ";
+            system("pause");
+        }
+        else if (tmp == 4)
+        {
+            updateAStudent(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
+            cout << endl;
+            cout <<setw(40) << " ";
+            system("pause");
+        }
+        else if (tmp == 5)
+        {
+            viewScoreBoardOfClass(ListYear.pTail->data.Listclass,ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
+            cout << endl;
+            cout <<setw(40) << " ";
+            system("pause");
+        }
+        else if (tmp == 6)
+        {
+            return;
+        }
+        else
+        {
+            cout <<setw(40) << " " << "Invalid choice, please try again" << endl;
+            cout <<setw(40) << " ";
+            system("pause");
+            break;
+        }
     }
 
 }
@@ -473,8 +508,9 @@ void semester(LinkedList<Year> &ListYear, Regis &reg)
         }
         default:
         {
-            cout << "Invalid choice, please try again" << endl;
-            system("pauese");
+            cout <<setw(40) << " " << "Invalid choice, please try again" << endl;
+            cout <<setw(40) << " ";
+            system("pause");
             break;
         }
         }
