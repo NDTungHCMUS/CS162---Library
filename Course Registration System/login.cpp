@@ -484,14 +484,38 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 }
                 else if (temp == 2)
                 {
-                    if (ListYear.pTail == nullptr) {
+                    if (ListYear.pTail == nullptr)
+                    {
                         cout << setw(45) << ' ' << "Create year first! ";
                         cout << endl << setw(45) << ' ';
                         system("pause");
                     }
-                    else {
+                    else
+                    {
+                        bool checkDupClass = false;
                         system("cls");
-                        addList(ListYear.pTail->data.Listclass, inputClass);
+                        Class res;
+                        cin.ignore(1000, '\n');
+                        cout << setw(40) << " " << "Input classcode (e.g: 21CTT1): ";
+                        getline(cin, res.classname, '\n');
+                        for (Node<Class>* cur = ListYear.pTail->data.Listclass.pHead; cur != nullptr; cur = cur->pNext)
+                        {
+                            if (cur->data.classname == res.classname)
+                            {
+                                checkDupClass = true;
+                                cout << setw(40) << " " << "Class " << res.classname << " already exist!";
+                                cout << endl << setw(40) << " ";
+                                system("pause");
+                                break;
+                            }
+                        }
+                        if (checkDupClass == false)
+                        {
+                            cout << setw(40) << " " << "Added Successfully.\n";
+                            add(ListYear.pTail->data.Listclass,res);
+                            cout << setw(40) << " ";
+                            system("pause");
+                        }
                     }
                 }
                 else if (temp == 3)
@@ -504,7 +528,8 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                         system("pause");
                         continue;
                     }
-                    if (ListYear.pTail->data.Listclass.pTail == nullptr) {
+                    if (ListYear.pTail->data.Listclass.pTail == nullptr)
+                    {
                         cout << setw(45) << " " << "No class here. " << endl;
                         cout << setw(45) << " ";
                         system("pause");
@@ -529,19 +554,22 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 }
                 else if (temp == 4)
                 {
-                    if (ListYear.pTail == NULL) {
+                    if (ListYear.pTail == NULL)
+                    {
                         cout << setw(45) << ' ' << "Create a school year first" << endl;
                         cout << setw(45) << ' ';
                         system("pause");
                         continue;
                     }
-                    if (ListYear.pTail->data.Listclass.pTail == nullptr) {
+                    if (ListYear.pTail->data.Listclass.pTail == nullptr)
+                    {
                         cout << setw(45) << ' ' << "No class here. " << endl;
                         cout << setw(45) << ' ';
                         system("pause");
                         continue;
                     }
-                    else {
+                    else
+                    {
                         system("cls");
                         string className;
                         cout << /*setw(40) << " " <<*/"Type in class's name: ";
@@ -631,10 +659,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                     {
                         cout << setw(45) << ' ' << "Create a school year first" << endl;
                         cout << setw(45) << ' ';
-<<<<<<< HEAD
                         cout << setw(45) << " " << "Create year first!" << endl;
-=======
->>>>>>> fbcd82cc9f7c96f63d1974231a2032553f6aa7fc
                         system("pause");
                         continue;
                     }
@@ -642,10 +667,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                     {
                         cout << setw(45) << ' ' << "Create semester first!" << endl;
                         cout << setw(45) << " ";
-<<<<<<< HEAD
                         cout << setw(45) << " " << "Create semester first!" << endl;
-=======
->>>>>>> fbcd82cc9f7c96f63d1974231a2032553f6aa7fc
                         system("pause");
                         continue;
                     }

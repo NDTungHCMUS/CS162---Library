@@ -456,12 +456,10 @@ void semester(LinkedList<Year> &ListYear, Regis &reg)
         case 4:
         {
             system("cls");
-<<<<<<< HEAD
             if (ListYear.pTail->data.ListSemester.pTail->data.ListCourse.pHead != nullptr) {
                 cout << setw(40) <<  " " << "<----List of current available course---->" << endl;
             }
-=======
->>>>>>> fbcd82cc9f7c96f63d1974231a2032553f6aa7fc
+
             cout << setw(40) <<  " " << "<----List of current available course---->" << endl;
             outputAllCourse(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
             system("pause");

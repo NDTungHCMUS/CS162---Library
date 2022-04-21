@@ -13,7 +13,6 @@ struct Class {
 };
 
 bool checkExistClass(LinkedList<Class> ListClass, string check);
-Class inputClass();
 void outputClass(Class c1);
 void outputListClass(LinkedList <Class> ListClass);
 void outputStuListFile(Class c1);
