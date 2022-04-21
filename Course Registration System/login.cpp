@@ -627,34 +627,25 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 {
                     if (ListYear.pTail == nullptr)
                     {
-<<<<<<< HEAD
                         cout << setw(45) << ' ' << "Create a school year first" << endl;
                         cout << setw(45) << ' ';
-=======
                         cout << setw(45) << " " << "Create year first!" << endl;
->>>>>>> bd36a19701c4178af9155da5e8adc9d2df5dc700
                         system("pause");
                         continue;
                     }
                     if (ListYear.pTail->data.ListSemester.pTail == nullptr)
                     {
-<<<<<<< HEAD
                         cout << setw(45) << ' ' << "Create semester first!" << endl;
                         cout << setw(45) << " ";
-=======
                         cout << setw(45) << " " << "Create semester first!" << endl;
->>>>>>> bd36a19701c4178af9155da5e8adc9d2df5dc700
                         system("pause");
                         continue;
                     }
                     if (ListYear.pTail->data.ListSemester.pTail->data.ListCourse.pTail == nullptr)
                     {
-<<<<<<< HEAD
                         cout << setw(45) << ' ' << "There is no course in this semester!" << endl;
                         cout << setw(45) << " ";
-=======
                         cout << setw(45) << " " << "There is no course in this semester!" << endl;
->>>>>>> bd36a19701c4178af9155da5e8adc9d2df5dc700
                         system("pause");
                         continue;
                     }

@@ -20,7 +20,7 @@ void CreateYear(LinkedList<Year>& yearList)
         yearList.pTail = yearList.pTail->pNext;
         yearList.pTail->data.yearStart = temp;
     }
-    cout << setw(40) << " " << "Added successfully. ";
+    cout << setw(40) << " " << "Added successfully. " << endl;
 }
 
 Semester inputSemester(Year y1)
@@ -421,13 +421,10 @@ void semester(LinkedList<Year> &ListYear, Regis &reg)
         case 4:
         {
             system("cls");
-<<<<<<< HEAD
             if (ListYear.pTail->data.ListSemester.pTail->data.ListCourse.pHead != nullptr) {
                 cout << setw(40) <<  " " << "<----List of current available course---->" << endl;
             }
-=======
             cout << setw(40) <<  " " << "<----List of current available course---->" << endl;
->>>>>>> bd36a19701c4178af9155da5e8adc9d2df5dc700
             outputAllCourse(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
             system("pause");
             break;
@@ -508,7 +505,7 @@ void student(int id, LinkedList<Year>& ListYear, Date &today, Regis &reg)
         return;
     }
     LinkedList <Course> ListCourse = ListYear.pTail->data.ListSemester.pTail->data.ListCourse;
-    Node <Student> *NodeStudent;
+    Node <Student> *NodeStudent = nullptr;
     Student user;
     string ID = to_string(id);
     if (ListYear.pTail->data.Listclass.pHead == nullptr)

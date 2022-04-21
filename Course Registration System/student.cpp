@@ -118,7 +118,7 @@ void outputStudentFile(Student s1, ofstream &foutList)
 // It will return the Student that hold the Student ID
 Node<Student> *findStudent(LinkedList<Student> ListStudent, int StudentID, bool &check)
 {
-    Node<Student> *a;
+    Node<Student> *a = nullptr;
     int choice;
     Node<Student>* current = ListStudent.pHead;
     while (current != nullptr)

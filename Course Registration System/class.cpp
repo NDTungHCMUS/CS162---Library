@@ -6,6 +6,11 @@ Class inputClass() {
 	cin.ignore(1000, '\n');
 	cout << setw(40) << " " << "Input classcode (e.g: 21CTT1): ";
 	getline(cin, res.classname, '\n');
+	//while (checkExistClass(ListClass, res.classname)) {
+	//	cout << setw(40) << " " << "Class already exist." << endl;
+	//	cout << setw(40) << " " << "Please input another classcode: ";
+	//	getline(cin, res.classname, '\n');
+	//}
 	cout << setw(40) << " " << "Added Successfully.";
 	return res;
 }
