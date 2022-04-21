@@ -344,16 +344,22 @@ S4
 */
 //void removeCourseEnroll(LinkedList<Course> ListCourse)
 void outputStudentInCourse(LinkedList<Course>ListCourse)
-{
-    cout << "Type the Course No you want to view list of student (from 1): \n";
+{   
     outputAllCourse(ListCourse);
+    cout << setw(45) << " " << "Type the Course No(from 1) : ";
     int num;
     cin >> num;
     Course c1;
     findIndex(ListCourse, num, c1);
-    system("cls");
-    cout << "All students in course " << c1.CourseName << " are: \n";
-    displayAll(c1.EnrollStudentList, &outputStudent);
+    if (c1.EnrollStudentList.pHead == nullptr) {
+        cout << setw(45) << " " << "No student in this course" << endl;
+        cout << setw(45) << " ";
+    }
+    else {
+        system("cls");
+        cout << "All students in course " << c1.CourseName << " are: \n";
+        displayAll(c1.EnrollStudentList, &outputStudent);
+    }
 }
 
 void viewEnrollCourse(Student s1)

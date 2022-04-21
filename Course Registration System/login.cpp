@@ -723,7 +723,15 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                         system("pause");
                         continue;
                     }
+                    if (ListYear.pTail->data.ListSemester.pTail->data.ListCourse.pTail == nullptr)
+                    {
+                        cout << setw(45) << ' ' << "There is no course in this semester!" << endl;
+                        cout << setw(45) << " ";
+                        system("pause");
+                        continue;
+                    }
                     else {
+                        system("cls");
                         outputStudentInCourse(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
                         system("pause");
                     }
