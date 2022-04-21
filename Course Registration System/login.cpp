@@ -396,7 +396,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 cout << setw(45) <<' '<<"-----------------------------------------" << endl;
                 cout << setw(45) <<" "<< "| "<< "4. Import student from CSV file" << setw(7) <<" " << "| "<< endl;
                 cout << setw(45) <<' '<<"-----------------------------------------" << endl;
-                cout << setw(45) <<" "<< "| "<< "5. Semester" << setw(29) <<" " "| "<< endl;
+                cout << setw(45) <<" "<< "| "<< "5. Semester" << setw(29) <<" " << "| "<< endl;
                 cout << setw(45) <<' '<<"-----------------------------------------" << endl;
                 cout << setw(45) <<" "<< "| "<< "6. View List of class" << setw(17) <<" " << "| "<< endl;
                 cout << setw(45) <<' '<<"-----------------------------------------" << endl;
@@ -481,7 +481,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                     }
                     if (check == false)
                     {
-                        cout << "Cannot find this class, please try again!" << endl;
+                        cout << setw(45) << " " << "Cannot find this class, please try again!" << endl;
                         system("pause");
                         continue;
                     }
@@ -544,19 +544,19 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 {
                     if (ListYear.pTail == nullptr)
                     {
-                        cout << "Create year first!" << endl;
+                        cout << setw(45) << " " << "Create year first!" << endl;
                         system("pause");
                         continue;
                     }
                     if (ListYear.pTail->data.ListSemester.pTail == nullptr)
                     {
-                        cout << "Create semester first!" << endl;
+                        cout << setw(45) << " " << "Create semester first!" << endl;
                         system("pause");
                         continue;
                     }
                     if (ListYear.pTail->data.ListSemester.pTail->data.ListCourse.pTail == nullptr)
                     {
-                        cout << "There is no course in this semester!" << endl;
+                        cout << setw(45) << " " << "There is no course in this semester!" << endl;
                         system("pause");
                         continue;
                     }
@@ -577,7 +577,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 }
                 else
                 {
-                    cout << "Invalid input, please try again!" << endl;
+                    cout << setw(45) << " " << "Invalid input, please try again!" << endl;
                     system("pause");
                 }
             }
