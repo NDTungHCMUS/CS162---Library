@@ -39,7 +39,7 @@ void login(LinkedList<Year> &ListYear)
 
         cout << setw(40) << " " << "WELCOME TO OUR COURSE REGISTRATION SYSTEM" << endl;
         cout << setw(45) << " " << "------------------------------" << endl;
-        cout << setw(45) << " " << "| " << "1. Student" << setw(18) << " "  "|" << endl;
+        cout << setw(45) << " " << "| " << "1. Student" << setw(18) << " " <<  "|" << endl;
         cout << setw(45) << " " << "------------------------------" << endl;
         cout << setw(45) << " " << "| " << "2. Staff member" << setw(12) << " " << "|" << endl;
         cout << setw(45) << " " << "------------------------------" << endl;
@@ -58,7 +58,7 @@ void login(LinkedList<Year> &ListYear)
 
                 cout << setw(53) << " " << "** Student  **" << endl;
                 cout << setw(45) << " " << "------------------------------" << endl;
-                cout << setw(45) << " " << "| " << "1. Register" << setw(17) << " "  "|" << endl;
+                cout << setw(45) << " " << "| " << "1. Register" << setw(17) << " " << "|" << endl;
                 cout << setw(45) << " " << "------------------------------" << endl;
                 cout << setw(45) << " " << "| " << "2. Login" << setw(19) << " " << "|" << endl;
                 cout << setw(45) << " " << "------------------------------" << endl;
@@ -510,6 +510,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                     if (ListYear.pTail == NULL)
                     {
                         cout << setw(45) << " " << "Create a school year first" << endl;
+                        cout << setw(45) << " ";
                         system("pause");
                     }
                     else
