@@ -188,8 +188,9 @@ void importScoreboard(LinkedList<Course> &ListCourse)
     {
         a = a->pNext;
     }
+    string filename = a->data.ID + "scoreboard.txt";
     ifstream FileScore;
-    FileScore.open("scoreboard.txt");
+    FileScore.open(filename);
     if (FileScore)
     {
         cout << setw(40) << " " << "Importing successful!\n";

@@ -4,19 +4,19 @@ using namespace std;
 
 Student AddStudent() {
 	Student a;
-	cout << "Student No: ";
+	cout << setw(40) << " " << "Student No: ";
 	cin >> a.No;
-	cout << "Student ID: ";
+	cout << setw(40) << " " << "Student ID: ";
 	cin >> a.StudentID;
-	cout << "Student First Name: ";
+	cout << setw(40) << " " << "Student First Name: ";
 	cin >> a.FirstName;
-	cout << "Student Last Name: ";
+	cout << setw(40) << " " << "Student Last Name: ";
 	cin >> a.LastName;
-	cout << "Student Gender (1 is Male, 2 is Female): ";
+	cout << setw(40) << " " << "Student Gender (1 is Male, 2 is Female): ";
 	cin >> a.Gender;
-	cout << "Student Date Of Birth (DD/MM/YYYY): ";
+	cout << setw(40) << " " << "Student Date Of Birth (DD/MM/YYYY): ";
 	cin >> a.dob.day >> a.dob.month >> a.dob.year;
-	cout << "Student Social ID: ";
+	cout << setw(40) << " " << "Student Social ID: ";
 	cin >> a.SocialID;
 	return a;
 }
@@ -140,17 +140,17 @@ Student findStudent(LinkedList<Student> ListStudent, int StudentID, bool &check)
 		<< left << setw(10) << s1.dob.year
 		<< left << setw(25) << s1.SocialID
 		<< endl;
-	cout << "Is this the right student?" << endl;
-	cout << "1.YES" << endl;
-	cout << "2.NO" << endl;
-	cout << "Your choice: ";
+	cout << setw(40) << " " << "Is this the right student?" << endl;
+	cout << setw(40) << " " << "1.YES" << endl;
+	cout << setw(40) << " " << "2.NO" << endl;
+	cout << setw(40) << " " << "Your choice: ";
 	cin >> choice;
 	if (choice == 1) {
 		return a;
 	}
 	else {
 		int ID;
-		cout << "Type in Student ID: ";
+		cout << setw(40) << " " << "Type in Student ID: ";
 		cin >> ID;
 		findStudent(ListStudent, ID,check);
 	}
