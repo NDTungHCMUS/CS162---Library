@@ -282,7 +282,7 @@ void EndofSemester(LinkedList<Year> ListYear)
     }
     if (ListYear.pTail->data.ListSemester.pTail== nullptr)
     {
-        cout << "create semester first!" << endl;
+        cout << "Create semester first!" << endl;
         system("pause");
         return;
     }
@@ -383,7 +383,7 @@ void semester(LinkedList<Year> &ListYear, Regis &reg)
         cout << setw(45) << ' ' << "-------------------------------------------" << endl;
         cout << setw(45) << " " << "| " << "5. Update a course information " << setw(9) << " " << "| " << endl;
         cout << setw(45) << ' ' << "-------------------------------------------" << endl;
-        cout << setw(45) << " " << "| " << "6. Delete a course " << setw(23) << " " "| " << endl;
+        cout << setw(45) << " " << "| " << "6. Delete a course " << setw(23) << " " << "| " << endl;
         cout << setw(45) << ' ' << "-------------------------------------------" << endl;
         cout << setw(45) << " " << "| " << "7. Back to menu " << setw(24) << " " << "| " << endl;
         cout << setw(45) << ' ' << "-------------------------------------------" << endl;
@@ -397,6 +397,7 @@ void semester(LinkedList<Year> &ListYear, Regis &reg)
             cout << setw(40) << " " << "You are creating a semester in year " << ListYear.pTail->data.yearStart << "." << endl;
             Semester tmp = inputSemester(ListYear.pTail->data);
             add(ListYear.pTail->data.ListSemester, tmp);
+            cout << setw(40) << " " << "Done. ";
             system("pause");
             break;
         }
@@ -408,7 +409,8 @@ void semester(LinkedList<Year> &ListYear, Regis &reg)
             cin >> reg.start.day >> reg.start.month >> reg.start.year;
             cout << setw(40) << " " << "Input end date (day month year): ";
             cin >> reg.end.day >> reg.end.month >> reg.end.year;
-            cout << setw(40) << " " << "Create successfully." << endl;
+            cout << setw(40) << " " << "Create successfully. " << endl;
+            cout << setw(40) << " ";
             system("pause");
             break;
         }
