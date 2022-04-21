@@ -33,24 +33,24 @@ Course inputCourse()
 // Pass in the outputCourse as a function parameter
 void outputCourse(Course c1)
 {
-    cout << left << setw(15) << c1.ID
-         << left << setw(15) << c1.CourseName
-         << left << setw(20) << c1.TeacherName
-         << left << setw(15) << c1.NumbOfCredits
-         << left << setw(20) << (c1.s1.day + " - " + c1.s1.period)
-         << left << setw(20) << (c1.s2.day + " - " + c1.s2.period)
+    cout << left << setw(25) << c1.ID
+         << left << setw(25) << c1.CourseName
+         << left << setw(25) << c1.TeacherName
+         << left << setw(10) << c1.NumbOfCredits
+         << left << setw(14) << (c1.s1.day + " - " + c1.s1.period)
+         << left << setw(14) << (c1.s2.day + " - " + c1.s2.period)
          << endl;
 }
 
 void outputCourseMenu()
 {
     cout << left << setw(5) << "No"
-         << left << setw(15) << "Course ID"
-         << left << setw(15) << "Course Name"
-         << left << setw(20) << "Lecturer"
-         << left << setw(15) << "Credits"
-         << left << setw(20) << "Session 1"
-         << left << setw(20) << "Session 2"
+         << left << setw(25) << "Course ID"
+         << left << setw(25) << "Course Name"
+         << left << setw(25) << "Lecturer"
+         << left << setw(10) << "Credits"
+         << left << setw(14) << "Session 1"
+         << left << setw(14) << "Session 2"
          << endl;
 }
 
@@ -146,7 +146,7 @@ void enrollCourse(LinkedList<Course> &ListCourse, Student &a, Date & today, Regi
                         CourseData dtemp = addCourseData(temp);
                         add(a.ListCourseData, dtemp);
                         a.numCourse++;
-                        cout << setw(40) << "Enrolled Successfully.";
+                        cout << setw(40) << "Enrolled Successfully.\n";
                         system("pause");
                     }
                     else
@@ -193,6 +193,7 @@ void importScoreboard(LinkedList<Course> &ListCourse)
     if (FileScore)
     {
         cout << setw(40) << " " << "Importing successful!\n";
+        cout << a->data.NumbOfStudent << endl;
         for (int i = 0; i < a->data.NumbOfStudent; i++)
         {
             Score tmp;
@@ -216,30 +217,31 @@ void importScoreboard(LinkedList<Course> &ListCourse)
 }
 void outputScoreBoard(Score s1)
 {
-    cout << left << setw(15) << s1.ID
-         << left << setw(25) << s1.fullname
-         << left << setw(14) << s1.midtermMark
-         << left << setw(16) << s1.finalMark
-         << left << setw(16) << s1.otherMark
-         << left << setw(16) << s1.totalMark
+    cout << left << setw(20) << s1.ID
+         << left << setw(20) << s1.fullname
+         << left << setw(15) << s1.midtermMark
+         << left << setw(15) << s1.finalMark
+         << left << setw(13) << s1.otherMark
+         << left << setw(13) << s1.totalMark
          << '\n';
 }
 void outputScoreBoardMenu()
 {
 
+
     cout << "\n";
-    cout << left << setw(10) << "No"
-         << left << setw(15) << "ID"
-         << left << setw(14) << "Full Name"
-         << left << setw(14) << "Midterm Mark"
-         << left << setw(14) << "Final Mark"
-         << left << setw(14) << "Other Mark"
-         << left << setw(14) << "Total Mark"
+    cout << left << setw(5) << "No"
+         << left << setw(20) << "ID"
+         << left << setw(20) << "Full Name"
+         << left << setw(15) << "Midterm Mark"
+         << left << setw(15) << "Final Mark"
+         << left << setw(13) << "Other Mark"
+         << left << setw(13) << "Total Mark"
          << '\n';
 }
 void viewScoreBoardOfCourse(LinkedList<Course> &ListCourse)
 {
-    cout << setw(40) << " " << "Type the Course that you want to view score board (from 1): \n";
+    cout << setw(20) << " " << "Type the Course that you want to view score board (from 1): \n";
     outputAllCourse(ListCourse);
     int num;
     cin >> num;
@@ -324,23 +326,23 @@ S4
 //void removeCourseEnroll(LinkedList<Course> ListCourse)
 void outputStudentInCourse(LinkedList<Course>ListCourse)
 {
-    cout << setw(40) << " " << "Type the Course No you want to view list of student (from 1): ";
+    cout << "Type the Course No you want to view list of student (from 1): \n";
     outputAllCourse(ListCourse);
     int num;
     cin >> num;
     Course c1;
     findIndex(ListCourse, num, c1);
     system("cls");
-    cout << setw(40) << " " << "All students in course" << c1.CourseName << "are: ";
+    cout << "All students in course " << c1.CourseName << " are: \n";
     displayAll(c1.EnrollStudentList, &outputStudent);
 }
 
 void viewEnrollCourse(Student s1)
 {
-    if (s1.ListCourseData.pHead == nullptr) cout << "This student hasn't enrolled course";
+    if (s1.ListCourseData.pHead == nullptr) cout << "This student hasn't enrolled course\n";
     else
     {
-        cout << "All Enrolled Course by " << s1.FirstName << " " << s1.LastName << " are: ";
+        cout << "All Enrolled Course by " << s1.FirstName << " " << s1.LastName << " are: \n";
         Node<CourseData>* temp = s1.ListCourseData.pHead;
         for (temp; temp!=nullptr; temp=temp->pNext)
         {

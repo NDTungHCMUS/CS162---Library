@@ -161,19 +161,46 @@ void outputScoreBoardOfClassMenu(LinkedList<Course>& ListCourse)
 {
     cout << "\n";
 
-    cout << "No"
-         << "\t" << "StudentID"
-         << "\t" << "Student Name\t";
-    Node <Course>* NodeCourse = ListCourse.pTail;
+    cout << setw(10) << "No"
+         << setw(25) << "StudentID"
+         << setw(25) << "Student Name\t";
+    Node <Course>* NodeCourse = ListCourse.pHead;
     for (; NodeCourse != nullptr; NodeCourse = NodeCourse->pNext)
     {
-        cout << "\t" << NodeCourse->data.ID;
+        cout << setw(10) << NodeCourse->data.ID;
     }
-    cout << "\t" << "Semester GPA";
-    cout << "\t" << "Overall GPA\n";
+    cout << setw(20) << "Semester GPA";
+    cout << setw(20) << "Overall GPA\n";
     cout << "\n";
 }
-
+/*
+2021
+1
+CS162
+introduce to CS1
+Dinh Ba Tien
+4
+MON
+S1
+TUE
+S2
+1
+CM101
+comunication M
+Duong Nguyen Vu
+4
+MON
+S3
+TUE
+S4
+2
+1
+21CTT1
+1
+21CTN1
+2
+21CTT1
+*/
 void viewScoreBoardOfClass(LinkedList <Class>& ListClass, LinkedList<Course>& ListCourse)
 {
     string clName;
@@ -190,34 +217,35 @@ void viewScoreBoardOfClass(LinkedList <Class>& ListClass, LinkedList<Course>& Li
         return;
     }
 
-    Node<Student>* NodeStudent = NodeClass->data.listOfStudents.pTail;
+    Node<Student>* NodeStudent = NodeClass->data.listOfStudents.pHead;
     cout << "---------------------------------- Score Board of class " << clName << " ----------------------------------------\n";
     outputScoreBoardOfClassMenu(ListCourse);
     int noOfStudent = 0;
     for (; NodeStudent != nullptr; NodeStudent = NodeStudent->pNext)
     {
-        cout << ++noOfStudent << "\t" << NodeStudent->data.StudentID << "\t" << NodeStudent->data.FirstName << ' ' << NodeStudent->data.LastName;
+        string name =  NodeStudent->data.FirstName +" "+ NodeStudent->data.LastName;
+        cout << setw(10) << ++noOfStudent  << setw(25) << NodeStudent->data.StudentID << setw(25) << name;
         int countCourse = 0;
         float sumGPA = 0;
-        Node<Course>* NodeCourse = ListCourse.pTail;
+        Node<Course>* NodeCourse = ListCourse.pHead;
         for (; NodeCourse != nullptr; NodeCourse = NodeCourse->pNext)
         {
 
-            Node<Score>* NodeSore = NodeCourse->data.scoreBoard.pTail;
+            Node<Score>* NodeSore = NodeCourse->data.scoreBoard.pHead;
             for (; NodeSore != nullptr; NodeSore = NodeSore->pNext)
             {
                 if (NodeSore->data.ID == NodeStudent->data.StudentID)
                 {
-                    cout << "        " << NodeSore->data.totalMark;
+                    cout << setw(10) << NodeSore->data.totalMark;
                     countCourse++;
                     sumGPA += NodeSore->data.totalMark;
                     break;
                 }
             }
-            if (NodeSore == nullptr) cout << "        " << "X";
+            if (NodeSore == nullptr) cout << setw(10) << "X";
         }
         float GPAThisSemester = sumGPA / ((float)countCourse);
-        cout << "        " << fixed << setprecision(1) << GPAThisSemester;
+        cout << setw(20) << fixed << setprecision(1) << GPAThisSemester;
         float overallGPA;
         ifstream GPAfile;
         string classnameGPA = clName;
@@ -241,7 +269,7 @@ void viewScoreBoardOfClass(LinkedList <Class>& ListClass, LinkedList<Course>& Li
             }
         }
         else cout << "file " << classnameGPA << " cannot open !\n";
-        cout << "        " << fixed << setprecision(1) << overallGPA << '\n';
+        cout << setw(20) << fixed << setprecision(1) << overallGPA << '\n';
     }
 }
 void EndofSemester(LinkedList<Year> ListYear)
