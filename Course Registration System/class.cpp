@@ -26,9 +26,9 @@ void outputClass(Class c1) {
 
 void outputListClass(LinkedList <Class> ListClass) {
 	system("cls");
-	if (ListClass.pHead == nullptr) cout << "No class here";
+	if (ListClass.pHead == nullptr) cout << setw(45) << " " << "No class here";
 	else {
-		cout << "All Class Name showed below: " << endl;
+		cout << setw(45) <<  " " << "All Class Name showed below: " << endl;
 		displayAll(ListClass, &outputClass);
 	}
 }

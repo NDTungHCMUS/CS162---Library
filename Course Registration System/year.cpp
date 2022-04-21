@@ -20,7 +20,7 @@ void CreateYear(LinkedList<Year>& yearList)
         yearList.pTail = yearList.pTail->pNext;
         yearList.pTail->data.yearStart = temp;
     }
-    cout << setw(40) << " " << "Added successfully. ";
+    cout << setw(40) << " " << "Added successfully.\n";
 }
 
 Semester inputSemester(Year y1)
@@ -457,19 +457,22 @@ void student(int id, LinkedList<Year>& ListYear, Date &today, Regis &reg)
 {
     if (ListYear.pTail == nullptr)
     {
-        cout << "create year first!" << endl;
+        cout << setw(45) << " " << "Create year first!" << endl;
+        cout << setw(45) << " ";
         system("pause");
         return;
     }
     if (ListYear.pTail->data.ListSemester.pTail== nullptr)
     {
-        cout << "create semester first!" << endl;
+        cout << setw(45) << " " << "Create semester first!" << endl;
+        cout << setw(45) << " ";
         system("pause");
         return;
     }
     if (ListYear.pTail->data.ListSemester.pTail->data.ListCourse.pTail == nullptr)
     {
-        cout << "0 course found! " << endl;
+        cout << setw(45) << " " << "No course found" << endl;
+        cout << setw(45) << " ";
         system("pause");
         return;
     }
