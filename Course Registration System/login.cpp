@@ -45,13 +45,18 @@ void login(LinkedList<Year> &ListYear)
         cout << setw(45) << " " << "------------------------------" << endl;
         cout << setw(45) << " " << "| " << "3. Exit" << setw(20) << " " << "|" << endl;
         cout << setw(45) << " " << "------------------------------" << endl;
-        char x;
         cout << setw(45) << " " << "Input your choice (1 - 3): ";
-        cin >> x;
-        if (x == '1' || x == '2')
+        int x;
+        while (cin >> x && (x != 1 && x != 2 && x != 3)) {
+            cout << setw(45) << " " << "Invalid choice, please try again!" << endl;
+            cout << setw(45) << " "; system("pause");
+            cout << "\033[A\33[2K\r" << "\033[A\33[2K\r" << "\033[A\33[2K\r";
+            cout << setw(45) << " " << "Input your choice (1 - 3): ";
+        }
+        if (x == 1 || x == 2)
         {
             check = true;
-            if (x == '1')
+            if (x == 1)
             {
                 system("cls");
                 char t;
@@ -83,7 +88,7 @@ void login(LinkedList<Year> &ListYear)
                 }
                 else if (t == '3') login(ListYear);
             }
-            else if (x == '2')
+            else if (x == 2)
             {
                 system("cls");
 
@@ -121,7 +126,7 @@ void login(LinkedList<Year> &ListYear)
                 }
             }
         }
-        else if (x == '3')
+        else if (x == 3)
         {
             check = true;
             deleteListLogin(lhead);
