@@ -107,7 +107,7 @@ CourseData addCourseData(Course a)
     return b;
 }
 
-void enrollCourse(LinkedList<Course> &ListCourse, Student &a, Date & today, Regis &reg)
+void enrollCourse(LinkedList<Course> &ListCourse, Node<Student> *a, Date &today, Regis &reg)
 {
     system("cls");
     if (compareDate(reg.start,today) == true && compareDate(today,reg.end) == true )
@@ -120,7 +120,7 @@ void enrollCourse(LinkedList<Course> &ListCourse, Student &a, Date & today, Regi
         cin >> numb;
         if (numb == 1)
         {
-            if (a.numCourse == 5)
+            if (a->data.numCourse == 5)
             {
                 cout << setw(40) << " " << "Number of courses reached maximum" << endl;
                 return;
@@ -133,19 +133,19 @@ void enrollCourse(LinkedList<Course> &ListCourse, Student &a, Date & today, Regi
                 Course temp;
                 if (findIndex(ListCourse, numb, temp))
                 {
-                    if (checkAvailable(temp, a) && temp.NumbOfStudent < temp.MaxStudent)
+                    if (checkAvailable(temp, a->data) && temp.NumbOfStudent < temp.MaxStudent)
                     {
                         Node<Course>* current = ListCourse.pHead;
                         for (int i = 1; i < numb; ++i)
                         {
                             current = current->pNext;
                         }
-                        add(current->data.EnrollStudentList, a);
+                        add(current->data.EnrollStudentList, a->data);
                         current->data.NumbOfStudent++;
 
                         CourseData dtemp = addCourseData(temp);
-                        add(a.ListCourseData, dtemp);
-                        a.numCourse++;
+                        add(a->data.ListCourseData, dtemp);
+                        a->data.numCourse++;
                         cout << setw(40) << "Enrolled Successfully.\n";
                         system("pause");
                     }
