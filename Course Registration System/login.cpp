@@ -39,7 +39,7 @@ void login(LinkedList<Year> &ListYear)
 
         cout << setw(40) << " " << "WELCOME TO OUR COURSE REGISTRATION SYSTEM" << endl;
         cout << setw(45) << " " << "------------------------------" << endl;
-        cout << setw(45) << " " << "| " << "1. Student" << setw(18) << " " <<  "|" << endl;
+        cout << setw(45) << " " << "| " << "1. Student" << setw(17) << " " <<  "|" << endl;
         cout << setw(45) << " " << "------------------------------" << endl;
         cout << setw(45) << " " << "| " << "2. Staff member" << setw(12) << " " << "|" << endl;
         cout << setw(45) << " " << "------------------------------" << endl;
@@ -442,7 +442,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 cout << setw(45) <<' '<<"-----------------------------------------" << endl;
                 cout << setw(45) <<" "<< "| "<< "4. Import student from CSV file" << setw(7) <<" " << "| "<< endl;
                 cout << setw(45) <<' '<<"-----------------------------------------" << endl;
-                cout << setw(45) <<" "<< "| "<< "5. Semester" << setw(29) <<" " << "| "<< endl;
+                cout << setw(45) <<" "<< "| "<< "5. Semester" << setw(27) <<" " << "| "<< endl;
                 cout << setw(45) <<' '<<"-----------------------------------------" << endl;
                 cout << setw(45) <<" "<< "| "<< "6. View List of class" << setw(17) <<" " << "| "<< endl;
                 cout << setw(45) <<' '<<"-----------------------------------------" << endl;
@@ -483,21 +483,35 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                     system("pause");
                 }
                 else if (temp == 2)
-                {
-                    system("cls");
-                    addList(ListYear.pHead->data.Listclass, inputClass);
+                {   
+                    if (ListYear.pTail == nullptr) {
+                        cout << setw(45) << ' ' << "Create year first! ";
+                        cout << endl << setw(45) << ' ';
+                        system("pause");
+                    }
+                    else {
+                        system("cls");
+                        addList(ListYear.pTail->data.Listclass, inputClass);
+                    }
                 }
                 else if (temp == 3)
                 {
-                    system("cls");
+                    
                     if (ListYear.pTail == NULL)
                     {
                         cerr << setw(45) << " " << "No year to choose" << endl;
                         cout << setw(45) << " ";
                         system("pause");
+                        continue;
+                    }
+                    if (ListYear.pTail->data.Listclass.pTail == nullptr) {
+                        cout << setw(45) << " " << "No class here. " << endl;
+                        cout << setw(45) << " ";
+                        system("pause");
                     }
                     else
                     {
+                        system("cls");
                         string classcheck;
                         cout << setw(40) << " " << "Type in class name: ";
                         cin.ignore(1, '\n');
@@ -515,46 +529,60 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 }
                 else if (temp == 4)
                 {
-                    system("cls");
-                    string className;
-                    cout << /*setw(40) << " " <<*/"Type in class's name: ";
-                    getline(cin >> ws, className);
-                    LinkedList<Student> s;
-                    // ListYear.pHead->data.Listclass.pHead->data.listOfStudents
-
-                    Node<Class>* current = ListYear.pHead->data.Listclass.pHead;
-                    bool check = false;
-                    while (current != nullptr)
-                    {
-                        if (current->data.classname == className)
-                        {
-                            s = current->data.listOfStudents;
-                            check = true;
-                            break;
-                        }
-                        current = current->pNext;
-                    }
-                    if (check == false)
-                    {
-                        cout << setw(45) << " " << "Cannot find this class, please try again!" << endl;
+                    if (ListYear.pTail == NULL) {
+                        cout << setw(45) << ' ' << "Create a school year first" << endl;
+                        cout << setw(45) << ' ';
                         system("pause");
                         continue;
                     }
-                    string filename = className + "Student.csv";
-                    inputFile(s, inputStudentFile, filename);
-                    current = ListYear.pHead->data.Listclass.pHead;
-                    while (current != nullptr)
-                    {
-                        if (current->data.classname == className)
-                        {
-                            current->data.listOfStudents = s;
-                            break;
-                        }
-                        current = current->pNext;
+                    if (ListYear.pTail->data.Listclass.pTail == nullptr) {
+                        cout << setw(45) << ' ' << "No class here. " << endl;
+                        cout << setw(45) << ' ';
+                        system("pause");
+                        continue;
                     }
-                    //   outputAllStudent(s);
-                    //Node<Class> *current = ListYear.pHead->data.Listclass.pHead;
-                    system("pause");
+                    else {
+                        system("cls");
+                        string className;
+                        cout << /*setw(40) << " " <<*/"Type in class's name: ";
+                        getline(cin >> ws, className);
+                        LinkedList<Student> s;
+                        // ListYear.pHead->data.Listclass.pHead->data.listOfStudents
+
+                        Node<Class>* current = ListYear.pHead->data.Listclass.pHead;
+                        bool check = false;
+                        while (current != nullptr)
+                        {
+                            if (current->data.classname == className)
+                            {
+                                s = current->data.listOfStudents;
+                                check = true;
+                                break;
+                            }
+                            current = current->pNext;
+                        }
+                        if (check == false)
+                        {
+                            cout << setw(45) << " " << "Cannot find this class, please try again!" << endl;
+                            system("pause");
+                            continue;
+                        }
+                        string filename = className + "Student.csv";
+                        inputFile(s, inputStudentFile, filename);
+                        current = ListYear.pHead->data.Listclass.pHead;
+                        while (current != nullptr)
+                        {
+                            if (current->data.classname == className)
+                            {
+                                current->data.listOfStudents = s;
+                                break;
+                            }
+                            current = current->pNext;
+                        }
+                        //   outputAllStudent(s);
+                        //Node<Class> *current = ListYear.pHead->data.Listclass.pHead;
+                        system("pause");
+                    }                  
                 }
                 else if (temp == 5)
                 {
@@ -621,37 +649,26 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 {
                     if (ListYear.pTail == nullptr)
                     {
-<<<<<<< HEAD
                         cout << setw(45) << ' ' << "Create a school year first" << endl;
                         cout << setw(45) << ' ';
-=======
-                        cout << setw(45) << " " << "Create year first!" << endl;
->>>>>>> 5f0dbc5a066dc45f8261f0f9e00aa24db2f3643e
                         system("pause");
                         continue;
                     }
                     if (ListYear.pTail->data.ListSemester.pTail == nullptr)
                     {
-<<<<<<< HEAD
                         cout << setw(45) << ' ' << "Create semester first!" << endl;
                         cout << setw(45) << " ";
-=======
-                        cout << setw(45) << " " << "Create semester first!" << endl;
->>>>>>> 5f0dbc5a066dc45f8261f0f9e00aa24db2f3643e
                         system("pause");
                         continue;
                     }
                     if (ListYear.pTail->data.ListSemester.pTail->data.ListCourse.pTail == nullptr)
                     {
-<<<<<<< HEAD
                         cout << setw(45) << ' ' << "There is no course in this semester!" << endl;
                         cout << setw(45) << " ";
-=======
-                        cout << setw(45) << " " << "There is no course in this semester!" << endl;
->>>>>>> 5f0dbc5a066dc45f8261f0f9e00aa24db2f3643e
                         system("pause");
                         continue;
                     }
+                    system("cls");
                     outputAllCourse(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
                     system("pause");
                 }
