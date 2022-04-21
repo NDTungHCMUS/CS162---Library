@@ -20,7 +20,7 @@ void CreateYear(LinkedList<Year>& yearList)
         yearList.pTail = yearList.pTail->pNext;
         yearList.pTail->data.yearStart = temp;
     }
-    cout << setw(40) << " " << "Added successfully.\n";
+    cout << setw(40) << " " << "Added successfully. ";
 }
 
 Semester inputSemester(Year y1)
@@ -282,7 +282,7 @@ void EndofSemester(LinkedList<Year> ListYear)
     }
     if (ListYear.pTail->data.ListSemester.pTail== nullptr)
     {
-        cout << "Create semester first!" << endl;
+        cout << "create semester first!" << endl;
         system("pause");
         return;
     }
@@ -383,7 +383,7 @@ void semester(LinkedList<Year> &ListYear, Regis &reg)
         cout << setw(45) << ' ' << "-------------------------------------------" << endl;
         cout << setw(45) << " " << "| " << "5. Update a course information " << setw(9) << " " << "| " << endl;
         cout << setw(45) << ' ' << "-------------------------------------------" << endl;
-        cout << setw(45) << " " << "| " << "6. Delete a course " << setw(23) << " " << "| " << endl;
+        cout << setw(45) << " " << "| " << "6. Delete a course " << setw(23) << " " "| " << endl;
         cout << setw(45) << ' ' << "-------------------------------------------" << endl;
         cout << setw(45) << " " << "| " << "7. Back to menu " << setw(24) << " " << "| " << endl;
         cout << setw(45) << ' ' << "-------------------------------------------" << endl;
@@ -397,7 +397,6 @@ void semester(LinkedList<Year> &ListYear, Regis &reg)
             cout << setw(40) << " " << "You are creating a semester in year " << ListYear.pTail->data.yearStart << "." << endl;
             Semester tmp = inputSemester(ListYear.pTail->data);
             add(ListYear.pTail->data.ListSemester, tmp);
-            cout << setw(40) << " " << "Done. ";
             system("pause");
             break;
         }
@@ -409,8 +408,7 @@ void semester(LinkedList<Year> &ListYear, Regis &reg)
             cin >> reg.start.day >> reg.start.month >> reg.start.year;
             cout << setw(40) << " " << "Input end date (day month year): ";
             cin >> reg.end.day >> reg.end.month >> reg.end.year;
-            cout << setw(40) << " " << "Create successfully. " << endl;
-            cout << setw(40) << " ";
+            cout << setw(40) << " " << "Create successfully." << endl;
             system("pause");
             break;
         }
@@ -487,22 +485,19 @@ void student(int id, LinkedList<Year>& ListYear, Date &today, Regis &reg)
 {
     if (ListYear.pTail == nullptr)
     {
-        cout << setw(45) << " " << "Create year first!" << endl;
-        cout << setw(45) << " ";
+        cout << "create year first!" << endl;
         system("pause");
         return;
     }
     if (ListYear.pTail->data.ListSemester.pTail== nullptr)
     {
-        cout << setw(45) << " " << "Create semester first!" << endl;
-        cout << setw(45) << " ";
+        cout << "create semester first!" << endl;
         system("pause");
         return;
     }
     if (ListYear.pTail->data.ListSemester.pTail->data.ListCourse.pTail == nullptr)
     {
-        cout << setw(45) << " " << "No course found" << endl;
-        cout << setw(45) << " ";
+        cout << "0 course found! " << endl;
         system("pause");
         return;
     }
@@ -510,6 +505,12 @@ void student(int id, LinkedList<Year>& ListYear, Date &today, Regis &reg)
     Student user;
     string ID = to_string(id);
     //ListYear.pTail->data.ListSemester.pTail->data.ListCourse
+    if (ListYear.pTail->data.Listclass.pHead == nullptr)
+    {
+        cout << "There is no class now, please try again later!\n";;
+        system("pause");
+        return;
+    }
     Node <Class>* NodeClass = ListYear.pTail->data.Listclass.pHead;
     bool check1 = true;
     for (; NodeClass != nullptr; NodeClass = NodeClass->pNext)
