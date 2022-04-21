@@ -602,6 +602,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                         if (check == false)
                         {
                             cout << setw(45) << " " << "Cannot find this class, please try again!" << endl;
+                            cout << setw(45) << " ";
                             system("pause");
                             continue;
                         }
@@ -619,6 +620,11 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                         }
                         //   outputAllStudent(s);
                         //Node<Class> *current = ListYear.pHead->data.Listclass.pHead;
+                        if (s.pHead == nullptr) {
+                            cout << setw(45) << " ";
+                            system("pause");
+                            continue;
+                        }
                         cout << setw(45) << " " << "Imported successfully." << endl;
                         cout << setw(45) << " ";
                         system("pause");

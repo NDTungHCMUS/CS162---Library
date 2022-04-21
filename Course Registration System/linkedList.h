@@ -321,7 +321,7 @@ void inputFile(LinkedList<T> &TList, void(*inputTFile)(T &, string), string &fil
         }
     }
     else {
-        cout << "Can not open file." << endl;
+        cout << setw(45) << " " << "Can not open file." << endl;
     }
     file.close();
     TList.pHead = dummy.pNext;
