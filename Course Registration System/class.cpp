@@ -1,15 +1,9 @@
 #include "class.h"
 using namespace std;
+	return res;
+}
 
-Class inputClass() {
-	Class res;
-	cin.ignore(1000, '\n');
-	cout << setw(40) << " " << "Input classcode (e.g: 21CTT1): ";
-	getline(cin, res.classname, '\n');
-	cout << setw(40) << " " << "Added Successfully." << endl;
-	cout << setw(40) << " ";
-	system("pause");
-	return res; 
+	return res;
 }
 
 bool checkExistClass(LinkedList<Class> ListClass, string check) {
