@@ -277,19 +277,19 @@ void EndofSemester(LinkedList<Year> ListYear)
 {
     if (ListYear.pTail == nullptr)
     {
-        cout << setw(45) << " " << "Create year first!" << endl;
+        cout << setw(45) << " " << "Create year first!" << endl << setw(45) << " ";
         system("pause");
         return;
     }
     if (ListYear.pTail->data.ListSemester.pTail== nullptr)
     {
-        cout << setw(45) << " " << "Create semester first!" << endl;
+        cout << setw(45) << " " << "Create semester first!" << endl << setw(45) << " ";
         system("pause");
         return;
     }
     if (ListYear.pTail->data.ListSemester.pTail->data.ListCourse.pTail == nullptr)
     {
-        cout << setw(45) << " " << "0 course found! " << endl;
+        cout << setw(45) << " " << "0 course found! " << endl << setw(45) << " ";
         system("pause");
         return;
     }
