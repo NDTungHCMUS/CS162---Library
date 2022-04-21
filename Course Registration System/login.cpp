@@ -639,7 +639,6 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                     }
                     else {
                         outputListClass(ListYear.pTail->data.Listclass);
-                        cout << endl;
                         system("pause");
                     }
                 }
@@ -650,17 +649,17 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                         cout << setw(45) << ' ';
                         system("pause");
                         continue;
-                    }
- if (ListYear.pTail->data.Listclass.pTail == nullptr) {
+                   }
+                   if (ListYear.pTail->data.Listclass.pTail == nullptr) {
                         cout << setw(45) << ' ' << "No class here. " << endl;
                         cout << setw(45) << ' ';
                         system("pause");
                         continue;
-                    }
-                    else {
+                   }
+                   else {
                         system("cls");
                         string classnow;
-                        cout << "Please enter the class name (ex: 20CTT1...)" << endl;
+                        cout << setw(30) << " " << "Please enter the class name(ex : 20CTT1...) : ";
                         cin >> classnow;
                         Node<Class>* current = ListYear.pTail->data.Listclass.pHead;
                         for (; current != nullptr; current = current->pNext)
@@ -674,7 +673,8 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                         }
                         if (current == nullptr)
                         {
-                            cout << "Can not find this class, please try again!" << endl;
+                            cout << setw(30) << ' ' << "Can not find this class, please try again!" << endl;
+                            cout << setw(30) << ' ';
                             system("pause");
                         }
                     }                  
@@ -691,7 +691,6 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                     }
                     if (ListYear.pTail->data.ListSemester.pTail == nullptr)
                     {
-                        system("cls");
                         cout << setw(45) << ' ' << "Create semester first!" << endl;
                         cout << setw(45) << " ";
                         system("pause");

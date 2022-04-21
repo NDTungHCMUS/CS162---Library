@@ -169,7 +169,8 @@ void addIndex(LinkedList<T> &l1, T item, int index) {
 template <class T>
 void displayAll(LinkedList<T> l1, void(*outputItem)(T data)) {
     if (l1.pHead == NULL) {
-        cout << setw(50) << " " << "Nothing to display";
+        cout << setw(45) << " " << "Nothing to display";
+        cout << endl << setw(45) << " ";
         return;
     }
     Node<T>* temp = l1.pHead;

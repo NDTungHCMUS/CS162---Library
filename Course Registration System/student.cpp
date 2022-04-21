@@ -98,8 +98,14 @@ void displayStudentMenu()
 }
 void outputAllStudent(LinkedList<Student> ListStudent)
 {
-    displayStudentMenu();
-    displayAll(ListStudent, &outputStudent);
+    if (ListStudent.pHead == nullptr) {
+        cout << setw(30) << " " << "Nothing to display";
+        cout << endl << setw(30) << " ";
+    }
+    else {
+        displayStudentMenu();
+        displayAll(ListStudent, &outputStudent);
+    }
 }
 
 void outputStudentFile(Student s1, ofstream &foutList)
