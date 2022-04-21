@@ -227,10 +227,15 @@ void loginStudent(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &Lis
             cout << setw(45) << ' ' << "----------------------------" << endl;
             cout << setw(45) << " " << "| " << "3. Log out" << setw(14) << " " << " |" << endl;
             cout << setw(45) << ' ' << "----------------------------" << endl;
-            char x;
+            int x;
             cout << setw(45) << " " << "Input your choice (1 - 3): ";
-            cin >> x;
-            if (x == '1')
+            while (cin >> x && (x != 1 && x != 2 && x != 3)) {
+                cout << setw(45) << " " << "Invalid choice, please try again!" << endl;
+                cout << setw(45) << " "; system("pause");
+                cout << "\033[A\33[2K\r" << "\033[A\33[2K\r" << "\033[A\33[2K\r";
+                cout << setw(45) << " " << "Input your choice (1 - 3): ";
+            }
+            if (x == 1)
             {
                 system("cls");
                 cout << setw(47) << " " << "*** User account ***\n";
@@ -279,20 +284,14 @@ void loginStudent(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &Lis
                     continue;
                 }
             }
-            else if (x == '2')
+            else if (x == 2)
             {
                 student(id, ListYear, today, reg);
             }
-            else if (x == '3')
+            else if (x == 3)
             {
                 loginFile.close();
                 login(ListYear);
-            }
-            else
-            {
-                cout << setw(45) << " " << "Invalid input, please try again !" << endl;
-                cout << setw(45) << " ";
-                system("pause");
             }
         }
     }
@@ -331,10 +330,15 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
             cout << setw(45) << ' ' << "----------------------------" << endl;
             cout << setw(45) << " " << "| " << "3. Log out" << setw(14) << " " << " |" << endl;
             cout << setw(45) << ' ' << "----------------------------" << endl;
-            char x;
+            int x;
             cout << setw(45) << " " << "Input your choice (1 - 3): ";
-            cin >> x;
-            if (x == '1')
+            while (cin >> x && (x != 1 && x != 2 && x != 3)) {
+                cout << setw(45) << " " << "Invalid choice, please try again!" << endl;
+                cout << setw(45) << " "; system("pause");
+                cout << "\033[A\33[2K\r" << "\033[A\33[2K\r" << "\033[A\33[2K\r";
+                cout << setw(45) << " " << "Input your choice (1 - 3): ";
+            }
+            if (x == 1)
             {
                 system("cls");
                 cout << setw(47) << " " << "*** User account ***\n";
@@ -375,13 +379,8 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                         login(ListYear);
                     }
                 }
-                /*else {
-                    cout << setw(45) << " " << "Invalid input, please try again !" << endl;
-                    cout << setw(45) << " ";  system("pause");
-                    continue;
-                }*/
             }
-            else if (x == '2')
+            else if (x == 2)
             {
                 system("cls");
                 cout << setw(51) <<' '<< "***** Staff's Activities *****" << endl;
@@ -412,7 +411,12 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 cout << setw(45) << ' ' << "-----------------------------------------" << endl;
                 cout << setw(45) <<"  "<< "Input choice (0 - 11): ";
                 int temp;
-                cin >> temp;
+                while (cin >> temp && (temp < 0 || temp > 11)) {
+                    cout << setw(45) << " " << "Invalid choice, please try again!" << endl;
+                    cout << setw(45) << " "; system("pause");
+                    cout << "\033[A\33[2K\r" << "\033[A\33[2K\r" << "\033[A\33[2K\r";
+                    cout << setw(45) << " " << "Input your choice (1 - 3): ";
+                }
                 if (temp == 0)
                 {
                     system("cls");
@@ -576,22 +580,14 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 }
                 else
                 {
-                    cout << "Invalid input, please try again!" << endl;
+                    cout << setw(45) << " " << "Invalid input, please try again!" << endl;
                     system("pause");
                 }
             }
-            else if (x == '3')
+            else if (x == 3)
             {
                 deleteListLogin(lhead);
                 loginFile.close();
-                login(ListYear);
-            }
-            else
-            {
-                deleteListLogin(lhead);
-                loginFile.close();
-                cout << setw(45) << " " << "Invalid input, please try again !" << endl;
-                cout << setw(45) << " "; system("pause");
                 login(ListYear);
             }
         }
