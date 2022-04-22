@@ -418,6 +418,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 }
                 else if (tmp2 == 2)
                 {
+                    system("cls");
                     cout << setw(47) << " " << "*** User profile ***\n";
                     cout << setw(47) << ' ' << "------------";
                     for (int i = 0; i <= ID.size(); i++)
