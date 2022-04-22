@@ -364,7 +364,7 @@ void outputStudentInCourse(LinkedList<Course>ListCourse)
 
 void viewEnrollCourse(Student s1)
 {
-    if (s1.ListCourseData.pHead == nullptr) cout << "This student hasn't enrolled course\n";
+    if (s1.ListCourseData.pHead == nullptr) cout << "This student hasn't enrolled course" << endl;
     else
     {
         cout << setw(40) << " " << "All Enrolled Courses by " << s1.FirstName << " " << s1.LastName << " are: \n";
