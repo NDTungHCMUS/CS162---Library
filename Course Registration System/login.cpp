@@ -382,10 +382,11 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 cout << setw(45) << " " << "| " << "3. Back" << setw(13) << " " << " |" << endl;
                 cout << setw(45) << ' ' << "------------------------" << endl;
                 cout << setw(45) << " " << "Your choice: ";
-                cin >> tmp;
-                if (tmp == '3') continue;
+                int tmp2;
+                cin >> tmp2;
+                if (tmp2 == 3) continue;
                 string current = "";
-                if (tmp == '1')
+                if (tmp2 == 1)
                 {
                     while (current != position->next->pas)
                     {
@@ -415,7 +416,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                         login(ListYear);
                     }
                 }
-                else if (tmp == '2')
+                else if (tmp2 == 2)
                 {
                     system("cls");
                     cout << setw(47) << " " << "*** User profile ***\n";
@@ -653,6 +654,8 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                     }
                     else {
                         outputListClass(ListYear.pTail->data.Listclass);
+                        cout << endl;
+                        cout << setw(40) << " ";
                         system("pause");
                     }
                 }
@@ -673,7 +676,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                    else {
                         system("cls");
                         string classnow;
-                        cout << setw(30) << " " << "Please enter the class name(ex : 20CTT1...) : ";
+                        cout << setw(30) << " " << "Please enter the class name(ex: 21CTT1...) : ";
                         cin >> classnow;
                         Node<Class>* current = ListYear.pTail->data.Listclass.pHead;
                         for (; current != nullptr; current = current->pNext)
