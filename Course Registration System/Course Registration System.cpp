@@ -1,11 +1,12 @@
+
 #include "year.h"
 #include "login.h"
 using namespace std;
 int main()
 {
     LinkedList<Year> ListYear;
-     login(ListYear);
-
+    login(ListYear);
+    deleteAll(ListYear);
     //example to use function : import Score board,	view Score Board Of a Course  ,and update A Student's result;
   /*  LinkedList<Year> ListYear;
     CreateYear(ListYear);
@@ -102,7 +103,7 @@ int main()
 
 //	end example~~~
 
-*/
+/*
 
     /*LinkedList<Year> listYear;
     Year y1{ 2020 };
