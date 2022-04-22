@@ -227,7 +227,6 @@ void removeIndex(LinkedList<T> &l1, int index) {
             Node<T>* delItem = temp->pNext;
             temp->pNext = temp->pNext->pNext;
             delete delItem;
-            cout << "Item removed" << endl;
             break;
         }
         count++;

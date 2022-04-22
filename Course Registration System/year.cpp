@@ -483,6 +483,7 @@ void semester(LinkedList<Year> &ListYear, Regis &reg)
                 cin >> ind;
                 system("cls");
                 updateIndex(ListYear.pTail->data.ListSemester.pTail->data.ListCourse, ind, &inputCourse);
+                cout << setw(40) << " ";
                 system("pause");
             }
             break;
@@ -585,11 +586,11 @@ void student(int id, LinkedList<Year>& ListYear, Date &today, Regis &reg)
         cout << setw(45) << ' ' << "---------------------------------" << endl;
         cout << setw(45) << " " << "| " << "2. View list of enroll course" << " " << "|" << endl;
         cout << setw(45) << ' ' << "---------------------------------" << endl;
-        cout << setw(45) << " " << "| " << "3. Remove Course" << setw(16) << " " << "| " << endl;
+        cout << setw(45) << " " << "| " << "3. Remove Course" << setw(13) << " " << "| " << endl;
         cout << setw(45) << ' ' << "---------------------------------" << endl;
-        cout << setw(45) << " " << "| " << "4. View your scoreboard" << setw(9) << " " << "| " << endl;
+        cout << setw(45) << " " << "| " << "4. View your scoreboard" << setw(6) << " " << "| " << endl;
         cout << setw(45) << ' ' << "---------------------------------" << endl;
-        cout << setw(45) << " " << "| " << "5. Back" << setw(25) << " " << "| " << endl;
+        cout << setw(45) << " " << "| " << "5. Back" << setw(22) << " " << "| " << endl;
         cout << setw(45) << ' ' << "---------------------------------" << endl;
         cout << setw(45) << "  " << "Input choice (0 - 5): ";
         cin >> choice;
@@ -612,7 +613,7 @@ void student(int id, LinkedList<Year>& ListYear, Date &today, Regis &reg)
         else if (choice == 4)
         {
             viewScoreBoard(ListYear.pTail->data.ListSemester.pTail->data.ListCourse, user);
-            system("pause");
+            cout << setw(45) << " "; system("pause");
         }
         else if (choice == 5)
         {

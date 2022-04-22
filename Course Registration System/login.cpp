@@ -377,7 +377,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 cout << setw(45) << ' ' << "------------------------" << endl;
                 cout << setw(45) << " " << "| " << "1. Change password" << setw(2) << " " << " |" << endl;
                 cout << setw(45) << ' ' << "------------------------" << endl;
-                cout << setw(45) << " " << "| " << "2. view your profile" << setw(0) << "" << " |" << endl;
+                cout << setw(45) << " " << "| " << "2. View your profile" << setw(0) << "" << " |" << endl;
                 cout << setw(45) << ' ' << "------------------------" << endl;
                 cout << setw(45) << " " << "| " << "3. Back" << setw(13) << " " << " |" << endl;
                 cout << setw(45) << ' ' << "------------------------" << endl;
@@ -417,6 +417,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 }
                 else if (tmp == '2')
                 {
+                    system("cls");
                     cout << setw(47) << " " << "*** User profile ***\n";
                     cout << setw(47) << ' ' << "------------";
                     for (int i = 0; i <= ID.size(); i++)
