@@ -377,16 +377,15 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 cout << setw(45) << ' ' << "------------------------" << endl;
                 cout << setw(45) << " " << "| " << "1. Change password" << setw(2) << " " << " |" << endl;
                 cout << setw(45) << ' ' << "------------------------" << endl;
-                cout << setw(45) << " " << "| " << "2. View your profile" << setw(0) << "" << " |" << endl;
+                cout << setw(45) << " " << "| " << "2. view your profile" << setw(0) << "" << " |" << endl;
                 cout << setw(45) << ' ' << "------------------------" << endl;
                 cout << setw(45) << " " << "| " << "3. Back" << setw(13) << " " << " |" << endl;
                 cout << setw(45) << ' ' << "------------------------" << endl;
                 cout << setw(45) << " " << "Your choice: ";
-                int tmp2;
-                cin >> tmp2;
-                if (tmp2 == 3) continue;
+                cin >> tmp;
+                if (tmp == '3') continue;
                 string current = "";
-                if (tmp2 == 1)
+                if (tmp == '1')
                 {
                     while (current != position->next->pas)
                     {
@@ -416,9 +415,8 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                         login(ListYear);
                     }
                 }
-                else if (tmp2 == 2)
+                else if (tmp == '2')
                 {
-                    system("cls");
                     cout << setw(47) << " " << "*** User profile ***\n";
                     cout << setw(47) << ' ' << "------------";
                     for (int i = 0; i <= ID.size(); i++)
@@ -558,7 +556,8 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                             }
                             track.pHead = track.pHead->pNext;
                         }
-                        if (flag == false) {
+                        if (flag == false)
+                        {
                             cout << setw(45) << " " << "Invalid class" << endl;
                             cout << setw(45) << " ";
                             system("pause");
@@ -622,7 +621,8 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                         }
                         //   outputAllStudent(s);
                         //Node<Class> *current = ListYear.pHead->data.Listclass.pHead;
-                        if (s.pHead == nullptr) {
+                        if (s.pHead == nullptr)
+                        {
                             cout << setw(45) << " ";
                             system("pause");
                             continue;
@@ -646,37 +646,40 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                     }
                 }
                 else if (temp == 6)
-                {                 
-                    if (ListYear.pTail == NULL) {
+                {
+                    if (ListYear.pTail == NULL)
+                    {
                         cout << setw(45) << ' ' << "Create a school year first" << endl;
                         cout << setw(45) << ' ';
                         system("pause");
                     }
-                    else {
+                    else
+                    {
                         outputListClass(ListYear.pTail->data.Listclass);
-                        cout << endl;
-                        cout << setw(40) << " ";
                         system("pause");
                     }
                 }
                 else if (temp == 7)
                 {
-                   if (ListYear.pTail == NULL) {
+                    if (ListYear.pTail == NULL)
+                    {
                         cout << setw(45) << ' ' << "Create a school year first" << endl;
                         cout << setw(45) << ' ';
                         system("pause");
                         continue;
-                   }
-                   if (ListYear.pTail->data.Listclass.pTail == nullptr) {
+                    }
+                    if (ListYear.pTail->data.Listclass.pTail == nullptr)
+                    {
                         cout << setw(45) << ' ' << "No class here. " << endl;
                         cout << setw(45) << ' ';
                         system("pause");
                         continue;
-                   }
-                   else {
+                    }
+                    else
+                    {
                         system("cls");
                         string classnow;
-                        cout << setw(30) << " " << "Please enter the class name(ex: 21CTT1...) : ";
+                        cout << setw(30) << " " << "Please enter the class name(ex : 20CTT1...) : ";
                         cin >> classnow;
                         Node<Class>* current = ListYear.pTail->data.Listclass.pHead;
                         for (; current != nullptr; current = current->pNext)
@@ -694,8 +697,8 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                             cout << setw(30) << ' ';
                             system("pause");
                         }
-                    }                  
-                
+                    }
+
                 }
                 else if (temp == 8)
                 {
@@ -734,7 +737,8 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                         system("pause");
                         continue;
                     }
-                    if (ListYear.pTail->data.ListSemester.pTail == nullptr) {
+                    if (ListYear.pTail->data.ListSemester.pTail == nullptr)
+                    {
                         cout << setw(45) << ' ' << "Create semester first!" << endl;
                         cout << setw(45) << " ";
                         system("pause");
@@ -747,7 +751,8 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                         system("pause");
                         continue;
                     }
-                    else {
+                    else
+                    {
                         system("cls");
                         outputStudentInCourse(ListYear.pTail->data.ListSemester.pTail->data.ListCourse);
                         system("pause");
@@ -852,6 +857,84 @@ bool loginSt(string &ID,string &pass, ListLogin* &lhead, ListLogin* &position, i
     if (check == true) return true;
     else return false;
 }
+void deleteAll(LinkedList<Year> &ListYear)
+{
+    Node<Year> *NodeYear = ListYear.pHead;
+    while(NodeYear != nullptr)
+    {
+        Node<Semester> *NodeSemester = NodeYear->data.ListSemester.pHead;
+        while(NodeSemester != nullptr)
+        {
+            Node<Course>* NodeCourse = NodeSemester->data.ListCourse.pHead;
+            while(NodeCourse != nullptr)
+            {
+
+                Node<Student> *NodeEnrollStudent = NodeCourse->data.EnrollStudentList.pHead;
+                while(NodeEnrollStudent != nullptr)
+                {
+                    Node<CourseData> *NodeListCourseData = NodeEnrollStudent->data.ListCourseData.pHead;
+                    while(NodeListCourseData != nullptr)
+                    {
+                        NodeEnrollStudent->data.ListCourseData.pHead = NodeEnrollStudent->data.ListCourseData.pHead->pNext;
+                        delete NodeListCourseData;
+                        NodeListCourseData = NodeEnrollStudent->data.ListCourseData.pHead;
+                    }
+
+                    NodeCourse->data.EnrollStudentList.pHead = NodeCourse->data.EnrollStudentList.pHead->pNext;
+                    delete NodeEnrollStudent;
+                    NodeEnrollStudent = NodeCourse->data.EnrollStudentList.pHead;
+                }
+                Node<Score> *NodeScore = NodeCourse->data.scoreBoard.pHead;
+                while(NodeScore != nullptr)
+                {
+                    NodeCourse->data.scoreBoard.pHead = NodeCourse->data.scoreBoard.pHead->pNext;
+                    delete NodeScore;
+                    NodeScore = NodeCourse->data.scoreBoard.pHead;
+                }
+                NodeSemester->data.ListCourse.pHead = NodeSemester->data.ListCourse.pHead->pNext;
+                delete NodeCourse;
+                NodeCourse = NodeSemester->data.ListCourse.pHead;
+            }
+            NodeSemester->data.ListCourse.pHead = NodeSemester->data.ListCourse.pHead->pNext;
+            delete NodeCourse;
+            NodeCourse = NodeSemester->data.ListCourse.pHead;
+
+            NodeYear->data.ListSemester.pHead = NodeYear->data.ListSemester.pHead->pNext;
+            delete NodeSemester;
+            NodeSemester = NodeYear->data.ListSemester.pHead;
+        }
+
+        Node<Class> *NodeClass = NodeYear->data.Listclass.pHead;
+        while(NodeClass != nullptr)
+        {
+
+            Node<Student>* NodeStudent = NodeClass->data.listOfStudents.pHead;
+            while(NodeStudent != nullptr)
+            {
+                Node<CourseData> *NodeCourseData = NodeStudent->data.ListCourseData.pHead;
+                while(NodeCourseData != nullptr)
+                {
+                    NodeStudent->data.ListCourseData.pHead = NodeStudent->data.ListCourseData.pHead->pNext;
+                    delete NodeCourseData;
+                    NodeCourseData = NodeStudent->data.ListCourseData.pHead;
+                }
+
+                NodeClass->data.listOfStudents.pHead = NodeClass->data.listOfStudents.pHead->pNext;
+                delete NodeStudent;
+                NodeStudent = NodeClass->data.listOfStudents.pHead;
+            }
+
+            NodeYear->data.Listclass.pHead = NodeYear->data.Listclass.pHead->pNext;
+            delete NodeClass;
+            NodeClass = NodeYear->data.Listclass.pHead;
+        }
+
+        ListYear.pHead = ListYear.pHead->pNext;
+        delete NodeYear;
+        NodeYear = ListYear.pHead;
+    }
+}
+
 /*
 2
 2

@@ -34,4 +34,5 @@ void saveStudent(ListLogin* &lhead);
 void loginStudent(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListYear);
 void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListYear);
 
+void deleteAll(LinkedList<Year> &ListYear);
 #endif // LOGIN_H_INCLUDED
