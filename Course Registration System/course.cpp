@@ -377,12 +377,11 @@ void viewEnrollCourse(Student s1)
         {
             cout << setw(50) << " " << i++ << ". " << temp->data.CourseName << " (ID: " << temp->data.ID << ") " << endl;
         }
-        cout << setw(40) << " ";
     }
 }
 void removeCourseFromEnrollList(Node<Student> *s1)
 {
-    if (s1->data.ListCourseData.pTail == nullptr) {
+    if (s1->data.ListCourseData.pHead == nullptr) {
         cout << setw(45) << " " << "No enrolled course" << endl;
         cout << setw(45) << " ";
         system("pause");
@@ -442,7 +441,6 @@ void removeCourseFromEnrollList(Node<Student> *s1)
                 }
             }
             viewEnrollCourse(s1->data);
-            cout << setw(40) << " ";
             system("pause");
         }
         if (choose == 2)
