@@ -364,7 +364,10 @@ void outputStudentInCourse(LinkedList<Course>ListCourse)
 
 void viewEnrollCourse(Student s1)
 {
-    if (s1.ListCourseData.pHead == nullptr) cout << "This student hasn't enrolled course\n";
+    if (s1.ListCourseData.pHead == nullptr) {
+        cout << setw(45) << " " << "This student hasn't enrolled course\n";
+        cout << setw(45) << " ";
+    }
     else
     {
         cout << setw(40) << " " << "All Enrolled Courses by " << s1.FirstName << " " << s1.LastName << " are: \n";
@@ -374,71 +377,79 @@ void viewEnrollCourse(Student s1)
         {
             cout << setw(50) << " " << i++ << ". " << temp->data.CourseName << " (ID: " << temp->data.ID << ") " << endl;
         }
+        cout << setw(40) << " ";
     }
 }
 void removeCourseFromEnrollList(Node<Student> *s1)
 {
-    cout << setw(40) << " " << "Choose the option: " << endl;
-    cout << setw(40) << " " << "1. Remove Course Data" << endl;
-    cout << setw(40) << " " << "2. Exit" << endl;
-    cout << setw(40) << " " << "Your choice is: ";
-    int choose;
-    cin >> choose;
-    while (choose != 1 && choose != 2)
-    {
-        cout << setw(40) << " " << "Please choose again: " << endl;
+    if (s1->data.ListCourseData.pTail == nullptr) {
+        cout << setw(45) << " " << "No enrolled course" << endl;
+        cout << setw(45) << " ";
         system("pause");
-        system("cls");
-        removeCourseFromEnrollList(s1);
+        return;
     }
-    if (choose == 1)
-    {
-        system("cls");
-        viewEnrollCourse(s1->data);
-        cout << setw(40) << " " << "Input the Course ID you want to remove: ";
-        string num;
-        cin >> num;
-        Node <CourseData>* temp = s1->data.ListCourseData.pHead;
-        Node <CourseData>* pre = new Node <CourseData>;
-        pre->pNext = temp;
-        while (temp != nullptr)
+    else {
+        cout << setw(40) << " " << "Choose the option: " << endl;
+        cout << setw(40) << " " << "1. Remove Course Data" << endl;
+        cout << setw(40) << " " << "2. Exit" << endl;
+        cout << setw(40) << " " << "Your choice is: ";
+        int choose;
+        cin >> choose;
+        while (choose != 1 && choose != 2)
         {
-            if (temp->data.ID == num)
+            cout << setw(40) << " " << "Please choose again: " << endl;
+            system("pause");
+            system("cls");
+            removeCourseFromEnrollList(s1);
+        }
+        if (choose == 1)
+        {
+            system("cls");
+            viewEnrollCourse(s1->data);
+            cout << setw(40) << " " << "Input the Course ID you want to remove: ";
+            string num;
+            cin >> num;
+            Node <CourseData>* temp = s1->data.ListCourseData.pHead;
+            Node <CourseData>* pre = new Node <CourseData>;
+            pre->pNext = temp;
+            while (temp != nullptr)
             {
-                if (temp == s1->data.ListCourseData.pHead)
+                if (temp->data.ID == num)
                 {
-                    s1->data.ListCourseData.pHead = s1->data.ListCourseData.pHead->pNext;
-                    delete temp;
-                    break;
+                    if (temp == s1->data.ListCourseData.pHead)
+                    {
+                        s1->data.ListCourseData.pHead = s1->data.ListCourseData.pHead->pNext;
+                        delete temp;
+                        break;
+                    }
+                    else
+                    {
+                        Node <CourseData>* del = temp;
+                        pre->pNext = temp->pNext;
+                        temp = temp->pNext;
+                        delete del;
+                        if (temp == nullptr)
+                        {
+                            s1->data.ListCourseData.pTail = pre;
+                        }
+                        break;
+                    }
                 }
                 else
                 {
-                    Node <CourseData>* del = temp;
-                    pre->pNext = temp->pNext;
                     temp = temp->pNext;
-                    delete del;
-                    if (temp == nullptr)
-                    {
-                        s1->data.ListCourseData.pTail = pre;
-                    }
-                    break;
+                    pre = pre->pNext;
                 }
             }
-            else
-            {
-                temp = temp->pNext;
-                pre = pre->pNext;
-            }
+            viewEnrollCourse(s1->data);
+            cout << setw(40) << " ";
+            system("pause");
         }
-        viewEnrollCourse(s1->data);
-        cout << setw(40) << " ";
-        system("pause");
+        if (choose == 2)
+        {
+            return;
+        }
     }
-    if (choose == 2)
-    {
-        return;
-    }
-
 }
 
 bool checkIfStudentInCourse(Course c1, Student s1)
@@ -520,9 +531,9 @@ void outputScore(Node<Course>* c1, Student s)
 void viewScoreBoard(LinkedList<Course> ListCourse, Student s1)
 {
     Node<Course>* temp = ListCourse.pHead;
-    if (ListCourse.pHead == nullptr)
-    {
-        cout << setw(40) << " " << "No course";
+    if (s1.ListCourseData.pHead == nullptr) {
+        cout << setw(45) << " " << "No enrolled course";
+        cout << endl << setw(45) << " ";        
         return;
     }
     if (checkIfStudentInListCourse(ListCourse, s1))
