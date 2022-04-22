@@ -623,5 +623,4 @@ void student(int id, LinkedList<Year>& ListYear, Date &today, Regis &reg)
             cout << "invalid input, please try again!" << endl;
         }
     }
-
 }
