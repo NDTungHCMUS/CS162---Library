@@ -223,7 +223,7 @@ void removeIndex(LinkedList<T> &l1, int index) {
     int count = 0;
     Node<T>* temp = l1.pHead;
     while (temp != NULL) {
-        if (count == index - 1) {
+        if (count == index - 2) {
             Node<T>* delItem = temp->pNext;
             temp->pNext = temp->pNext->pNext;
             delete delItem;
