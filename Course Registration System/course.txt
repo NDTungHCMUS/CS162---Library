@@ -1,0 +1,262 @@
+1
+2022
+1
+1
+2022
+15 3 2022
+15 6 2022
+8
+CS162
+Intro to CS 2
+Dinh Ba Tien
+4
+50
+4
+TUE
+S1
+SAT
+S1
+4
+3
+21125093
+Tran
+Le Quoc
+1
+15 10 2003
+1236
+0
+1
+21125087
+Phong
+Vuong Quoc
+1
+23 1 2003
+1234
+0
+4
+21125130
+Chu 
+Hoang Phuc
+1
+11 10 2003
+1237
+0
+2
+21125171
+Nguyen
+Dinh Tung
+1
+12 2 2003
+1235
+0
+4
+1
+21125087
+Vuong Quoc Phong
+9
+9
+9
+9
+2
+21125171
+Nguyen Dinh Tung
+10
+8
+9
+8
+3
+21125093
+Tran Le Quoc
+7
+7
+7
+7
+4
+21125130
+Chu Hoang Phuc
+9
+9
+9
+9
+MTH252
+Calculus2
+Nguyen Huu Anh
+4
+50
+0
+TUE
+S2
+THU
+S2
+0
+0
+PH212
+General Physics 2
+Nguyen Huu Nha
+4
+50
+0
+WED
+S3
+THU
+S3
+0
+0
+BAA00001
+Intro to Laws
+NN Phuong Hong
+2
+50
+0
+TUE
+S3
+TUE
+S4
+0
+0
+BAA00102
+Economics
+Ngo Tuan Phuong
+2
+50
+0
+WED
+S1
+WED
+S2
+0
+0
+BAA00101
+Philosophy
+Ngo Quang Huy
+2
+50
+0
+MON
+S1
+MON
+S2
+0
+0
+PH251
+General Physics 1
+Vu Thi Hanh Thu
+4
+50
+0
+FRI
+S1
+SAT
+S4
+0
+0
+MTH251
+Calculus 1
+Nguyen Huu Anh
+4
+50
+0
+FRI
+S1
+SAT
+S4
+0
+0
+3
+21CTT1
+5
+1
+21125087
+Phong
+Vuong Quoc
+1
+23 1 2003
+1234
+1
+1
+CS162
+Intro to CS 2
+Dinh Ba Tien
+TUE
+S1
+SAT
+S1
+2
+21125171
+Nguyen
+Dinh Tung
+1
+12 2 2003
+1235
+1
+1
+CS162
+Intro to CS 2
+Dinh Ba Tien
+TUE
+S1
+SAT
+S1
+3
+21125093
+Tran
+Le Quoc
+1
+15 10 2003
+1236
+1
+1
+CS162
+Intro to CS 2
+Dinh Ba Tien
+TUE
+S1
+SAT
+S1
+4
+21125130
+Chu 
+Hoang Phuc
+1
+11 10 2003
+1237
+1
+1
+CS162
+Intro to CS 2
+Dinh Ba Tien
+TUE
+S1
+SAT
+S1
+5
+21125153
+Nguyen
+Tran Nam
+2
+12 10 2003
+1238
+0
+0
+21CTT2
+1
+1
+21125000
+A
+Nguyen
+1
+15 10 2003
+123654
+0
+0
+21CLC4
+1
+1
+21125000
+A
+Nguyen
+1
+15 10 2033
+123321
+0
+0

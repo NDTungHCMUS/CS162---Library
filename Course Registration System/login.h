@@ -7,7 +7,6 @@
 #include"year.h"
 #include <chrono>
 #include <ctime>
-
 using namespace std;
 typedef std::chrono::system_clock Clock;
 struct ListLogin
@@ -35,4 +34,7 @@ void loginStudent(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &Lis
 void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListYear);
 
 void deleteAll(LinkedList<Year> &ListYear);
+
+void outAll(LinkedList<Year> &ListYear, ofstream &fout);
+void inAll(LinkedList<Year> &ListYear, ifstream &fin);
 #endif // LOGIN_H_INCLUDED

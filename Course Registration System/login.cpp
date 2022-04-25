@@ -43,11 +43,16 @@ void login(LinkedList<Year> &ListYear)
         cout << setw(45) << " " << "------------------------------" << endl;
         cout << setw(45) << " " << "| " << "2. Staff member" << setw(12) << " " << "|" << endl;
         cout << setw(45) << " " << "------------------------------" << endl;
-        cout << setw(45) << " " << "| " << "3. Exit" << setw(20) << " " << "|" << endl;
+        cout << setw(45) << " " << "| " << "3. Load data" << setw(15) << " " << "|" << endl;
         cout << setw(45) << " " << "------------------------------" << endl;
-        cout << setw(45) << " " << "Input your choice (1 - 3): ";
+        cout << setw(45) << " " << "| " << "4. Save data" << setw(15) << " " << "|" << endl;
+        cout << setw(45) << " " << "------------------------------" << endl;
+        cout << setw(45) << " " << "| " << "5. Exit" << setw(20) << " " << "|" << endl;
+        cout << setw(45) << " " << "------------------------------" << endl;
+
+        cout << setw(45) << " " << "Input your choice (1 - 5): ";
         int x;
-        while (cin >> x && (x != 1 && x != 2 && x != 3))
+        while (cin >> x && (x != 1 && x != 2 && x != 3 && x != 4 && x!= 5))
         {
             cout << setw(45) << " " << "Invalid choice, please try again!" << endl;
             cout << setw(45) << " ";
@@ -132,8 +137,31 @@ void login(LinkedList<Year> &ListYear)
         }
         else if (x == 3)
         {
+            ifstream fin;
+            fin.open("course.txt");
+            inAll(ListYear,fin);
+            fin.close();
+            cout << setw(45) << " " << "Loading successful!" << endl;
+            cout << setw(45) << " ";
+            system("pause");
+
+
+        }
+        else if (x == 4)
+        {
+            ofstream fout;
+            fout.open("course.txt");
+            outAll(ListYear,fout);
+            fout.close();
+            cout << setw(45) << " " << "All your data are saved!" << endl;
+            cout << setw(45) << " ";
+            system("pause");
+        }
+        else if (x == 5)
+        {
             check = true;
             deleteListLogin(lhead);
+            deleteAll(ListYear);
             exit(0);
         }
         else
@@ -382,11 +410,15 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                 cout << setw(45) << " " << "| " << "3. Back" << setw(13) << " " << " |" << endl;
                 cout << setw(45) << ' ' << "------------------------" << endl;
                 cout << setw(45) << " " << "Your choice: ";
-                cin >> tmp;
-                if (tmp == '3') continue;
+                char tmp2;
+                cin >> tmp2;
+                if (tmp2 == '3') continue;
                 string current = "";
-                if (tmp == '1')
+                if (tmp2 == '1')
                 {
+                    cout << current << endl;
+                    cout << position->pas << endl;
+                    cout << position->next->pas << endl;
                     while (current != position->next->pas)
                     {
                         system("cls");
@@ -415,7 +447,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                         login(ListYear);
                     }
                 }
-                else if (tmp == '2')
+                else if (tmp2 == '2')
                 {
                     system("cls");
                     cout << setw(49) << " " << "*** User profile ***\n";
@@ -873,6 +905,7 @@ void deleteAll(LinkedList<Year> &ListYear)
                 Node<Student> *NodeEnrollStudent = NodeCourse->data.EnrollStudentList.pHead;
                 while(NodeEnrollStudent != nullptr)
                 {
+
                     Node<CourseData> *NodeListCourseData = NodeEnrollStudent->data.ListCourseData.pHead;
                     while(NodeListCourseData != nullptr)
                     {
@@ -896,9 +929,6 @@ void deleteAll(LinkedList<Year> &ListYear)
                 delete NodeCourse;
                 NodeCourse = NodeSemester->data.ListCourse.pHead;
             }
-            NodeSemester->data.ListCourse.pHead = NodeSemester->data.ListCourse.pHead->pNext;
-            delete NodeCourse;
-            NodeCourse = NodeSemester->data.ListCourse.pHead;
 
             NodeYear->data.ListSemester.pHead = NodeYear->data.ListSemester.pHead->pNext;
             delete NodeSemester;
@@ -935,7 +965,221 @@ void deleteAll(LinkedList<Year> &ListYear)
         NodeYear = ListYear.pHead;
     }
 }
+void outAll(LinkedList<Year> &ListYear, ofstream &fout)
+{
+   // cout << "All data are stored !" << endl;
+    int lengthYear = length(ListYear);
+  //  cout << lengthYear << endl;
 
+    fout << lengthYear << endl;
+    for (Node<Year> *NodeYear = ListYear.pHead; NodeYear != nullptr; NodeYear = NodeYear->pNext)
+    {
+        fout << NodeYear->data.yearStart << endl;
+
+        fout << length(NodeYear->data.ListSemester) << endl;
+        for (Node<Semester> *NodeSemester = NodeYear->data.ListSemester.pHead; NodeSemester != nullptr; NodeSemester = NodeSemester->pNext)
+        {
+            fout << NodeSemester->data.SemesterNumb << endl;
+            fout << NodeSemester->data.schoolyear << endl;
+            fout << NodeSemester->data.startDate.day <<' '<<NodeSemester->data.startDate.month <<' '<<NodeSemester->data.startDate.year<< endl;
+            fout << NodeSemester->data.endDate.day <<' '<<NodeSemester->data.endDate.month <<' '<<NodeSemester->data.endDate.year<< endl;
+            fout << length(NodeSemester->data.ListCourse) << endl;
+            for (Node<Course>* NodeCourse = NodeSemester->data.ListCourse.pHead; NodeCourse != nullptr; NodeCourse = NodeCourse->pNext)
+            {
+                fout << NodeCourse->data.ID << endl; // string
+                fout << NodeCourse->data.CourseName << endl; // string
+                fout << NodeCourse->data.TeacherName << endl; // string
+                fout << NodeCourse->data.NumbOfCredits << endl;
+                fout << NodeCourse->data.MaxStudent << endl;
+                fout << NodeCourse->data.NumbOfStudent << endl;
+                fout << NodeCourse->data.s1.day << endl; // string
+                fout << NodeCourse->data.s1.period << endl; // string
+                fout << NodeCourse->data.s2.day << endl; // string
+                fout << NodeCourse->data.s2.period << endl; // string
+
+                fout << length(NodeCourse->data.EnrollStudentList) << endl;
+                for (Node<Student> *NodeEnrollStudent = NodeCourse->data.EnrollStudentList.pHead; NodeEnrollStudent != nullptr; NodeEnrollStudent = NodeEnrollStudent->pNext)
+                {
+                    fout << NodeEnrollStudent->data.No << endl;
+                    fout << NodeEnrollStudent->data.StudentID << endl;
+                    fout << NodeEnrollStudent->data.FirstName << endl; // string
+                    fout << NodeEnrollStudent->data.LastName << endl; // string
+                    fout << NodeEnrollStudent->data.Gender << endl;
+                    fout << NodeEnrollStudent->data.dob.day <<' ' <<NodeEnrollStudent->data.dob.month <<' ' << NodeEnrollStudent->data.dob.year  << endl;
+                    fout << NodeEnrollStudent->data.SocialID << endl;
+                    fout << NodeEnrollStudent->data.numCourse << endl;
+                }
+
+                fout << length(NodeCourse->data.scoreBoard) << endl;
+                for(Node<Score> *NodeScore = NodeCourse->data.scoreBoard.pHead; NodeScore != nullptr; NodeScore = NodeScore->pNext)
+                {
+                    fout << NodeScore->data.no << endl;
+                    fout << NodeScore->data.ID << endl;
+                    fout << NodeScore->data.fullname << endl; // string
+                    fout << NodeScore->data.totalMark << endl;
+                    fout << NodeScore->data.finalMark << endl;
+                    fout << NodeScore->data.midtermMark << endl;
+                    fout << NodeScore->data.otherMark << endl;
+                }
+            }
+        }
+
+        fout << length(NodeYear->data.Listclass) << endl;
+        for(Node<Class> *NodeClass = NodeYear->data.Listclass.pHead; NodeClass != nullptr; NodeClass = NodeClass->pNext)
+        {
+            fout << NodeClass->data.classname << endl;
+            fout << length(NodeClass->data.listOfStudents) << endl;
+            for (Node<Student>* NodeStudent = NodeClass->data.listOfStudents.pHead; NodeStudent != nullptr; NodeStudent = NodeStudent->pNext)
+            {
+                fout << NodeStudent->data.No << endl;
+                fout << NodeStudent->data.StudentID << endl;
+                fout << NodeStudent->data.FirstName << endl; // string
+                fout << NodeStudent->data.LastName << endl; // string
+                fout << NodeStudent->data.Gender << endl;
+                fout << NodeStudent->data.dob.day <<' ' <<NodeStudent->data.dob.month <<' ' << NodeStudent->data.dob.year  << endl;
+                fout << NodeStudent->data.SocialID << endl;
+                fout << NodeStudent->data.numCourse << endl;
+                fout << length(NodeStudent->data.ListCourseData) << endl;
+                for (Node<CourseData> *NodeCourseData = NodeStudent->data.ListCourseData.pHead; NodeCourseData != nullptr; NodeCourseData = NodeCourseData->pNext)
+                {
+                    fout << NodeCourseData->data.ID << endl; // string
+                    fout << NodeCourseData->data.CourseName << endl; // string
+                    fout << NodeCourseData->data.TeacherName << endl; // string
+                    fout << NodeCourseData->data.s1.day << endl; // string
+                    fout << NodeCourseData->data.s1.period << endl; // string
+                    fout << NodeCourseData->data.s2.day << endl; // string
+                    fout << NodeCourseData->data.s2.period << endl; // string
+                }
+            }
+
+        }
+    }
+}
+void inAll(LinkedList<Year> &ListYear, ifstream &fin)
+{
+    int lengthYear;
+    fin >> lengthYear;
+    for (int i = 0; i < lengthYear; i++)
+    {
+        Year NodeYear;
+        fin >> NodeYear.yearStart;
+        int lengthSemester;
+        fin >> lengthSemester;
+        LinkedList<Semester> ListSemester;
+        for (int j = 0; j < lengthSemester; j++)
+        {
+            Semester NodeSemester;
+            fin >> NodeSemester.SemesterNumb;
+            fin >> NodeSemester.schoolyear;
+            fin >> NodeSemester.startDate.day >> NodeSemester.startDate.month >> NodeSemester.startDate.year ;
+            fin >> NodeSemester.endDate.day >> NodeSemester.endDate.month >> NodeSemester.endDate.year ;
+            int lengthCourse;
+            fin >> lengthCourse;
+            LinkedList<Course> ListCourse;
+            Course NodeCourse;
+            for (int u = 0; u < lengthCourse; u++)
+            {
+                getline(fin >> ws, NodeCourse.ID);
+                getline(fin >> ws, NodeCourse.CourseName);
+                getline(fin >> ws, NodeCourse.TeacherName);
+                fin >> NodeCourse.NumbOfCredits;
+                fin >> NodeCourse.MaxStudent;
+                fin >> NodeCourse.NumbOfStudent;
+                getline(fin >> ws, NodeCourse.s1.day);
+                getline(fin >> ws, NodeCourse.s1.period);
+                getline(fin >> ws, NodeCourse.s2.day);
+                getline(fin >> ws, NodeCourse.s2.period);
+                int lengthEnrollStudentList;
+                fin >> lengthEnrollStudentList;
+                LinkedList<Student> EnrollStudentList;
+                Student NodeEnrollStudent;
+                for (int v = 0; v < lengthEnrollStudentList; v++)
+                {
+                    fin >> NodeEnrollStudent.No;
+                    fin >> NodeEnrollStudent.StudentID;
+                    getline(fin >> ws,NodeEnrollStudent.FirstName);
+                    getline(fin >> ws,NodeEnrollStudent.LastName);
+                    fin >> NodeEnrollStudent.Gender;
+                    fin >> NodeEnrollStudent.dob.day >> NodeEnrollStudent.dob.month >> NodeEnrollStudent.dob.year;
+                    fin >> NodeEnrollStudent.SocialID;
+                    fin >> NodeEnrollStudent.numCourse;
+                    add(EnrollStudentList,NodeEnrollStudent);
+                }
+                NodeCourse.EnrollStudentList = EnrollStudentList;
+                int lengthScoreboard;
+                fin >> lengthScoreboard;
+                LinkedList<Score> ListScore;
+                Score NodeScore;
+
+                for (int k = 0; k < lengthScoreboard; k++)
+                {
+                    fin >> NodeScore.no;
+                    fin >> NodeScore.ID;
+                    getline(fin >> ws, NodeScore.fullname);
+                    fin >> NodeScore.totalMark;
+                    fin >> NodeScore.finalMark;
+                    fin >> NodeScore.midtermMark;
+                    fin >> NodeScore.otherMark;
+                    add(ListScore,NodeScore);
+                }
+                NodeCourse.scoreBoard = ListScore;
+                add(ListCourse, NodeCourse);
+            }
+            NodeSemester.ListCourse = ListCourse;
+            add(ListSemester, NodeSemester);
+        }
+        NodeYear.ListSemester = ListSemester;
+
+        int lengthClass;
+        fin >> lengthClass;
+        Class NodeClass;
+        LinkedList<Class> Listclass;
+        for (int l = 0;  l < lengthClass; l++ )
+        {
+            fin >> NodeClass.classname;
+
+            int lengthOfStudent;
+            fin >> lengthOfStudent;
+            Student NodeStudent;
+            LinkedList<Student> listOfStudents;
+            for (int q = 0; q < lengthOfStudent; q++)
+            {
+                fin >>  NodeStudent.No;
+                fin >>  NodeStudent.StudentID;
+                getline(fin >> ws, NodeStudent.FirstName);
+                getline(fin >> ws, NodeStudent.LastName);
+                fin >>  NodeStudent.Gender;
+                fin >>  NodeStudent.dob.day >> NodeStudent.dob.month >> NodeStudent.dob.year ;
+                fin >>  NodeStudent.SocialID;
+                fin >> NodeStudent.numCourse;
+                int lengListCourse;
+                fin >> lengListCourse;
+                LinkedList<CourseData> ListCourseData;
+                CourseData NodeCourseData;
+                for (int w = 0; w < lengListCourse; w++)
+                {
+                    getline(fin >> ws, NodeCourseData.ID);
+                    getline(fin >> ws, NodeCourseData.CourseName);
+                    getline(fin >> ws, NodeCourseData.TeacherName);
+                    getline(fin >> ws, NodeCourseData.s1.day);
+                    getline(fin >> ws, NodeCourseData.s1.period);
+                    getline(fin >> ws, NodeCourseData.s2.day);
+                    getline(fin >> ws, NodeCourseData.s2.period);
+                    add(ListCourseData,NodeCourseData);
+                }
+
+                NodeStudent.ListCourseData = ListCourseData;
+                add(listOfStudents,NodeStudent);
+            }
+            NodeClass.listOfStudents = listOfStudents;
+            add(Listclass,NodeClass);
+        }
+
+
+        NodeYear.Listclass = Listclass;
+        add(ListYear,NodeYear);
+    }
+}
 /*
 2
 2

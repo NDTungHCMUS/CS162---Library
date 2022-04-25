@@ -76,7 +76,7 @@ void outputStudent(Student s1)
     cout <<setw(5) <<' '<<  setw(15) << left << s1.StudentID
          << left << setw(14) << s1.LastName
          << left << setw(14) << s1.FirstName
-         << left << setw(12) << ((s1.Gender == 1) ? "Male" : "Famale")
+         << left << setw(12) << ((s1.Gender == 1) ? "Male" : "Female")
          << ((s1.dob.day < 10) ? "0" : "") << s1.dob.day << "/"
          << ((s1.dob.month < 10) ? "0" : "") << s1.dob.month << "/"
          << left << setw(10) << s1.dob.year
