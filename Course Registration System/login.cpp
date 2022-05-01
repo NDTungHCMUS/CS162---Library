@@ -37,22 +37,23 @@ void login(LinkedList<Year> &ListYear)
         ListLogin *lhead = nullptr;
         ListLogin *position = nullptr;
 
+        ifstream fin;
+        fin.open("course.txt");
+        inAll(ListYear, fin);
+        fin.close();
+
         cout << setw(40) << " " << "WELCOME TO OUR COURSE REGISTRATION SYSTEM" << endl;
         cout << setw(45) << " " << "------------------------------" << endl;
         cout << setw(45) << " " << "| " << "1. Student" << setw(17) << " " <<  "|" << endl;
         cout << setw(45) << " " << "------------------------------" << endl;
         cout << setw(45) << " " << "| " << "2. Staff member" << setw(12) << " " << "|" << endl;
         cout << setw(45) << " " << "------------------------------" << endl;
-        cout << setw(45) << " " << "| " << "3. Load data" << setw(15) << " " << "|" << endl;
-        cout << setw(45) << " " << "------------------------------" << endl;
-        cout << setw(45) << " " << "| " << "4. Save data" << setw(15) << " " << "|" << endl;
-        cout << setw(45) << " " << "------------------------------" << endl;
-        cout << setw(45) << " " << "| " << "5. Exit" << setw(20) << " " << "|" << endl;
+        cout << setw(45) << " " << "| " << "3. Exit" << setw(20) << " " << "|" << endl;
         cout << setw(45) << " " << "------------------------------" << endl;
 
-        cout << setw(45) << " " << "Input your choice (1 - 5): ";
+        cout << setw(45) << " " << "Input your choice (1 - 3): ";
         int x;
-        while (cin >> x && (x != 1 && x != 2 && x != 3 && x != 4 && x!= 5))
+        while (cin >> x && (x != 1 && x != 2 && x != 3))
         {
             cout << setw(45) << " " << "Invalid choice, please try again!" << endl;
             cout << setw(45) << " ";
@@ -137,26 +138,10 @@ void login(LinkedList<Year> &ListYear)
         }
         else if (x == 3)
         {
-            ifstream fin;
-            fin.open("course.txt");
-            inAll(ListYear,fin);
-            fin.close();
-            cout << setw(45) << " " << "Loaded successfully!" << endl;
-            cout << setw(45) << " ";
-            system("pause");
-        }
-        else if (x == 4)
-        {
             ofstream fout;
             fout.open("course.txt");
-            outAll(ListYear,fout);
+            outAll(ListYear, fout);
             fout.close();
-            cout << setw(45) << " " << "Data saved!" << endl;
-            cout << setw(45) << " ";
-            system("pause");
-        }
-        else if (x == 5)
-        {
             check = true;
             deleteListLogin(lhead);
             deleteAll(ListYear);
@@ -547,8 +532,8 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                             }
                             if (checkDupClass == false)
                             {
-                                cout << setw(40) << " " << "Added Successfully.\n";
                                 add(ListYear.pTail->data.Listclass, res);
+                                cout << setw(40) << " " << "Added Successfully.\n";
                                 cout << setw(40) << " ";
                                 system("pause");
                             }
@@ -687,6 +672,7 @@ void loginStaff(ListLogin* &lhead, ListLogin* &position, LinkedList<Year> &ListY
                         }
                         else
                         {
+                            system("cls");
                             int yearcheck;
                             cout << setw(45) << " " << "Please enter the school year (ex: 2020...): ";
                             cin >> yearcheck;
