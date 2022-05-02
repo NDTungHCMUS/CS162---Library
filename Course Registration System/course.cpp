@@ -365,7 +365,7 @@ void outputStudentInCourse(LinkedList<Course>ListCourse)
 void viewEnrollCourse(Student s1)
 {
     if (s1.ListCourseData.pHead == nullptr) {
-        cout << setw(45) << " " << "This student hasn't enrolled course\n";
+        cout << setw(45) << " " << "No courses to display\n";
         cout << setw(45) << " ";
     }
     else
@@ -441,7 +441,7 @@ void removeCourseFromEnrollList(Node<Student> *s1)
                 }
             }
             viewEnrollCourse(s1->data);
-            system("pause");
+            cout << setw(45) << ' ';  system("pause");
         }
         if (choose == 2)
         {

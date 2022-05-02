@@ -602,7 +602,7 @@ void student(int id, LinkedList<Year>& ListYear, Date &today, Regis &reg)
             system("cls");
             Student stutemp = NodeStudent->data;
             viewEnrollCourse(stutemp);
-            system("pause");
+            cout << setw(45) << " "; system("pause");
         }
         else if (choice == 3)
         {

@@ -5,6 +5,10 @@ using namespace std;
 int main()
 {
     LinkedList<Year> ListYear;
+    ifstream fin;
+    fin.open("course.txt");
+    inAll(ListYear, fin);
+    fin.close();
     login(ListYear);
     deleteAll(ListYear);
 }

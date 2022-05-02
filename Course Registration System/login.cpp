@@ -4,7 +4,7 @@ const char *studenttxt = "loginStudentList.txt";
 const char *stafftxt = "loginStaffList.txt";
 using namespace std;
 auto now = Clock::now();
-Regis reg{};
+Regis reg{ {1, 1, 2022}, {12, 12, 2022} };
 std::time_t now_c = Clock::to_time_t(now);
 struct tm *parts = std::localtime(&now_c);
 int year = 1900 + parts->tm_year;
@@ -35,12 +35,7 @@ void login(LinkedList<Year> &ListYear)
         system("cls");
 
         ListLogin *lhead = nullptr;
-        ListLogin *position = nullptr;
-
-        ifstream fin;
-        fin.open("course.txt");
-        inAll(ListYear, fin);
-        fin.close();
+        ListLogin* position = nullptr;
 
         cout << setw(40) << " " << "WELCOME TO OUR COURSE REGISTRATION SYSTEM" << endl;
         cout << setw(45) << " " << "------------------------------" << endl;
